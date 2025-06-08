@@ -39,22 +39,12 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           {/* Brand Section */}
           <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-r from-[#00B894] to-[#0984E3] rounded-lg flex items-center justify-center">
-                <svg 
-                  viewBox="0 0 40 40" 
-                  className="w-6 h-6 text-white" 
-                  fill="currentColor"
-                >
-                  <circle cx="20" cy="12" r="6" fill="white"/>
-                  <rect x="14" y="20" width="12" height="6" rx="3" fill="white"/>
-                  <rect x="17" y="14" width="6" height="12" rx="3" fill="white"/>
-                </svg>
-              </div>
-              <div className="flex flex-col leading-tight">
-                <div className="text-xs font-bold text-white tracking-wide">CARTÃO</div>
-                <div className="text-sm font-bold text-[#00B894] tracking-wide -mt-0.5">+ VIDAH</div>
-              </div>
+            <div className="mb-4">
+              <img 
+                src="/logo-vidah.png" 
+                alt="Cartão Vidah" 
+                className="h-8 w-auto"
+              />
             </div>
             <p className="text-gray-300 leading-relaxed">
               Benefícios exclusivos para você e sua família com tecnologia e praticidade. 

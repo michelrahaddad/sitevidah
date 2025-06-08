@@ -50,16 +50,12 @@ export default function HeroSection({ onSelectPlan }: HeroSectionProps) {
                 <div className="absolute top-2 right-2 w-8 h-8 bg-white/20 rounded-full"></div>
                 <div className="absolute bottom-2 left-2 w-6 h-6 bg-white/20 rounded-full"></div>
                 <div className="flex justify-between items-start mb-4">
-                  <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
-                    <svg 
-                      viewBox="0 0 40 40" 
-                      className="w-6 h-6" 
-                      fill="currentColor"
-                    >
-                      <circle cx="20" cy="12" r="6" fill="#00B894"/>
-                      <rect x="14" y="20" width="12" height="6" rx="3" fill="#00B894"/>
-                      <rect x="17" y="14" width="6" height="12" rx="3" fill="#00B894"/>
-                    </svg>
+                  <div className="w-16 h-8 bg-white rounded-lg flex items-center justify-center p-1">
+                    <img 
+                      src="/logo-vidah.png" 
+                      alt="Cartão Vidah" 
+                      className="h-full w-auto"
+                    />
                   </div>
                   <CreditCard className="text-2xl opacity-80" size={32} />
                 </div>

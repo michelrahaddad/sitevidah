@@ -1,0 +1,14 @@
+
+LOGO - CARTÃO VIDAH (Compatível com Replit)
+
+1. Estrutura recomendada:
+   Coloque o arquivo logo-vidah.png dentro de:
+   /static/img/logo-vidah.png
+
+2. Como usar no HTML (Flask ou HTML direto):
+   <img src="/static/img/logo-vidah.png" alt="Cartão Vidah" width="180">
+
+3. Observações:
+   - Use formato PNG, pois Replit nem sempre lida bem com SVG.
+   - A imagem tem fundo transparente e está otimizada para web.
+   - Ideal para usar em header, login, ou rodapé institucional.
