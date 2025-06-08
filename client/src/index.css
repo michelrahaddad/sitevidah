@@ -184,4 +184,39 @@ html {
   .section-title {
     @apply text-3xl;
   }
+  
+  /* Logo responsive adjustments */
+  .logo-header {
+    max-width: 120px;
+    height: auto;
+  }
+  
+  .logo-footer {
+    max-width: 100px;
+    height: auto;
+  }
+}
+
+/* Logo optimization */
+.logo-vidah {
+  filter: brightness(1.05) contrast(1.1);
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Ensure logos maintain aspect ratio and quality */
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+@media (min-width: 1024px) {
+  .logo-header {
+    max-width: 200px;
+  }
+  
+  .logo-footer {
+    max-width: 160px;
+  }
 }

@@ -13,11 +13,11 @@ export default function Header() {
   return (
     <header className="fixed top-0 w-full bg-white/90 backdrop-blur-md shadow-sm z-50 border-b border-gray-100">
       <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <div className="flex items-center">
+        <div className="logo-container">
           <img 
             src="/logo-vidah.png" 
             alt="Cartão Vidah" 
-            className="h-12 w-auto"
+            className="logo-vidah logo-header h-8 sm:h-10 md:h-12 lg:h-14 w-auto object-contain transition-all duration-300"
           />
         </div>
         

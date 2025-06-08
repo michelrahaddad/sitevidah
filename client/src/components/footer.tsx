@@ -39,11 +39,11 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           {/* Brand Section */}
           <div>
-            <div className="mb-4">
+            <div className="mb-4 logo-container">
               <img 
                 src="/logo-vidah.png" 
                 alt="Cartão Vidah" 
-                className="h-8 w-auto"
+                className="logo-vidah logo-footer h-6 sm:h-8 md:h-10 w-auto object-contain transition-all duration-300"
               />
             </div>
             <p className="text-gray-300 leading-relaxed">
