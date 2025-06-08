@@ -1,0 +1,18 @@
+
+LOGO - CARTÃO VIDAH
+
+Arquivos incluídos:
+- logo-vidah.png (com fundo transparente)
+- logo-vidah.svg (formato vetorial ideal para web)
+
+Como usar no HTML:
+<img src="logo-vidah.svg" alt="Cartão Vidah" width="180">
+
+Sugestão de posicionamento:
+- Header (topo do site)
+- Footer (rodapé institucional)
+- Páginas institucionais ou página de login
+
+Observações:
+- Evite redimensionar o PNG. Use SVG para responsividade e leveza.
+- Utilize fundo branco ou gradiente azul para melhor contraste.

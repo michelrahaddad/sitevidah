@@ -14,20 +14,21 @@ export default function Header() {
     <header className="fixed top-0 w-full bg-white/90 backdrop-blur-md shadow-sm z-50 border-b border-gray-100">
       <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center space-x-3">
-          <div className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-gradient-to-r from-[#00B894] to-[#0984E3] rounded-xl flex items-center justify-center">
+          <div className="flex items-center space-x-3">
+            <div className="w-12 h-12 bg-gradient-to-r from-[#00B894] to-[#0984E3] rounded-2xl flex items-center justify-center relative">
               <svg 
-                viewBox="0 0 24 24" 
-                className="w-6 h-6 text-white" 
+                viewBox="0 0 40 40" 
+                className="w-8 h-8 text-white" 
                 fill="currentColor"
               >
-                <path d="M12 2L4 7v10c0 5.55 3.84 9.74 9 9 5.16-.74 9-4.45 9-10V7l-8-5z"/>
-                <path d="M12 8.5L8 11v6l4-2.5L16 17v-6l-4-2.5z" fill="rgba(255,255,255,0.7)"/>
+                <circle cx="20" cy="12" r="6" fill="white"/>
+                <rect x="14" y="20" width="12" height="6" rx="3" fill="white"/>
+                <rect x="17" y="14" width="6" height="12" rx="3" fill="white"/>
               </svg>
             </div>
-            <div className="text-lg font-bold">
-              <span className="text-[#636E72]">CARTÃO</span>
-              <span className="text-[#00B894] ml-1">+ VIDAH</span>
+            <div className="flex flex-col leading-tight">
+              <div className="text-sm font-bold text-[#636E72] tracking-wide">CARTÃO</div>
+              <div className="text-lg font-bold text-[#00B894] tracking-wide -mt-1">+ VIDAH</div>
             </div>
           </div>
         </div>

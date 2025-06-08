@@ -52,12 +52,13 @@ export default function HeroSection({ onSelectPlan }: HeroSectionProps) {
                 <div className="flex justify-between items-start mb-4">
                   <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
                     <svg 
-                      viewBox="0 0 24 24" 
-                      className="w-6 h-6 text-[#00B894]" 
+                      viewBox="0 0 40 40" 
+                      className="w-6 h-6" 
                       fill="currentColor"
                     >
-                      <path d="M12 2L4 7v10c0 5.55 3.84 9.74 9 9 5.16-.74 9-4.45 9-10V7l-8-5z"/>
-                      <path d="M12 8.5L8 11v6l4-2.5L16 17v-6l-4-2.5z" fill="rgba(0,184,148,0.7)"/>
+                      <circle cx="20" cy="12" r="6" fill="#00B894"/>
+                      <rect x="14" y="20" width="12" height="6" rx="3" fill="#00B894"/>
+                      <rect x="17" y="14" width="6" height="12" rx="3" fill="#00B894"/>
                     </svg>
                   </div>
                   <CreditCard className="text-2xl opacity-80" size={32} />
