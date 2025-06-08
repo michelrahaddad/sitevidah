@@ -140,10 +140,15 @@ export class MemStorage implements IStorage {
   async createSubscription(insertSubscription: InsertSubscription): Promise<Subscription> {
     const id = this.currentSubscriptionId++;
     const subscription: Subscription = {
-      ...insertSubscription,
       id,
+      customerId: insertSubscription.customerId,
+      planId: insertSubscription.planId,
+      paymentMethod: insertSubscription.paymentMethod,
       paymentStatus: 'pending',
+      totalAmount: insertSubscription.totalAmount,
+      installments: insertSubscription.installments || 1,
       createdAt: new Date(),
+      expiresAt: insertSubscription.expiresAt,
     };
     this.subscriptions.set(id, subscription);
     return subscription;

@@ -40,10 +40,20 @@ export default function Footer() {
           {/* Brand Section */}
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold">V</span>
+              <div className="w-8 h-8 bg-gradient-to-r from-[#00B894] to-[#0984E3] rounded-lg flex items-center justify-center">
+                <svg 
+                  viewBox="0 0 24 24" 
+                  className="w-5 h-5 text-white" 
+                  fill="currentColor"
+                >
+                  <path d="M12 2L4 7v10c0 5.55 3.84 9.74 9 9 5.16-.74 9-4.45 9-10V7l-8-5z"/>
+                  <path d="M12 8.5L8 11v6l4-2.5L16 17v-6l-4-2.5z" fill="rgba(255,255,255,0.7)"/>
+                </svg>
               </div>
-              <span className="text-xl font-bold">Vidah</span>
+              <div className="text-sm font-bold">
+                <span className="text-white">CARTÃO</span>
+                <span className="text-[#00B894] ml-1">+ VIDAH</span>
+              </div>
             </div>
             <p className="text-gray-300 leading-relaxed">
               Benefícios exclusivos para você e sua família com tecnologia e praticidade. 

@@ -35,7 +35,7 @@ export const subscriptions = pgTable("subscriptions", {
   paymentMethod: text("payment_method").notNull(), // 'pix', 'credit', 'boleto'
   paymentStatus: text("payment_status").notNull().default('pending'), // 'pending', 'paid', 'failed'
   totalAmount: decimal("total_amount", { precision: 10, scale: 2 }).notNull(),
-  installments: integer("installments").default(1),
+  installments: integer("installments").notNull().default(1),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   expiresAt: timestamp("expires_at").notNull(),
 });
