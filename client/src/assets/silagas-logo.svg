@@ -1,26 +1,24 @@
-<svg width="200" height="80" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="250" height="80" viewBox="0 0 250 80" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#2563EB;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#1E40AF;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#4F46E5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3B82F6;stop-opacity:1" />
     </linearGradient>
   </defs>
   
   <!-- Blue background with rounded corners -->
-  <rect x="0" y="0" width="200" height="80" rx="8" fill="url(#blueGradient)"/>
+  <rect x="0" y="0" width="250" height="80" rx="8" fill="url(#blueGradient)"/>
   
-  <!-- White "S" logo symbol -->
-  <g transform="translate(15, 15)">
-    <!-- Top half circle -->
-    <path d="M0 25 C0 15, 10 5, 20 5 C30 5, 40 15, 40 25 L20 25 Z" fill="white"/>
+  <!-- Refined "S" logo symbol -->
+  <g transform="translate(25, 20)">
+    <!-- Main "S" shape -->
+    <path d="M0 15 C0 7, 7 0, 15 0 C23 0, 30 7, 30 15 C30 15, 15 15, 15 15 C15 15, 15 25, 15 25 C23 25, 30 32, 30 40 C30 48, 23 55, 15 55 C7 55, 0 48, 0 40" 
+          stroke="white" stroke-width="8" stroke-linecap="round" fill="none"/>
     
-    <!-- Bottom half circle -->
-    <path d="M40 25 C40 35, 30 45, 20 45 C10 45, 0 35, 0 25 L20 25 Z" fill="white"/>
-    
-    <!-- Center circle -->
-    <circle cx="20" cy="25" r="8" fill="white"/>
+    <!-- Top circle accent -->
+    <circle cx="25" cy="10" r="5" fill="white"/>
   </g>
   
-  <!-- "Silagás" text in white -->
-  <text x="75" y="45" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="white">Silagás</text>
+  <!-- "Silagás" text in white with better spacing -->
+  <text x="85" y="50" font-family="Arial, sans-serif" font-size="32" font-weight="normal" fill="white">Silagás</text>
 </svg>
