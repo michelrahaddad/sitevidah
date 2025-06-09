@@ -28,6 +28,14 @@ const medicos = [
   { nome: "Sofia Mella", especialidade: "Psicóloga Infantil", foto: null }
 ];
 
+const parceiroDestaque = {
+  nome: "Grupo Vidah",
+  desconto: "Benefícios Exclusivos",
+  categoria: "Parceiro Principal",
+  logo: null,
+  destaque: true
+};
+
 const parceiros = [
   { nome: "Silasgás Ultragaz", desconto: "10%", categoria: "Gás de Cozinha", logo: null },
   { nome: "Óticas Carol", desconto: "20%", categoria: "Ótica", logo: null },
@@ -138,6 +146,42 @@ export default function PartnersSection() {
             </div>
             <div className="text-2xl md:text-3xl font-bold text-[#636E72] mb-1 md:mb-2">40+</div>
             <div className="text-[#636E72] font-medium text-sm md:text-base">Total de Parceiros</div>
+          </motion.div>
+        </motion.div>
+
+        {/* Parceiro Principal em Destaque */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
+          className="mb-16"
+        >
+          <motion.h3 variants={itemVariants} className="text-2xl md:text-3xl font-bold text-[#636E72] mb-8 text-center">
+            Parceiro Principal
+          </motion.h3>
+          <motion.div variants={itemVariants} className="max-w-md mx-auto">
+            <div className="relative glass-card p-8 rounded-3xl border-2 border-[#0984E3]/30 bg-gradient-to-br from-[#0984E3]/5 to-[#74B9FF]/5 overflow-hidden group hover:shadow-2xl hover:scale-105 transition-all duration-300">
+              {/* Efeito de brilho */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+              
+              {/* Badge de destaque */}
+              <div className="absolute -top-2 -right-2 bg-gradient-to-r from-[#0984E3] to-[#74B9FF] text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+                PRINCIPAL
+              </div>
+              
+              <div className="relative z-10">
+                <div className="w-20 h-20 bg-gradient-to-br from-[#0984E3] to-[#74B9FF] rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                  <Star className="w-10 h-10 text-white" />
+                </div>
+                
+                <h4 className="text-2xl font-bold text-[#636E72] mb-2 text-center">{parceiroDestaque.nome}</h4>
+                <p className="text-[#0984E3] font-semibold text-center mb-3">{parceiroDestaque.categoria}</p>
+                <div className="bg-gradient-to-r from-[#0984E3] to-[#74B9FF] text-white px-4 py-2 rounded-full text-center font-bold">
+                  {parceiroDestaque.desconto}
+                </div>
+              </div>
+            </div>
           </motion.div>
         </motion.div>
 
