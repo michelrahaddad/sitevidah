@@ -1,0 +1,269 @@
+import { motion } from "framer-motion";
+import { Stethoscope, ShoppingBag, Star, Users, MapPin, Percent, User, Building } from "lucide-react";
+
+const medicos = [
+  { nome: "Drª Vanesa", especialidade: "Clínico Geral", foto: null },
+  { nome: "Drª Isabela", especialidade: "Ginecologista", foto: null },
+  { nome: "Drª Ana Soler", especialidade: "Dermatologista", foto: null },
+  { nome: "Drª Bruna de Rosa", especialidade: "Psiquiatra", foto: null },
+  { nome: "Dra Gabriela Pedrolim", especialidade: "Endocrinologista", foto: null },
+  { nome: "Dr José Eduardo", especialidade: "Neurologista", foto: null },
+  { nome: "Dr Michel Haddad", especialidade: "Cardiologista", foto: null },
+  { nome: "Dr Willian Haddad", especialidade: "Cardiologista", foto: null },
+  { nome: "Dr Fabio Malara", especialidade: "Reumatologista", foto: null },
+  { nome: "Dr Samir Farah", especialidade: "Ortopedista", foto: null },
+  { nome: "Dr Diego Biella", especialidade: "Pediatra", foto: null },
+  { nome: "Dr Walter Dall'Acqua", especialidade: "Pediatra", foto: null },
+  { nome: "Dr Alex Vasconcelos", especialidade: "Oftalmologista", foto: null },
+  { nome: "Dr Willian Haddad Jr", especialidade: "Radiologista", foto: null },
+  { nome: "André Quarteiro", especialidade: "Otorrinolaringologista", foto: null },
+  { nome: "Julio Cesar", especialidade: "Gastroenterologista", foto: null },
+  { nome: "Maysa Quarteiro", especialidade: "Geriatra", foto: null },
+  { nome: "Adriana de Marqui", especialidade: "Cirurgia Vascular", foto: null },
+  { nome: "Paulo Hilario", especialidade: "Pneumologista", foto: null },
+  { nome: "Claudia Arruda", especialidade: "Nutricionista", foto: null },
+  { nome: "Pedro Betini", especialidade: "Psicólogo", foto: null },
+  { nome: "Erika Aravechia", especialidade: "Psicopedagoga", foto: null },
+  { nome: "Bruna Margadona", especialidade: "Fisioterapeuta", foto: null },
+  { nome: "Sofia Mella", especialidade: "Psicóloga Infantil", foto: null }
+];
+
+const parceiros = [
+  { nome: "Silas", desconto: "10%", categoria: "Serviços", logo: null },
+  { nome: "Carol", desconto: "20%", categoria: "Estética", logo: null },
+  { nome: "Fiducia", desconto: "10%", categoria: "Financeiro", logo: null },
+  { nome: "Adriana Donega", desconto: "10%", categoria: "Serviços", logo: null },
+  { nome: "Luzimar", desconto: "10-15%", categoria: "Varejo", logo: null },
+  { nome: "Tiago Duarte", desconto: "5-10%", categoria: "Serviços", logo: null },
+  { nome: "Santa Tereza", desconto: "5-10%", categoria: "Saúde", logo: null },
+  { nome: "Clínica Evolução", desconto: "Tabela", categoria: "Saúde", logo: null },
+  { nome: "Pronto Vet", desconto: "5-10%", categoria: "Veterinário", logo: null },
+  { nome: "Reabilitar", desconto: "Tabela", categoria: "Reabilitação", logo: null },
+  { nome: "Studio Corpo em Harmonia", desconto: "Tabela", categoria: "Bem-estar", logo: null },
+  { nome: "Drogaven", desconto: "Tabela", categoria: "Farmácia", logo: null },
+  { nome: "Canaã", desconto: "Tabela", categoria: "Serviços", logo: null },
+  { nome: "Inerp", desconto: "Tabela", categoria: "Educação", logo: null },
+  { nome: "Hospital Malzoni", desconto: "Tabela", categoria: "Hospital", logo: null },
+  { nome: "IPC", desconto: "Tabela", categoria: "Saúde", logo: null },
+  { nome: "S.O.S", desconto: "5-10%", categoria: "Emergência", logo: null },
+  { nome: "Dom Pedro", desconto: "15%", categoria: "Hotelaria", logo: null },
+  { nome: "Magia do Sorriso", desconto: "5-20%", categoria: "Odontologia", logo: null },
+  { nome: "Carol Julien", desconto: "20%", categoria: "Estética", logo: null }
+];
+
+export default function PartnersSection() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.5
+      }
+    }
+  };
+
+  return (
+    <section id="parceiros" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-[#00B894]/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#0984E3]/5 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="container mx-auto px-4 relative">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
+          className="text-center mb-16"
+        >
+          <motion.div variants={itemVariants} className="inline-flex items-center space-x-2 bg-white/60 backdrop-blur-sm px-6 py-3 rounded-full border border-[#00B894]/20 mb-6">
+            <Users className="w-5 h-5 text-[#00B894]" />
+            <span className="text-[#636E72] font-medium">Rede Credenciada</span>
+          </motion.div>
+          
+          <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-bold text-[#636E72] mb-6">
+            Nossos <span className="text-[#00B894]">Parceiros</span>
+          </motion.h2>
+          
+          <motion.p variants={itemVariants} className="text-xl text-[#636E72] max-w-3xl mx-auto">
+            Uma rede completa de profissionais de saúde e empresas parceiras para oferecer 
+            os melhores benefícios e descontos exclusivos
+          </motion.p>
+        </motion.div>
+
+        {/* Statistics */}
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16"
+        >
+          <motion.div variants={itemVariants} className="glass-card text-center p-6 rounded-2xl">
+            <div className="w-12 h-12 bg-[#00B894]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Stethoscope className="w-6 h-6 text-[#00B894]" />
+            </div>
+            <div className="text-3xl font-bold text-[#636E72] mb-2">24+</div>
+            <div className="text-[#636E72] font-medium">Médicos Especialistas</div>
+          </motion.div>
+
+          <motion.div variants={itemVariants} className="glass-card text-center p-6 rounded-2xl">
+            <div className="w-12 h-12 bg-[#0984E3]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <ShoppingBag className="w-6 h-6 text-[#0984E3]" />
+            </div>
+            <div className="text-3xl font-bold text-[#636E72] mb-2">20+</div>
+            <div className="text-[#636E72] font-medium">Empresas Parceiras</div>
+          </motion.div>
+
+          <motion.div variants={itemVariants} className="glass-card text-center p-6 rounded-2xl">
+            <div className="w-12 h-12 bg-[#00B894]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Percent className="w-6 h-6 text-[#00B894]" />
+            </div>
+            <div className="text-3xl font-bold text-[#636E72] mb-2">20%</div>
+            <div className="text-[#636E72] font-medium">Desconto Máximo</div>
+          </motion.div>
+
+          <motion.div variants={itemVariants} className="glass-card text-center p-6 rounded-2xl">
+            <div className="w-12 h-12 bg-[#0984E3]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Star className="w-6 h-6 text-[#0984E3]" />
+            </div>
+            <div className="text-3xl font-bold text-[#636E72] mb-2">44+</div>
+            <div className="text-[#636E72] font-medium">Total de Parceiros</div>
+          </motion.div>
+        </motion.div>
+
+        {/* Medical Professionals */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
+          className="mb-16"
+        >
+          <motion.h3 variants={itemVariants} className="text-3xl font-bold text-[#636E72] mb-8 flex items-center">
+            <Stethoscope className="w-8 h-8 text-[#00B894] mr-3" />
+            Médicos Credenciados
+          </motion.h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {medicos.map((medico, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                className="glass-card p-6 rounded-xl hover:shadow-lg transition-all duration-300 group hover:scale-105"
+              >
+                <div className="text-center">
+                  {/* Photo placeholder - replace with actual doctor photos */}
+                  <div className="w-16 h-16 bg-gradient-to-br from-[#00B894]/20 to-[#0984E3]/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                    {medico.foto ? (
+                      <img 
+                        src={medico.foto} 
+                        alt={medico.nome}
+                        className="w-full h-full rounded-full object-cover"
+                      />
+                    ) : (
+                      <User className="w-8 h-8 text-[#00B894]" />
+                    )}
+                  </div>
+                  <h4 className="font-bold text-[#636E72] mb-2 group-hover:text-[#00B894] transition-colors">
+                    {medico.nome}
+                  </h4>
+                  <p className="text-sm text-[#636E72]/80 font-medium">
+                    {medico.especialidade}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Business Partners */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
+        >
+          <motion.h3 variants={itemVariants} className="text-3xl font-bold text-[#636E72] mb-8 flex items-center">
+            <ShoppingBag className="w-8 h-8 text-[#0984E3] mr-3" />
+            Empresas Parceiras
+          </motion.h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {parceiros.map((parceiro, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                className="glass-card p-6 rounded-xl hover:shadow-lg transition-all duration-300 group hover:scale-105"
+              >
+                {/* Logo placeholder - replace with actual partner logos */}
+                <div className="w-12 h-12 bg-gradient-to-br from-[#0984E3]/20 to-[#00B894]/20 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  {parceiro.logo ? (
+                    <img 
+                      src={parceiro.logo} 
+                      alt={`Logo ${parceiro.nome}`}
+                      className="w-full h-full rounded-lg object-contain p-1"
+                    />
+                  ) : (
+                    <Building className="w-6 h-6 text-[#0984E3]" />
+                  )}
+                </div>
+                
+                <div className="flex justify-between items-start mb-4">
+                  <h4 className="font-bold text-[#636E72] group-hover:text-[#0984E3] transition-colors">
+                    {parceiro.nome}
+                  </h4>
+                  <span className="bg-[#00B894]/10 text-[#00B894] px-3 py-1 rounded-full text-xs font-bold">
+                    {parceiro.desconto}
+                  </span>
+                </div>
+                <div className="flex items-center text-sm text-[#636E72]/80">
+                  <MapPin className="w-4 h-4 mr-1" />
+                  {parceiro.categoria}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Call to Action */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
+          className="mt-16 text-center"
+        >
+          <motion.div variants={itemVariants} className="bg-gradient-to-r from-[#00B894] to-[#0984E3] rounded-3xl p-8 text-white">
+            <h3 className="text-2xl md:text-3xl font-bold mb-4">
+              Faça Parte da Nossa Rede
+            </h3>
+            <p className="text-lg mb-6 opacity-90">
+              Acesse todos esses benefícios com seu Cartão Vidah e economize em consultas, 
+              exames e compras em nossa rede credenciada
+            </p>
+            <button 
+              onClick={() => document.getElementById('planos')?.scrollIntoView({ behavior: 'smooth' })}
+              className="bg-white text-[#00B894] px-8 py-4 rounded-full font-bold hover:bg-gray-100 transition-colors"
+            >
+              Ver Planos Disponíveis
+            </button>
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
