@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import { Check, MessageCircle } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { formatCurrency, calculateDiscount } from "@/lib/utils";
@@ -10,7 +10,6 @@ interface PlansSectionProps {
 }
 
 export default function PlansSection({ onSelectPlan }: PlansSectionProps) {
-  const [selectedPayment, setSelectedPayment] = useState<'anual' | 'mensal'>('anual');
 
   const { data: plans = [], isLoading } = useQuery<Plan[]>({
     queryKey: ['/api/plans'],
@@ -30,9 +29,9 @@ export default function PlansSection({ onSelectPlan }: PlansSectionProps) {
       name: plan.name,
       type: plan.type,
       annualPrice: plan.annualPrice,
-      monthlyPrice: plan.monthlyPrice,
+      monthlyPrice: plan.monthlyPrice ?? undefined,
       adhesionFee: plan.adhesionFee,
-      maxDependents: plan.maxDependents,
+      maxDependents: plan.maxDependents ?? undefined,
     });
   };
 
@@ -106,30 +105,7 @@ export default function PlansSection({ onSelectPlan }: PlansSectionProps) {
           </p>
         </div>
 
-        <div className="flex justify-center mb-12">
-          <div className="bg-white rounded-full p-1 flex items-center shadow-lg">
-            <button 
-              onClick={() => setSelectedPayment('anual')}
-              className={`px-6 py-3 rounded-full font-medium transition-all ${
-                selectedPayment === 'anual' 
-                  ? 'bg-[#00B894] text-white' 
-                  : 'text-[#636E72] hover:text-[#00B894]'
-              }`}
-            >
-              Anual
-            </button>
-            <button 
-              onClick={() => setSelectedPayment('mensal')}
-              className={`px-6 py-3 rounded-full font-medium transition-all ${
-                selectedPayment === 'mensal' 
-                  ? 'bg-[#00B894] text-white' 
-                  : 'text-[#636E72] hover:text-[#00B894]'
-              }`}
-            >
-              Mensal
-            </button>
-          </div>
-        </div>
+
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {plans.map((plan) => {
