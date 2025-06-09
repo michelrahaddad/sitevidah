@@ -16,6 +16,8 @@ import reabilitarNeuropedLogo from "@/assets/reabilitar-neuroped-logo.svg";
 import corpoHarmoniaLogo from "@/assets/corpo-harmonia-logo.svg";
 import lab7Logo from "@/assets/lab7-logo.svg";
 import inerpLogo from "@/assets/inerp-logo.svg";
+import ipcLogo from "@/assets/ipc-logo.svg";
+import silagasLogo from "@/assets/silagas-logo.svg";
 
 const medicos = [
   { nome: "Dr Diego Rodrigues Charamitara", especialidade: "Clínico Geral", foto: null },
@@ -56,7 +58,7 @@ const parceiroDestaque = {
 };
 
 const parceiros = [
-  { nome: "Silasgás Ultragaz", desconto: "10%", categoria: "Gás de Cozinha", logo: null, endereco: null },
+  { nome: "Silasgás Ultragaz", desconto: "10%", categoria: "Gás de Cozinha", logo: silagasLogo, endereco: null },
   { nome: "Óticas Carol", desconto: "20%", categoria: "Ótica", logo: oticasCarolLogo, endereco: "Rua Prudente de Moraes, 897 - Centro, Ibitinga - SP" },
   { nome: "Fiducia Eletro", desconto: "10%", categoria: "Materiais Elétricos", logo: fiduciaEletroLogo, endereco: "Rua Domingos Robert, 640 - Centro, Ibitinga - SP" },
   { nome: "Evolução Centro de Integração Multidisciplinar", desconto: "Tabela", categoria: "Centro Multidisciplinar", logo: evolucaoLogo, endereco: "R. Dr. Adail de Oliveira, 864 - Centro, Ibitinga - SP, 14940-151" },
@@ -67,7 +69,7 @@ const parceiros = [
   { nome: "Funerária Canaã Ibitinga", desconto: "Tabela", categoria: "Funerária", logo: funerariaCanaaLogo, endereco: "Rua Domingos Robert, 985 - Centro, Ibitinga - SP" },
   { nome: "INERP - Instituto de Neurologia", desconto: "Tabela", categoria: "Neurologia", logo: inerpLogo, endereco: null },
   { nome: "Hospital Malzoni", desconto: "Tabela", categoria: "Hospital", logo: hospitalMalzoniLogo, endereco: null },
-  { nome: "IPC - Análises Patológicas", desconto: "Tabela", categoria: "Laboratório", logo: null, endereco: null },
+  { nome: "IPC - Análises Patológicas", desconto: "Tabela", categoria: "Laboratório", logo: ipcLogo, endereco: null },
   { nome: "S.O.S", desconto: "5-10%", categoria: "Emergência", logo: sosEnfermagemLogo, endereco: null },
   { nome: "Dom Pedro", desconto: "15%", categoria: "Hortifruti", logo: domPedroLogo, endereco: null },
   { nome: "Rações Santa Tereza", desconto: "Tabela", categoria: "Pet Shop", logo: santaTerezaLogo, endereco: null },
