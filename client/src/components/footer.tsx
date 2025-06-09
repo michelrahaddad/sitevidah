@@ -52,7 +52,8 @@ export default function Footer() {
             </p>
             <div className="mt-4">
               <p className="text-sm text-gray-400">
-                CNPJ: 00.000.000/0001-00
+                VIDAH BENEFICIOS LTDA<br />
+                CNPJ: 60.926.407/0001-76
               </p>
             </div>
           </div>
