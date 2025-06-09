@@ -1,6 +1,15 @@
 import { motion } from "framer-motion";
 import { Stethoscope, ShoppingBag, Star, Users, MapPin, Percent, User, Building, Phone, Globe } from "lucide-react";
 import vidahLogo from "@assets/vidah_1749439341688.png";
+import prontoVetLogo from "@assets/PRONTO VET_1749498084808.png";
+import domPedroLogo from "@assets/VAREJAO DOM PEDRO_1749498084809.jpg";
+import santaTerezaLogo from "@assets/RACOES SANTA TEREZA_1749498084809.png";
+import hospitalMalzoniLogo from "@assets/HOSPITAL MALZONI_1749498084810.png";
+import oticasCarolLogo from "@assets/OTICAS CAROL_1749498084810.png";
+import sosEnfermagemLogo from "@assets/SOS ENFERMAGEM_1749498084810.jpg";
+import funerariaCanaaLogo from "@assets/FUNERARIA CANAA_1749498084810.png";
+import fiduciaEletroLogo from "@assets/FIDUCIA ELETRO_1749498084811.png";
+import drogavenLogo from "@assets/DROGAVEN_1749498084811.png";
 
 const medicos = [
   { nome: "Dr Diego Rodrigues Charamitara", especialidade: "Clínico Geral", foto: null },
@@ -42,19 +51,20 @@ const parceiroDestaque = {
 
 const parceiros = [
   { nome: "Silasgás Ultragaz", desconto: "10%", categoria: "Gás de Cozinha", logo: null, endereco: null },
-  { nome: "Óticas Carol", desconto: "20%", categoria: "Ótica", logo: null, endereco: "Rua Prudente de Moraes, 897 - Centro, Ibitinga - SP" },
-  { nome: "Fiducia Eletro", desconto: "10%", categoria: "Materiais Elétricos", logo: null, endereco: "Rua Domingos Robert, 640 - Centro, Ibitinga - SP" },
+  { nome: "Óticas Carol", desconto: "20%", categoria: "Ótica", logo: oticasCarolLogo, endereco: "Rua Prudente de Moraes, 897 - Centro, Ibitinga - SP" },
+  { nome: "Fiducia Eletro", desconto: "10%", categoria: "Materiais Elétricos", logo: fiduciaEletroLogo, endereco: "Rua Domingos Robert, 640 - Centro, Ibitinga - SP" },
   { nome: "Evolução Centro de Integração Multidisciplinar", desconto: "Tabela", categoria: "Centro Multidisciplinar", logo: null, endereco: "R. Dr. Adail de Oliveira, 864 - Centro, Ibitinga - SP, 14940-151" },
-  { nome: "Pronto Vet Clínica Veterinária", desconto: "5-10%", categoria: "Pet Shop", logo: null, endereco: "Av. Eng. Ivanil Francischini, 5363 - São José, Ibitinga - SP, 14940-000" },
+  { nome: "Pronto Vet Clínica Veterinária", desconto: "5-10%", categoria: "Pet Shop", logo: prontoVetLogo, endereco: "Av. Eng. Ivanil Francischini, 5363 - São José, Ibitinga - SP, 14940-000" },
   { nome: "Reabilitar", desconto: "Tabela", categoria: "Reabilitação", logo: null, endereco: null },
   { nome: "Corpo em Harmonia - Studio de Pilates", desconto: "Tabela", categoria: "Pilates", logo: null, endereco: "Rua Treze de Maio, 541 - Centro, Ibitinga - SP" },
-  { nome: "Drogaven", desconto: "Tabela", categoria: "Farmácia", logo: null, endereco: "Rua Prudente de Moraes, 934 - Centro, Ibitinga - SP" },
-  { nome: "Funerária Canaã Ibitinga", desconto: "Tabela", categoria: "Funerária", logo: null, endereco: "Rua Domingos Robert, 985 - Centro, Ibitinga - SP" },
+  { nome: "Drogaven", desconto: "Tabela", categoria: "Farmácia", logo: drogavenLogo, endereco: "Rua Prudente de Moraes, 934 - Centro, Ibitinga - SP" },
+  { nome: "Funerária Canaã Ibitinga", desconto: "Tabela", categoria: "Funerária", logo: funerariaCanaaLogo, endereco: "Rua Domingos Robert, 985 - Centro, Ibitinga - SP" },
   { nome: "INERP - Instituto de Neurologia", desconto: "Tabela", categoria: "Neurologia", logo: null, endereco: null },
-  { nome: "Hospital Malzoni", desconto: "Tabela", categoria: "Hospital", logo: null, endereco: null },
+  { nome: "Hospital Malzoni", desconto: "Tabela", categoria: "Hospital", logo: hospitalMalzoniLogo, endereco: null },
   { nome: "IPC - Análises Patológicas", desconto: "Tabela", categoria: "Laboratório", logo: null, endereco: null },
-  { nome: "S.O.S", desconto: "5-10%", categoria: "Emergência", logo: null, endereco: null },
-  { nome: "Dom Pedro", desconto: "15%", categoria: "Hortifruti", logo: null, endereco: null },
+  { nome: "S.O.S", desconto: "5-10%", categoria: "Emergência", logo: sosEnfermagemLogo, endereco: null },
+  { nome: "Dom Pedro", desconto: "15%", categoria: "Hortifruti", logo: domPedroLogo, endereco: null },
+  { nome: "Rações Santa Tereza", desconto: "Tabela", categoria: "Pet Shop", logo: santaTerezaLogo, endereco: null },
   { nome: "Magia do Sorriso", desconto: "5-20%", categoria: "Odontologia", logo: null, endereco: null },
   { nome: "Lab 7", desconto: "20-40%", categoria: "Laboratório", logo: null, endereco: null }
 ];
