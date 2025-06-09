@@ -29,26 +29,22 @@ const medicos = [
 ];
 
 const parceiros = [
-  { nome: "Silas", desconto: "10%", categoria: "Serviços", logo: null },
-  { nome: "Carol", desconto: "20%", categoria: "Estética", logo: null },
-  { nome: "Fiducia", desconto: "10%", categoria: "Financeiro", logo: null },
-  { nome: "Adriana Donega", desconto: "10%", categoria: "Serviços", logo: null },
-  { nome: "Luzimar", desconto: "10-15%", categoria: "Varejo", logo: null },
-  { nome: "Tiago Duarte", desconto: "5-10%", categoria: "Serviços", logo: null },
+  { nome: "Silasgás Ultragaz", desconto: "10%", categoria: "Gás de Cozinha", logo: null },
+  { nome: "Óticas Carol", desconto: "20%", categoria: "Ótica", logo: null },
+  { nome: "Fiducia Eletro", desconto: "10%", categoria: "Materiais Elétricos", logo: null },
   { nome: "Santa Tereza", desconto: "5-10%", categoria: "Saúde", logo: null },
   { nome: "Clínica Evolução", desconto: "Tabela", categoria: "Saúde", logo: null },
-  { nome: "Pronto Vet", desconto: "5-10%", categoria: "Veterinário", logo: null },
+  { nome: "Pronto Vet Clínica Veterinária", desconto: "5-10%", categoria: "Pet Shop", logo: null },
   { nome: "Reabilitar", desconto: "Tabela", categoria: "Reabilitação", logo: null },
-  { nome: "Studio Corpo em Harmonia", desconto: "Tabela", categoria: "Bem-estar", logo: null },
+  { nome: "Corpo em Harmonia - Studio de Pilates", desconto: "Tabela", categoria: "Pilates", logo: null },
   { nome: "Drogaven", desconto: "Tabela", categoria: "Farmácia", logo: null },
-  { nome: "Canaã", desconto: "Tabela", categoria: "Serviços", logo: null },
-  { nome: "Inerp", desconto: "Tabela", categoria: "Educação", logo: null },
+  { nome: "Funerária Canaã Ibitinga", desconto: "Tabela", categoria: "Funerária", logo: null },
+  { nome: "INERP - Instituto de Neurologia", desconto: "Tabela", categoria: "Neurologia", logo: null },
   { nome: "Hospital Malzoni", desconto: "Tabela", categoria: "Hospital", logo: null },
-  { nome: "IPC", desconto: "Tabela", categoria: "Saúde", logo: null },
+  { nome: "IPC - Análises Patológicas", desconto: "Tabela", categoria: "Laboratório", logo: null },
   { nome: "S.O.S", desconto: "5-10%", categoria: "Emergência", logo: null },
   { nome: "Dom Pedro", desconto: "15%", categoria: "Hotelaria", logo: null },
-  { nome: "Magia do Sorriso", desconto: "5-20%", categoria: "Odontologia", logo: null },
-  { nome: "Carol Julien", desconto: "20%", categoria: "Estética", logo: null }
+  { nome: "Magia do Sorriso", desconto: "5-20%", categoria: "Odontologia", logo: null }
 ];
 
 export default function PartnersSection() {
@@ -124,7 +120,7 @@ export default function PartnersSection() {
             <div className="w-12 h-12 bg-[#0984E3]/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <ShoppingBag className="w-6 h-6 text-[#0984E3]" />
             </div>
-            <div className="text-3xl font-bold text-[#636E72] mb-2">20+</div>
+            <div className="text-3xl font-bold text-[#636E72] mb-2">16+</div>
             <div className="text-[#636E72] font-medium">Empresas Parceiras</div>
           </motion.div>
 
@@ -140,7 +136,7 @@ export default function PartnersSection() {
             <div className="w-12 h-12 bg-[#0984E3]/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <Star className="w-6 h-6 text-[#0984E3]" />
             </div>
-            <div className="text-3xl font-bold text-[#636E72] mb-2">44+</div>
+            <div className="text-3xl font-bold text-[#636E72] mb-2">40+</div>
             <div className="text-[#636E72] font-medium">Total de Parceiros</div>
           </motion.div>
         </motion.div>
