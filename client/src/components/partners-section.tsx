@@ -4,7 +4,7 @@ import vidahLogo from "@assets/vidah_1749439341688.png";
 
 const medicos = [
   { nome: "Dr Diego Rodrigues Chamaramitas", especialidade: "Clínico Geral", foto: null },
-  { nome: "Drª Isabela", especialidade: "Ginecologista", foto: null },
+  { nome: "Dra Isabela Cardoso", especialidade: "Ginecologia e Obstetrícia", foto: null },
   { nome: "Drª Ana Soler", especialidade: "Dermatologista", foto: null },
   { nome: "Drª Bruna de Rosa", especialidade: "Psiquiatra", foto: null },
   { nome: "Dra Gabriela Pedrolim", especialidade: "Endocrinologista", foto: null },
