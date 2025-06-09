@@ -43,7 +43,8 @@ const parceiros = [
   { nome: "IPC - Análises Patológicas", desconto: "Tabela", categoria: "Laboratório", logo: null },
   { nome: "S.O.S", desconto: "5-10%", categoria: "Emergência", logo: null },
   { nome: "Dom Pedro", desconto: "15%", categoria: "Hotelaria", logo: null },
-  { nome: "Magia do Sorriso", desconto: "5-20%", categoria: "Odontologia", logo: null }
+  { nome: "Magia do Sorriso", desconto: "5-20%", categoria: "Odontologia", logo: null },
+  { nome: "Lab 7", desconto: "20-40%", categoria: "Laboratório", logo: null }
 ];
 
 export default function PartnersSection() {
@@ -135,7 +136,7 @@ export default function PartnersSection() {
             <div className="w-10 h-10 md:w-12 md:h-12 bg-[#0984E3]/10 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
               <Star className="w-5 h-5 md:w-6 md:h-6 text-[#0984E3]" />
             </div>
-            <div className="text-2xl md:text-3xl font-bold text-[#636E72] mb-1 md:mb-2">39+</div>
+            <div className="text-2xl md:text-3xl font-bold text-[#636E72] mb-1 md:mb-2">40+</div>
             <div className="text-[#636E72] font-medium text-sm md:text-base">Total de Parceiros</div>
           </motion.div>
         </motion.div>

@@ -2,7 +2,7 @@ import { TrendingUp, Users, Clock, Shield } from "lucide-react";
 
 export default function BenefitsSection() {
   const stats = [
-    { value: "15+", label: "Empresas Parceiras" },
+    { value: "16+", label: "Empresas Parceiras" },
     { value: "50K+", label: "Clientes Satisfeitos" },
     { value: "30%", label: "Economia Média" },
     { value: "24/7", label: "Suporte" }
@@ -16,7 +16,7 @@ export default function BenefitsSection() {
             Por que escolher o <span className="gradient-text">Cartão + Vidah?</span>
           </h2>
           <p className="text-xl text-[#636E72] max-w-3xl mx-auto">
-            Mais de 15 empresas parceiras oferecendo descontos exclusivos para você e sua família.
+            Mais de 16 empresas parceiras oferecendo descontos exclusivos para você e sua família.
           </p>
         </div>
 
