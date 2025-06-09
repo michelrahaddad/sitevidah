@@ -175,11 +175,11 @@ export default function PartnersSection() {
               </div>
               
               <div className="relative z-10">
-                <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg p-3">
+                <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg p-2">
                   <img 
                     src={vidahLogo} 
                     alt="Grupo Vidah Logo"
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-cover rounded-xl"
                   />
                 </div>
                 
