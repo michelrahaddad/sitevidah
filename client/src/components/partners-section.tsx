@@ -3,7 +3,7 @@ import { Stethoscope, ShoppingBag, Star, Users, MapPin, Percent, User, Building,
 import vidahLogo from "@assets/vidah_1749439341688.png";
 
 const medicos = [
-  { nome: "Dr Diego Rodrigues Chamaramitas", especialidade: "Clínico Geral", foto: null },
+  { nome: "Dr Diego Rodrigues Charamitara", especialidade: "Clínico Geral", foto: null },
   { nome: "Dra Isabela Cardoso", especialidade: "Ginecologia e Obstetrícia", foto: null },
   { nome: "Drª Ana Soler", especialidade: "Dermatologista", foto: null },
   { nome: "Drª Bruna de Rosa", especialidade: "Psiquiatra", foto: null },
