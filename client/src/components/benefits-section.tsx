@@ -1,26 +1,8 @@
-import { Heart, Utensils, GraduationCap, TrendingUp, Users, Clock, Shield } from "lucide-react";
+import { TrendingUp, Users, Clock, Shield } from "lucide-react";
 
 export default function BenefitsSection() {
-  const benefits = [
-    {
-      icon: Heart,
-      title: "Saúde & Bem-estar",
-      description: "Descontos em consultas médicas, exames, farmácias e academias parceiras."
-    },
-    {
-      icon: Utensils,
-      title: "Alimentação", 
-      description: "Vantagens em restaurantes, delivery e supermercados da sua região."
-    },
-    {
-      icon: GraduationCap,
-      title: "Educação",
-      description: "Descontos em cursos, idiomas e instituições de ensino credenciadas."
-    }
-  ];
-
   const stats = [
-    { value: "1000+", label: "Empresas Parceiras" },
+    { value: "20+", label: "Empresas Parceiras" },
     { value: "50K+", label: "Clientes Satisfeitos" },
     { value: "30%", label: "Economia Média" },
     { value: "24/7", label: "Suporte" }
@@ -34,24 +16,12 @@ export default function BenefitsSection() {
             Por que escolher o <span className="gradient-text">Cartão + Vidah?</span>
           </h2>
           <p className="text-xl text-[#636E72] max-w-3xl mx-auto">
-            Mais de 1000 empresas parceiras oferecendo descontos exclusivos em saúde, alimentação, educação e muito mais.
+            Mais de 20 empresas parceiras oferecendo descontos exclusivos para você e sua família.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
-          {benefits.map((benefit, index) => (
-            <div key={index} className="glass-card rounded-2xl p-8 hover:shadow-xl transition-all duration-300 group">
-              <div className="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <benefit.icon className="text-2xl text-white" size={32} />
-              </div>
-              <h3 className="text-xl font-bold text-[#636E72] mb-4">{benefit.title}</h3>
-              <p className="text-[#636E72]">{benefit.description}</p>
-            </div>
-          ))}
-        </div>
-
         {/* Stats Section */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center mb-16">
           {stats.map((stat, index) => (
             <div key={index} className="space-y-2">
               <div className="text-3xl md:text-4xl font-bold gradient-text">{stat.value}</div>

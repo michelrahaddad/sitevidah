@@ -168,7 +168,8 @@ html {
 }
 
 .plan-card.popular {
-  @apply border-2 border-[#00B894];
+  @apply border-2 border-[#00B894] transform scale-105;
+  box-shadow: 0 20px 40px rgba(0, 184, 148, 0.15);
 }
 
 /* Mobile responsiveness */
