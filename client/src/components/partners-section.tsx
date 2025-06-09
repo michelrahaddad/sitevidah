@@ -32,7 +32,6 @@ const parceiros = [
   { nome: "Silasgás Ultragaz", desconto: "10%", categoria: "Gás de Cozinha", logo: null },
   { nome: "Óticas Carol", desconto: "20%", categoria: "Ótica", logo: null },
   { nome: "Fiducia Eletro", desconto: "10%", categoria: "Materiais Elétricos", logo: null },
-  { nome: "Santa Tereza", desconto: "5-10%", categoria: "Saúde", logo: null },
   { nome: "Clínica Evolução", desconto: "Tabela", categoria: "Saúde", logo: null },
   { nome: "Pronto Vet Clínica Veterinária", desconto: "5-10%", categoria: "Pet Shop", logo: null },
   { nome: "Reabilitar", desconto: "Tabela", categoria: "Reabilitação", logo: null },
@@ -120,7 +119,7 @@ export default function PartnersSection() {
             <div className="w-10 h-10 md:w-12 md:h-12 bg-[#0984E3]/10 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
               <ShoppingBag className="w-5 h-5 md:w-6 md:h-6 text-[#0984E3]" />
             </div>
-            <div className="text-2xl md:text-3xl font-bold text-[#636E72] mb-1 md:mb-2">16+</div>
+            <div className="text-2xl md:text-3xl font-bold text-[#636E72] mb-1 md:mb-2">15+</div>
             <div className="text-[#636E72] font-medium text-sm md:text-base">Empresas Parceiras</div>
           </motion.div>
 
@@ -136,7 +135,7 @@ export default function PartnersSection() {
             <div className="w-10 h-10 md:w-12 md:h-12 bg-[#0984E3]/10 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
               <Star className="w-5 h-5 md:w-6 md:h-6 text-[#0984E3]" />
             </div>
-            <div className="text-2xl md:text-3xl font-bold text-[#636E72] mb-1 md:mb-2">40+</div>
+            <div className="text-2xl md:text-3xl font-bold text-[#636E72] mb-1 md:mb-2">39+</div>
             <div className="text-[#636E72] font-medium text-sm md:text-base">Total de Parceiros</div>
           </motion.div>
         </motion.div>
