@@ -48,7 +48,7 @@ export default function Footer() {
             </div>
             <p className="text-gray-300 leading-relaxed">
               Benefícios exclusivos para você e sua família com tecnologia e praticidade. 
-              Mais de 1000 empresas parceiras oferecendo descontos especiais.
+              Mais de 20 empresas parceiras oferecendo descontos especiais.
             </p>
             <div className="mt-4">
               <p className="text-sm text-gray-400">
@@ -176,7 +176,7 @@ export default function Footer() {
             </div>
             <div>
               <h6 className="font-medium text-white mb-2">Cobertura</h6>
-              <p>Válido em todo Brasil • 1000+ Parceiros • Suporte 24/7</p>
+              <p>Válido em todo Brasil • 20+ Parceiros • Suporte 24/7</p>
             </div>
           </div>
         </div>

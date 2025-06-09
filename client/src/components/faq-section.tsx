@@ -15,7 +15,7 @@ export default function FaqSection() {
     },
     {
       question: "Quantos estabelecimentos parceiros existem?",
-      answer: "Temos mais de 1000 empresas parceiras em todo o Brasil, incluindo farmácias, restaurantes, academias, clínicas médicas, supermercados e muito mais. A rede está em constante expansão."
+      answer: "Temos mais de 20 empresas parceiras em todo o Brasil, incluindo farmácias, restaurantes, academias, clínicas médicas, supermercados e muito mais. A rede está em constante expansão."
     },
     {
       question: "O plano familiar inclui quantas pessoas?",
