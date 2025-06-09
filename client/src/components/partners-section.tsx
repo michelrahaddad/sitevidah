@@ -54,7 +54,7 @@ const parceiros = [
   { nome: "Hospital Malzoni", desconto: "Tabela", categoria: "Hospital", logo: null, endereco: null },
   { nome: "IPC - Análises Patológicas", desconto: "Tabela", categoria: "Laboratório", logo: null, endereco: null },
   { nome: "S.O.S", desconto: "5-10%", categoria: "Emergência", logo: null, endereco: null },
-  { nome: "Dom Pedro", desconto: "15%", categoria: "Hotelaria", logo: null, endereco: null },
+  { nome: "Dom Pedro", desconto: "15%", categoria: "Hortifruti", logo: null, endereco: null },
   { nome: "Magia do Sorriso", desconto: "5-20%", categoria: "Odontologia", logo: null, endereco: null },
   { nome: "Lab 7", desconto: "20-40%", categoria: "Laboratório", logo: null, endereco: null }
 ];
