@@ -43,7 +43,7 @@ export default function Footer() {
               <img 
                 src="/logo-vidah.png" 
                 alt="Cartão Vidah" 
-                className="logo-vidah logo-footer h-6 sm:h-8 md:h-10 w-auto object-contain transition-all duration-300"
+                className="logo-vidah logo-footer h-6 sm:h-8 md:h-10 w-auto object-contain transition-all duration-300 filter brightness-110"
               />
             </div>
             <p className="text-gray-300 leading-relaxed">

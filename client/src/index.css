@@ -199,9 +199,15 @@ html {
 
 /* Logo optimization */
 .logo-vidah {
-  filter: brightness(1.05) contrast(1.1);
+  filter: brightness(1.1) contrast(1.15) saturate(1.1);
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
+  transition: all 0.3s ease;
+}
+
+.logo-vidah:hover {
+  filter: brightness(1.2) contrast(1.2) saturate(1.2);
+  transform: scale(1.02);
 }
 
 /* Ensure logos maintain aspect ratio and quality */

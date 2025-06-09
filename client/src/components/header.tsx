@@ -17,7 +17,7 @@ export default function Header() {
           <img 
             src="/logo-vidah.png" 
             alt="Cartão Vidah" 
-            className="logo-vidah logo-header h-8 sm:h-10 md:h-12 lg:h-14 w-auto object-contain transition-all duration-300"
+            className="logo-vidah logo-header h-8 sm:h-10 md:h-12 lg:h-14 w-auto object-contain transition-all duration-300 drop-shadow-lg"
           />
         </div>
         
