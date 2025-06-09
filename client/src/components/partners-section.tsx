@@ -10,7 +10,6 @@ import sosEnfermagemLogo from "@assets/SOS ENFERMAGEM_1749498084810.jpg";
 import funerariaCanaaLogo from "@assets/FUNERARIA CANAA_1749498084810.png";
 import fiduciaEletroLogo from "@assets/FIDUCIA ELETRO_1749498084811.png";
 import drogavenLogo from "@assets/DROGAVEN_1749498084811.png";
-import magiaDoSorrisoLogo from "@assets/Captura de Tela 2025-06-09 às 16.44.45_1749498298802.png";
 
 const medicos = [
   { nome: "Dr Diego Rodrigues Charamitara", especialidade: "Clínico Geral", foto: null },
@@ -62,7 +61,7 @@ const parceiros = [
   { nome: "Funerária Canaã Ibitinga", desconto: "Tabela", categoria: "Funerária", logo: funerariaCanaaLogo, endereco: "Rua Domingos Robert, 985 - Centro, Ibitinga - SP" },
   { nome: "INERP - Instituto de Neurologia", desconto: "Tabela", categoria: "Neurologia", logo: null, endereco: null },
   { nome: "Hospital Malzoni", desconto: "Tabela", categoria: "Hospital", logo: hospitalMalzoniLogo, endereco: null },
-  { nome: "IPC - Análises Patológicas", desconto: "Tabela", categoria: "Laboratório", logo: ipcLogo, endereco: null },
+  { nome: "IPC - Análises Patológicas", desconto: "Tabela", categoria: "Laboratório", logo: null, endereco: null },
   { nome: "S.O.S", desconto: "5-10%", categoria: "Emergência", logo: sosEnfermagemLogo, endereco: null },
   { nome: "Dom Pedro", desconto: "15%", categoria: "Hortifruti", logo: domPedroLogo, endereco: null },
   { nome: "Rações Santa Tereza", desconto: "Tabela", categoria: "Pet Shop", logo: santaTerezaLogo, endereco: null },
