@@ -120,7 +120,7 @@ export default function PlansSection({ onSelectPlan }: PlansSectionProps) {
                 className={`plan-card ${isPopular ? 'popular' : ''}`}
               >
                 {isPopular && (
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
+                  <div className="absolute -top-5 left-1/2 transform -translate-x-1/2 z-10">
                     <div className="bg-gradient-to-r from-[#00B894] to-[#009d7f] text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg border-2 border-white">
                       ⭐ Mais Popular
                     </div>
