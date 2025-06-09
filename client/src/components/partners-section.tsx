@@ -32,7 +32,7 @@ const parceiros = [
   { nome: "Silasgás Ultragaz", desconto: "10%", categoria: "Gás de Cozinha", logo: null },
   { nome: "Óticas Carol", desconto: "20%", categoria: "Ótica", logo: null },
   { nome: "Fiducia Eletro", desconto: "10%", categoria: "Materiais Elétricos", logo: null },
-  { nome: "Clínica Evolução", desconto: "Tabela", categoria: "Saúde", logo: null },
+  { nome: "Evolução Centro de Integração Multidisciplinar", desconto: "Tabela", categoria: "Centro Multidisciplinar", logo: null },
   { nome: "Pronto Vet Clínica Veterinária", desconto: "5-10%", categoria: "Pet Shop", logo: null },
   { nome: "Reabilitar", desconto: "Tabela", categoria: "Reabilitação", logo: null },
   { nome: "Corpo em Harmonia - Studio de Pilates", desconto: "Tabela", categoria: "Pilates", logo: null },
