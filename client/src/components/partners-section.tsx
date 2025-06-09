@@ -90,11 +90,11 @@ export default function PartnersSection() {
             <span className="text-[#636E72] font-medium">Rede Credenciada</span>
           </motion.div>
           
-          <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-bold text-[#636E72] mb-6">
+          <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#636E72] mb-6">
             Nossos <span className="text-[#00B894]">Parceiros</span>
           </motion.h2>
           
-          <motion.p variants={itemVariants} className="text-xl text-[#636E72] max-w-3xl mx-auto">
+          <motion.p variants={itemVariants} className="text-lg md:text-xl text-[#636E72] max-w-3xl mx-auto px-4">
             Uma rede completa de profissionais de saúde e empresas parceiras para oferecer 
             os melhores benefícios e descontos exclusivos
           </motion.p>
@@ -106,38 +106,38 @@ export default function PartnersSection() {
           whileInView="visible"
           viewport={{ once: true }}
           variants={containerVariants}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16"
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-16"
         >
-          <motion.div variants={itemVariants} className="glass-card text-center p-6 rounded-2xl">
-            <div className="w-12 h-12 bg-[#00B894]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Stethoscope className="w-6 h-6 text-[#00B894]" />
+          <motion.div variants={itemVariants} className="glass-card text-center p-4 md:p-6 rounded-2xl">
+            <div className="w-10 h-10 md:w-12 md:h-12 bg-[#00B894]/10 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+              <Stethoscope className="w-5 h-5 md:w-6 md:h-6 text-[#00B894]" />
             </div>
-            <div className="text-3xl font-bold text-[#636E72] mb-2">24+</div>
-            <div className="text-[#636E72] font-medium">Médicos Especialistas</div>
+            <div className="text-2xl md:text-3xl font-bold text-[#636E72] mb-1 md:mb-2">24+</div>
+            <div className="text-[#636E72] font-medium text-sm md:text-base">Médicos Especialistas</div>
           </motion.div>
 
-          <motion.div variants={itemVariants} className="glass-card text-center p-6 rounded-2xl">
-            <div className="w-12 h-12 bg-[#0984E3]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <ShoppingBag className="w-6 h-6 text-[#0984E3]" />
+          <motion.div variants={itemVariants} className="glass-card text-center p-4 md:p-6 rounded-2xl">
+            <div className="w-10 h-10 md:w-12 md:h-12 bg-[#0984E3]/10 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+              <ShoppingBag className="w-5 h-5 md:w-6 md:h-6 text-[#0984E3]" />
             </div>
-            <div className="text-3xl font-bold text-[#636E72] mb-2">16+</div>
-            <div className="text-[#636E72] font-medium">Empresas Parceiras</div>
+            <div className="text-2xl md:text-3xl font-bold text-[#636E72] mb-1 md:mb-2">16+</div>
+            <div className="text-[#636E72] font-medium text-sm md:text-base">Empresas Parceiras</div>
           </motion.div>
 
-          <motion.div variants={itemVariants} className="glass-card text-center p-6 rounded-2xl">
-            <div className="w-12 h-12 bg-[#00B894]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Percent className="w-6 h-6 text-[#00B894]" />
+          <motion.div variants={itemVariants} className="glass-card text-center p-4 md:p-6 rounded-2xl">
+            <div className="w-10 h-10 md:w-12 md:h-12 bg-[#00B894]/10 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+              <Percent className="w-5 h-5 md:w-6 md:h-6 text-[#00B894]" />
             </div>
-            <div className="text-3xl font-bold text-[#636E72] mb-2">20%</div>
-            <div className="text-[#636E72] font-medium">Desconto Máximo</div>
+            <div className="text-2xl md:text-3xl font-bold text-[#636E72] mb-1 md:mb-2">20%</div>
+            <div className="text-[#636E72] font-medium text-sm md:text-base">Desconto Máximo</div>
           </motion.div>
 
-          <motion.div variants={itemVariants} className="glass-card text-center p-6 rounded-2xl">
-            <div className="w-12 h-12 bg-[#0984E3]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Star className="w-6 h-6 text-[#0984E3]" />
+          <motion.div variants={itemVariants} className="glass-card text-center p-4 md:p-6 rounded-2xl">
+            <div className="w-10 h-10 md:w-12 md:h-12 bg-[#0984E3]/10 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+              <Star className="w-5 h-5 md:w-6 md:h-6 text-[#0984E3]" />
             </div>
-            <div className="text-3xl font-bold text-[#636E72] mb-2">40+</div>
-            <div className="text-[#636E72] font-medium">Total de Parceiros</div>
+            <div className="text-2xl md:text-3xl font-bold text-[#636E72] mb-1 md:mb-2">40+</div>
+            <div className="text-[#636E72] font-medium text-sm md:text-base">Total de Parceiros</div>
           </motion.div>
         </motion.div>
 
@@ -149,8 +149,8 @@ export default function PartnersSection() {
           variants={containerVariants}
           className="mb-16"
         >
-          <motion.h3 variants={itemVariants} className="text-3xl font-bold text-[#636E72] mb-8 flex items-center">
-            <Stethoscope className="w-8 h-8 text-[#00B894] mr-3" />
+          <motion.h3 variants={itemVariants} className="text-2xl md:text-3xl font-bold text-[#636E72] mb-6 md:mb-8 flex items-center justify-center md:justify-start">
+            <Stethoscope className="w-6 h-6 md:w-8 md:h-8 text-[#00B894] mr-2 md:mr-3" />
             Médicos Credenciados
           </motion.h3>
           
@@ -193,8 +193,8 @@ export default function PartnersSection() {
           viewport={{ once: true }}
           variants={containerVariants}
         >
-          <motion.h3 variants={itemVariants} className="text-3xl font-bold text-[#636E72] mb-8 flex items-center">
-            <ShoppingBag className="w-8 h-8 text-[#0984E3] mr-3" />
+          <motion.h3 variants={itemVariants} className="text-2xl md:text-3xl font-bold text-[#636E72] mb-6 md:mb-8 flex items-center justify-center md:justify-start">
+            <ShoppingBag className="w-6 h-6 md:w-8 md:h-8 text-[#0984E3] mr-2 md:mr-3" />
             Empresas Parceiras
           </motion.h3>
           
@@ -244,10 +244,10 @@ export default function PartnersSection() {
           className="mt-16 text-center"
         >
           <motion.div variants={itemVariants} className="bg-gradient-to-r from-[#00B894] to-[#0984E3] rounded-3xl p-8 text-white">
-            <h3 className="text-2xl md:text-3xl font-bold mb-4">
+            <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4">
               Faça Parte da Nossa Rede
             </h3>
-            <p className="text-lg mb-6 opacity-90">
+            <p className="text-base md:text-lg mb-6 opacity-90 px-4">
               Acesse todos esses benefícios com seu Cartão Vidah e economize em consultas, 
               exames e compras em nossa rede credenciada
             </p>
