@@ -14,6 +14,7 @@ import magiaDoSorrisoLogo from "@/assets/magia-do-sorriso-logo.svg";
 import evolucaoLogo from "@/assets/evolucao-logo.svg";
 import reabilitarNeuropedLogo from "@/assets/reabilitar-neuroped-logo.svg";
 import corpoHarmoniaLogo from "@/assets/corpo-harmonia-logo.svg";
+import lab7Logo from "@/assets/lab7-logo.svg";
 
 const medicos = [
   { nome: "Dr Diego Rodrigues Charamitara", especialidade: "Clínico Geral", foto: null },
@@ -70,7 +71,7 @@ const parceiros = [
   { nome: "Dom Pedro", desconto: "15%", categoria: "Hortifruti", logo: domPedroLogo, endereco: null },
   { nome: "Rações Santa Tereza", desconto: "Tabela", categoria: "Pet Shop", logo: santaTerezaLogo, endereco: null },
   { nome: "Magia do Sorriso", desconto: "5-20%", categoria: "Odontologia", logo: magiaDoSorrisoLogo, endereco: null },
-  { nome: "Lab 7", desconto: "20-40%", categoria: "Laboratório", logo: null, endereco: null }
+  { nome: "Lab 7", desconto: "20-40%", categoria: "Laboratório", logo: lab7Logo, endereco: null }
 ];
 
 export default function PartnersSection() {
