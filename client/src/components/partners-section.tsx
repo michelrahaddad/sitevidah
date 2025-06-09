@@ -19,27 +19,20 @@ import inerpLogo from "@/assets/inerp-logo.svg";
 import ipcLogo from "@/assets/ipc-logo.svg";
 import silagasLogo from "@/assets/silagas-logo.svg";
 
+// User icon is already imported above
+
 const medicos = [
   { nome: "Dr Diego Rodrigues Charamitara", especialidade: "Clínico Geral", foto: null },
   { nome: "Dra Isabela Cardoso", especialidade: "Ginecologia e Obstetrícia", foto: null },
-  { nome: "Drª Ana Soler", especialidade: "Dermatologista", foto: null },
-  { nome: "Drª Bruna de Rosa", especialidade: "Psiquiatra", foto: null },
-  { nome: "Dra Gabriela Pedrolim", especialidade: "Endocrinologista", foto: null },
   { nome: "Dr José Eduardo", especialidade: "Neurologista", foto: null },
-  { nome: "Dr Michel Haddad", especialidade: "Cardiologista", foto: null },
-  { nome: "Dr Willian Haddad", especialidade: "Cardiologista", foto: null },
-  { nome: "Dr Fabio Malara", especialidade: "Reumatologista", foto: null },
-  { nome: "Dr Samir Farah", especialidade: "Ortopedista", foto: null },
-  { nome: "Dr Diego Biella", especialidade: "Pediatra", foto: null },
-  { nome: "Dr Walter Dall'Acqua", especialidade: "Pediatra", foto: null },
-  { nome: "Dr Alex Vasconcelos", especialidade: "Oftalmologista", foto: null },
-  { nome: "Dr Willian Haddad Jr", especialidade: "Radiologista", foto: null },
-  { nome: "André Quarteiro", especialidade: "Otorrinolaringologista", foto: null },
-  { nome: "Julio Cesar", especialidade: "Gastroenterologista", foto: null },
-  { nome: "Maysa Quarteiro", especialidade: "Geriatra", foto: null },
-  { nome: "Adriana de Marqui", especialidade: "Cirurgia Vascular", foto: null },
-  { nome: "Paulo Hilario", especialidade: "Pneumologista", foto: null },
-  { nome: "Claudia Arruda", especialidade: "Nutricionista", foto: null },
+  { nome: "Dra Ana Soler", especialidade: "Dermatologista", foto: null },
+  { nome: "Dra Bruna de Rosa", especialidade: "Psiquiatra", foto: null },
+  { nome: "Dra Gabriela Pedrolim", especialidade: "Endocrinologista", foto: null },
+  { nome: "Dr Fabio Malara", especialidade: "Cardiologista", foto: null },
+  { nome: "Dra Claudia Arruda", especialidade: "Psiquiatra", foto: null },
+  { nome: "Dra Maysa Quarteiro", especialidade: "Ginecologia e Obstetrícia", foto: null },
+  { nome: "Dra Vanessa Yucra", especialidade: "Psicóloga", foto: null },
+  { nome: "Dra Bruna Margadona", especialidade: "Ginecologia e Obstetrícia", foto: null },
   { nome: "Pedro Betini", especialidade: "Psicólogo", foto: null },
   { nome: "Erika Aravechia", especialidade: "Psicopedagoga", foto: null },
   { nome: "Bruna Margadona", especialidade: "Fisioterapeuta", foto: null },
