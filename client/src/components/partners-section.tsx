@@ -10,6 +10,7 @@ import sosEnfermagemLogo from "@assets/SOS ENFERMAGEM_1749498084810.jpg";
 import funerariaCanaaLogo from "@assets/FUNERARIA CANAA_1749498084810.png";
 import fiduciaEletroLogo from "@assets/FIDUCIA ELETRO_1749498084811.png";
 import drogavenLogo from "@assets/DROGAVEN_1749498084811.png";
+import magiaDoSorrisoLogo from "@/assets/magia-do-sorriso-logo.svg";
 
 const medicos = [
   { nome: "Dr Diego Rodrigues Charamitara", especialidade: "Clínico Geral", foto: null },
@@ -65,7 +66,7 @@ const parceiros = [
   { nome: "S.O.S", desconto: "5-10%", categoria: "Emergência", logo: sosEnfermagemLogo, endereco: null },
   { nome: "Dom Pedro", desconto: "15%", categoria: "Hortifruti", logo: domPedroLogo, endereco: null },
   { nome: "Rações Santa Tereza", desconto: "Tabela", categoria: "Pet Shop", logo: santaTerezaLogo, endereco: null },
-  { nome: "Magia do Sorriso", desconto: "5-20%", categoria: "Odontologia", logo: null, endereco: null },
+  { nome: "Magia do Sorriso", desconto: "5-20%", categoria: "Odontologia", logo: magiaDoSorrisoLogo, endereco: null },
   { nome: "Lab 7", desconto: "20-40%", categoria: "Laboratório", logo: null, endereco: null }
 ];
 
