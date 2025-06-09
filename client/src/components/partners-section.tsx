@@ -13,6 +13,7 @@ import drogavenLogo from "@assets/DROGAVEN_1749498084811.png";
 import magiaDoSorrisoLogo from "@/assets/magia-do-sorriso-logo.svg";
 import evolucaoLogo from "@/assets/evolucao-logo.svg";
 import reabilitarNeuropedLogo from "@/assets/reabilitar-neuroped-logo.svg";
+import corpoHarmoniaLogo from "@/assets/corpo-harmonia-logo.svg";
 
 const medicos = [
   { nome: "Dr Diego Rodrigues Charamitara", especialidade: "Clínico Geral", foto: null },
@@ -59,7 +60,7 @@ const parceiros = [
   { nome: "Evolução Centro de Integração Multidisciplinar", desconto: "Tabela", categoria: "Centro Multidisciplinar", logo: evolucaoLogo, endereco: "R. Dr. Adail de Oliveira, 864 - Centro, Ibitinga - SP, 14940-151" },
   { nome: "Pronto Vet Clínica Veterinária", desconto: "5-10%", categoria: "Pet Shop", logo: prontoVetLogo, endereco: "Av. Eng. Ivanil Francischini, 5363 - São José, Ibitinga - SP, 14940-000" },
   { nome: "Reabilitar Neuroped", desconto: "Tabela", categoria: "Fisioterapia Pediátrica", logo: reabilitarNeuropedLogo, endereco: null },
-  { nome: "Corpo em Harmonia - Studio de Pilates", desconto: "Tabela", categoria: "Pilates", logo: null, endereco: "Rua Treze de Maio, 541 - Centro, Ibitinga - SP" },
+  { nome: "Corpo em Harmonia - Studio de Pilates", desconto: "Tabela", categoria: "Pilates", logo: corpoHarmoniaLogo, endereco: "Rua Treze de Maio, 541 - Centro, Ibitinga - SP" },
   { nome: "Drogaven", desconto: "Tabela", categoria: "Farmácia", logo: drogavenLogo, endereco: "Rua Prudente de Moraes, 934 - Centro, Ibitinga - SP" },
   { nome: "Funerária Canaã Ibitinga", desconto: "Tabela", categoria: "Funerária", logo: funerariaCanaaLogo, endereco: "Rua Domingos Robert, 985 - Centro, Ibitinga - SP" },
   { nome: "INERP - Instituto de Neurologia", desconto: "Tabela", categoria: "Neurologia", logo: null, endereco: null },
