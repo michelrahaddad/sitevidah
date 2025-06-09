@@ -41,6 +41,12 @@ export default function Header() {
             Como Funciona
           </button>
           <button 
+            onClick={() => handleNavClick('parceiros')}
+            className="text-[#636E72] hover:text-[#00B894] transition-colors"
+          >
+            Parceiros
+          </button>
+          <button 
             onClick={() => handleNavClick('faq')}
             className="text-[#636E72] hover:text-[#00B894] transition-colors"
           >
