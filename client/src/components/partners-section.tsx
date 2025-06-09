@@ -19,20 +19,29 @@ import inerpLogo from "@/assets/inerp-logo.svg";
 import ipcLogo from "@/assets/ipc-logo.svg";
 import silagasLogo from "@/assets/silagas-logo.svg";
 
-// User icon is already imported above
+// Doctor photos
+import drDiegoFoto from "@/assets/doctors/dr-diego.jpg";
+import draIsabelaCardosoFoto from "@/assets/doctors/dra-isabela-cardoso.jpg";
+import draAnaSollerFoto from "@/assets/doctors/dra-ana-soller.jpg";
+import draBrunaDeRosaFoto from "@/assets/doctors/dra-bruna-de-rosa.jpg";
+import draGabrielaPedrolimFoto from "@/assets/doctors/dra-gabriela-pedrolim.jpg";
+import drFabioMalaraFoto from "@/assets/doctors/dr-fabio-malara.jpg";
+import draClaudiaArrudaFoto from "@/assets/doctors/dra-claudia-arruda.jpg";
+import draMaysaQuarteiroFoto from "@/assets/doctors/dra-maysa-quarteiro.jpg";
+import draVanessaYucraFoto from "@/assets/doctors/dra-vanessa-yucra.jpg";
+import draBrunaMargadonaFoto from "@/assets/doctors/dra-bruna-margadona.jpg";
 
 const medicos = [
-  { nome: "Dr Diego Rodrigues Charamitara", especialidade: "Clínico Geral", foto: null },
-  { nome: "Dra Isabela Cardoso", especialidade: "Ginecologia e Obstetrícia", foto: null },
-  { nome: "Dr José Eduardo", especialidade: "Neurologista", foto: null },
-  { nome: "Dra Ana Soler", especialidade: "Dermatologista", foto: null },
-  { nome: "Dra Bruna de Rosa", especialidade: "Psiquiatra", foto: null },
-  { nome: "Dra Gabriela Pedrolim", especialidade: "Endocrinologista", foto: null },
-  { nome: "Dr Fabio Malara", especialidade: "Cardiologista", foto: null },
-  { nome: "Dra Claudia Arruda", especialidade: "Psiquiatra", foto: null },
-  { nome: "Dra Maysa Quarteiro", especialidade: "Ginecologia e Obstetrícia", foto: null },
-  { nome: "Dra Vanessa Yucra", especialidade: "Psicóloga", foto: null },
-  { nome: "Dra Bruna Margadona", especialidade: "Ginecologia e Obstetrícia", foto: null },
+  { nome: "Dr Diego Rodrigues Charamitara", especialidade: "Clínico Geral", foto: drDiegoFoto },
+  { nome: "Dra Isabela Cardoso", especialidade: "Ginecologia e Obstetrícia", foto: draIsabelaCardosoFoto },
+  { nome: "Dra Ana Soler", especialidade: "Dermatologista", foto: draAnaSollerFoto },
+  { nome: "Dra Bruna de Rosa", especialidade: "Psiquiatra", foto: draBrunaDeRosaFoto },
+  { nome: "Dra Gabriela Pedrolim", especialidade: "Endocrinologista", foto: draGabrielaPedrolimFoto },
+  { nome: "Dr Fabio Malara", especialidade: "Cardiologista", foto: drFabioMalaraFoto },
+  { nome: "Dra Claudia Arruda", especialidade: "Psiquiatra", foto: draClaudiaArrudaFoto },
+  { nome: "Dra Maysa Quarteiro", especialidade: "Ginecologia e Obstetrícia", foto: draMaysaQuarteiroFoto },
+  { nome: "Dra Vanessa Yucra", especialidade: "Psicóloga", foto: draVanessaYucraFoto },
+  { nome: "Dra Bruna Margadona", especialidade: "Ginecologia e Obstetrícia", foto: draBrunaMargadonaFoto },
   { nome: "Pedro Betini", especialidade: "Psicólogo", foto: null },
   { nome: "Erika Aravechia", especialidade: "Psicopedagoga", foto: null },
   { nome: "Bruna Margadona", especialidade: "Fisioterapeuta", foto: null },
