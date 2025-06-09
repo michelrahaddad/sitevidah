@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { Stethoscope, ShoppingBag, Star, Users, MapPin, Percent, User, Building } from "lucide-react";
+import { Stethoscope, ShoppingBag, Star, Users, MapPin, Percent, User, Building, Phone, Globe } from "lucide-react";
+import vidahLogo from "@assets/vidah_1749439341688.png";
 
 const medicos = [
   { nome: "Drª Vanesa", especialidade: "Clínico Geral", foto: null },
@@ -32,7 +33,10 @@ const parceiroDestaque = {
   nome: "Grupo Vidah",
   desconto: "Benefícios Exclusivos",
   categoria: "Parceiro Principal",
-  logo: null,
+  logo: "@assets/vidah_1749439341688.png",
+  endereco: "R. XV de Novembro, 594 - Centro, Ibitinga - SP, 14940-000",
+  telefone: "(16) 3342-4768",
+  site: "https://www.grupovidah.com.br/",
   destaque: true
 };
 
@@ -171,12 +175,41 @@ export default function PartnersSection() {
               </div>
               
               <div className="relative z-10">
-                <div className="w-20 h-20 bg-gradient-to-br from-[#0984E3] to-[#74B9FF] rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                  <Star className="w-10 h-10 text-white" />
+                <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg p-3">
+                  <img 
+                    src={vidahLogo} 
+                    alt="Grupo Vidah Logo"
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 
                 <h4 className="text-2xl font-bold text-[#636E72] mb-2 text-center">{parceiroDestaque.nome}</h4>
                 <p className="text-[#0984E3] font-semibold text-center mb-3">{parceiroDestaque.categoria}</p>
+                
+                <div className="space-y-2 mb-4 text-sm text-[#636E72]/80">
+                  <div className="flex items-center justify-center">
+                    <MapPin className="w-4 h-4 mr-2" />
+                    <span className="text-center">{parceiroDestaque.endereco}</span>
+                  </div>
+                  <div className="flex items-center justify-center">
+                    <Phone className="w-4 h-4 mr-2" />
+                    <a href={`tel:${parceiroDestaque.telefone}`} className="hover:text-[#0984E3] transition-colors">
+                      {parceiroDestaque.telefone}
+                    </a>
+                  </div>
+                  <div className="flex items-center justify-center">
+                    <Globe className="w-4 h-4 mr-2" />
+                    <a 
+                      href={parceiroDestaque.site} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="hover:text-[#0984E3] transition-colors"
+                    >
+                      grupovidah.com.br
+                    </a>
+                  </div>
+                </div>
+                
                 <div className="bg-gradient-to-r from-[#0984E3] to-[#74B9FF] text-white px-4 py-2 rounded-full text-center font-bold">
                   {parceiroDestaque.desconto}
                 </div>
