@@ -1,4 +1,3 @@
-
 import { Check, MessageCircle, Users, Building } from "lucide-react";
 import type { SelectedPlan } from "@/pages/home";
 
@@ -55,8 +54,6 @@ export default function PlansSection({ onSelectPlan }: PlansSectionProps) {
     });
   };
 
-
-
   return (
     <section id="planos" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -76,101 +73,59 @@ export default function PlansSection({ onSelectPlan }: PlansSectionProps) {
             return (
               <div 
                 key={plan.id}
-                className={`plan-card ${isPopular ? 'popular' : ''}`}
+                className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
               >
-                {isPopular && (
-                  <div className="absolute -top-5 left-1/2 transform -translate-x-1/2 z-10">
-                    <div className="bg-gradient-to-r from-[#00B894] to-[#009d7f] text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg border-2 border-white">
-                      ⭐ Mais Popular
-                    </div>
-                  </div>
-                )}
-                
-                <div className="text-center mb-8">
+                <div className="text-center mb-6">
+                  <div className="text-4xl mb-4">{plan.icon}</div>
                   <h3 className="text-2xl font-bold text-[#636E72] mb-2">
                     {plan.name}
                   </h3>
-                  <p className="text-[#636E72]">
-                    {plan.type === 'individual' && "Perfeito para você"}
-                    {plan.type === 'familiar' && "Para toda a família"}
-                    {plan.type === 'empresarial' && "Para sua empresa"}
+                  <p className="text-lg text-[#636E72] mb-4">
+                    {isEnterprise ? "Plano para Empresas" : "Plano Familiar"}
                   </p>
-                </div>
-                
-                <div className="text-center mb-8">
-                  {isEnterprise ? (
-                    <>
-                      <div className="text-4xl font-bold text-[#0984E3] mb-2">
-                        {formatCurrency(parseFloat(plan.monthlyPrice || "0"))}
+                  
+                  {!isEnterprise && (
+                    <div className="mb-6">
+                      <div className="text-4xl font-bold gradient-text mb-2">
+                        💰 Só R$ {plan.monthlyPrice}/mês
                       </div>
-                      <div className="text-[#636E72]">por colaborador/mês</div>
-                      <div className="text-sm text-[#636E72] mt-2">
-                        + {formatCurrency(parseFloat(plan.adhesionFee))} taxa de adesão por pessoa
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <div className="text-4xl font-bold text-[#00B894] mb-2">
-                        {formatCurrency(parseFloat(plan.annualPrice))}
-                      </div>
-                      <div className="text-[#636E72]">por ano</div>
-                      <div className="text-sm text-[#636E72] mt-2">
-                        + {formatCurrency(parseFloat(plan.adhesionFee))} taxa de adesão
-                      </div>
-                    </>
+                      <div className="text-sm text-[#636E72]">Sem taxa de adesão</div>
+                    </div>
                   )}
                 </div>
-
-                <div className="space-y-4 mb-8">
-                  {features.map((feature, index) => (
-                    <div key={index} className="flex items-center">
-                      <Check className={`mr-3 ${isEnterprise ? 'text-[#0984E3]' : 'text-[#00B894]'}`} size={20} />
+                
+                <ul className="space-y-3 mb-8 text-left">
+                  {plan.features.map((feature, index) => (
+                    <li key={index} className="flex items-start">
+                      <div className="text-[#00B894] mr-3 mt-1">
+                        {isEnterprise ? "🏢" : "🦷"}
+                      </div>
                       <span className="text-[#636E72]">{feature}</span>
-                    </div>
+                    </li>
                   ))}
-                </div>
+                  {!isEnterprise && (
+                    <li className="flex items-start">
+                      <div className="text-[#00B894] mr-3 mt-1">📲</div>
+                      <span className="text-[#636E72]">Atendimento humanizado sempre que precisar</span>
+                    </li>
+                  )}
+                </ul>
 
-                {!isEnterprise && (
-                  <div className="space-y-3 mb-8 text-sm">
-                    <div className="flex justify-between">
-                      <span className="text-[#636E72]">À vista (PIX):</span>
-                      <span className="font-semibold text-[#00B894]">
-                        {formatCurrency(paymentOptions.pix.total - parseFloat(plan.adhesionFee))}
-                      </span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-[#636E72]">Cartão 12x:</span>
-                      <span className="font-semibold">
-                        {paymentOptions.credit.label.split(': ')[1]}
-                      </span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-[#636E72]">Boleto 12x:</span>
-                      <span className="font-semibold">
-                        {paymentOptions.boleto.label.split(': ')[1]}
-                      </span>
-                    </div>
-                  </div>
-                )}
-
-                {isEnterprise && (
-                  <div className="mb-8 text-center text-sm text-[#636E72]">
-                    Valor flexível conforme número de colaboradores
-                  </div>
-                )}
-
-                <button 
+                <button
                   onClick={() => handleSelectPlan(plan)}
-                  className={`w-full py-4 rounded-full font-semibold transition-colors flex items-center justify-center ${
-                    isEnterprise 
-                      ? 'bg-[#0984E3] text-white hover:bg-[#0770c4]' 
-                      : isPopular
-                      ? 'bg-[#00B894] text-white hover:bg-[#009d7f] animate-glow'
-                      : 'bg-[#00B894] text-white hover:bg-[#009d7f]'
+                  className={`w-full py-4 px-6 rounded-full font-semibold text-lg transition-all transform hover:scale-105 ${
+                    isEnterprise
+                      ? 'bg-[#0984E3] text-white hover:bg-[#0773cc]'
+                      : 'bg-gradient-to-r from-[#00B894] to-[#009d7f] text-white hover:shadow-lg'
                   }`}
                 >
-                  {isEnterprise && <MessageCircle className="mr-2" size={20} />}
-                  {isEnterprise ? 'Falar com Vendedor' : 'Escolher Plano'}
+                  {isEnterprise ? (
+                    <span className="flex items-center justify-center">
+                      💬 Solicitar Cotação
+                    </span>
+                  ) : (
+                    'Assinar Agora'
+                  )}
                 </button>
               </div>
             );

@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 import { Stethoscope, ShoppingBag, Star, Users, MapPin, Percent, User, Building, Phone, Globe } from "lucide-react";
 import vidahLogo from "@assets/vidah_1749439341688.png";
 import prontoVetLogo from "@assets/PRONTO VET_1749498084808.png";
@@ -80,6 +81,9 @@ const parceiros = [
 ];
 
 export default function PartnersSection() {
+  const [showAllPartners, setShowAllPartners] = useState(false);
+  const [showAllSegments, setShowAllSegments] = useState(false);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -100,6 +104,14 @@ export default function PartnersSection() {
       }
     }
   };
+
+  // Get top 4 business partners for initial display
+  const topPartners = parceiros.slice(0, 4);
+  const displayedPartners = showAllPartners ? parceiros : topPartners;
+
+  // Get top 4 medical professionals for initial display  
+  const topMedicos = medicos.slice(0, 4);
+  const displayedMedicos = showAllSegments ? medicos : topMedicos;
 
   return (
     <section id="parceiros" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
@@ -252,7 +264,7 @@ export default function PartnersSection() {
           </motion.h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {medicos.map((medico, index) => (
+            {displayedMedicos.map((medico, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
@@ -281,6 +293,17 @@ export default function PartnersSection() {
               </motion.div>
             ))}
           </div>
+          
+          {!showAllSegments && medicos.length > 4 && (
+            <div className="text-center mt-8">
+              <button
+                onClick={() => setShowAllSegments(true)}
+                className="bg-[#00B894] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#009d7f] transition-all transform hover:scale-105"
+              >
+                Ver mais médicos ({medicos.length - 4} restantes)
+              </button>
+            </div>
+          )}
         </motion.div>
 
         {/* Business Partners */}
@@ -296,7 +319,7 @@ export default function PartnersSection() {
           </motion.h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {parceiros.map((parceiro, index) => (
+            {displayedPartners.map((parceiro, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
@@ -338,6 +361,17 @@ export default function PartnersSection() {
               </motion.div>
             ))}
           </div>
+          
+          {!showAllPartners && parceiros.length > 4 && (
+            <div className="text-center mt-8">
+              <button
+                onClick={() => setShowAllPartners(true)}
+                className="bg-[#0984E3] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#0773cc] transition-all transform hover:scale-105"
+              >
+                Ver mais parceiros ({parceiros.length - 4} restantes)
+              </button>
+            </div>
+          )}
         </motion.div>
 
         {/* Call to Action */}
