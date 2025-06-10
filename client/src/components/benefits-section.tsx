@@ -1,11 +1,11 @@
-import { TrendingUp, Users, Clock, Shield } from "lucide-react";
+import { TrendingUp, Users, MessageCircle, Stethoscope } from "lucide-react";
 
 export default function BenefitsSection() {
   const stats = [
-    { value: "17+", label: "Empresas Parceiras" },
+    { value: "100+", label: "Parceiros em Ibitinga e região" },
     { value: "50K+", label: "Clientes Satisfeitos" },
     { value: "30%", label: "Economia Média" },
-    { value: "24/7", label: "Suporte" }
+    { value: "100%", label: "Suporte Humanizado" }
   ];
 
   return (
@@ -31,26 +31,21 @@ export default function BenefitsSection() {
         </div>
 
         {/* Additional Benefits */}
-        <div className="mt-16 grid md:grid-cols-4 gap-6">
+        <div className="mt-16 grid md:grid-cols-3 gap-8">
           <div className="text-center p-6">
             <TrendingUp className="w-12 h-12 text-[#00B894] mx-auto mb-4" />
-            <h4 className="font-semibold text-[#636E72] mb-2">Economia Garantida</h4>
-            <p className="text-sm text-[#636E72]">Economize até 30% em produtos e serviços</p>
+            <h4 className="font-semibold text-[#636E72] mb-2">✅ Mais de 100 parceiros em Ibitinga e região</h4>
+            <p className="text-sm text-[#636E72]">Aproveite descontos em clínicas, farmácias, óticas e muito mais.</p>
           </div>
           <div className="text-center p-6">
-            <Users className="w-12 h-12 text-[#00B894] mx-auto mb-4" />
-            <h4 className="font-semibold text-[#636E72] mb-2">Para Toda Família</h4>
-            <p className="text-sm text-[#636E72]">Benefícios estendidos para dependentes</p>
+            <Stethoscope className="w-12 h-12 text-[#00B894] mx-auto mb-4" />
+            <h4 className="font-semibold text-[#636E72] mb-2">🩺 Saúde acessível de verdade</h4>
+            <p className="text-sm text-[#636E72]">Consultas médicas e odontológicas com preços reduzidos em locais de confiança.</p>
           </div>
           <div className="text-center p-6">
-            <Clock className="w-12 h-12 text-[#00B894] mx-auto mb-4" />
-            <h4 className="font-semibold text-[#636E72] mb-2">Disponível 24/7</h4>
-            <p className="text-sm text-[#636E72]">Use seus benefícios a qualquer hora</p>
-          </div>
-          <div className="text-center p-6">
-            <Shield className="w-12 h-12 text-[#00B894] mx-auto mb-4" />
-            <h4 className="font-semibold text-[#636E72] mb-2">100% Seguro</h4>
-            <p className="text-sm text-[#636E72]">Tecnologia de ponta em segurança</p>
+            <MessageCircle className="w-12 h-12 text-[#00B894] mx-auto mb-4" />
+            <h4 className="font-semibold text-[#636E72] mb-2">💬 Suporte quando você mais precisar</h4>
+            <p className="text-sm text-[#636E72]">Fale com a gente sempre que tiver dúvidas — atendimento rápido e humanizado.</p>
           </div>
         </div>
       </div>

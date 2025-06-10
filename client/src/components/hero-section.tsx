@@ -8,7 +8,7 @@ interface HeroSectionProps {
 
 export default function HeroSection({ onSelectPlan }: HeroSectionProps) {
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden">
       <div className="absolute inset-0 gradient-bg opacity-5"></div>
       
       {/* Floating geometric elements */}
@@ -19,13 +19,12 @@ export default function HeroSection({ onSelectPlan }: HeroSectionProps) {
       <div className="container mx-auto px-4 text-center relative z-10">
         <div className="animate-slide-up">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            <span className="gradient-text">Cartão + Vidah</span>
+            <span className="gradient-text">Seu Cartão de Benefícios,</span>
             <br />
-            <span className="text-[#636E72]">Benefícios Exclusivos</span>
+            <span className="text-[#636E72]">Seu Estilo de Vida</span>
           </h1>
           <p className="text-xl md:text-2xl text-[#636E72] mb-8 max-w-3xl mx-auto leading-relaxed">
-            Descubra um mundo de vantagens com nosso cartão de benefícios. 
-            Descontos exclusivos em empresas parceiras para você e sua família.
+            Descontos em saúde, bem-estar e muito mais. Um cartão para facilitar sua vida e cuidar da sua família.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">

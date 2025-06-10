@@ -1,9 +1,6 @@
 
-import { Check, MessageCircle } from "lucide-react";
-import { useQuery } from "@tanstack/react-query";
-import { formatCurrency, calculateDiscount } from "@/lib/utils";
+import { Check, MessageCircle, Users, Building } from "lucide-react";
 import type { SelectedPlan } from "@/pages/home";
-import type { Plan } from "@shared/schema";
 
 interface PlansSectionProps {
   onSelectPlan: (plan: SelectedPlan) => void;
@@ -11,13 +8,36 @@ interface PlansSectionProps {
 
 export default function PlansSection({ onSelectPlan }: PlansSectionProps) {
 
-  const { data: plans = [], isLoading } = useQuery<Plan[]>({
-    queryKey: ['/api/plans'],
-  });
+  // Static plans as specified in the document
+  const plans = [
+    {
+      id: 1,
+      name: "Cartão Familiar",
+      type: "familiar",
+      monthlyPrice: "34.90",
+      icon: "👨‍👩‍👧‍👦",
+      features: [
+        "Cobertura para você e até 4 dependentes",
+        "Descontos em clínicas médicas e odontológicas", 
+        "Atendimento humanizado sempre que precisar"
+      ]
+    },
+    {
+      id: 2,
+      name: "Cartão Corporativo", 
+      type: "empresarial",
+      icon: "🏢",
+      features: [
+        "Benefícios para sua equipe com custo acessível",
+        "Incentive saúde e bem-estar no ambiente de trabalho",
+        "Personalizado para empresas de Ibitinga/SP",
+        "Fale com nosso time e receba uma proposta"
+      ]
+    }
+  ];
 
-  const handleSelectPlan = (plan: Plan) => {
+  const handleSelectPlan = (plan: any) => {
     if (plan.type === 'empresarial') {
-      // Redirect to WhatsApp for enterprise plans
       const message = `Olá! Gostaria de saber mais sobre o plano empresarial do Cartão + Vidah`;
       const whatsappUrl = `https://wa.me/5516993247676?text=${encodeURIComponent(message)}`;
       window.open(whatsappUrl, '_blank');
@@ -28,70 +48,14 @@ export default function PlansSection({ onSelectPlan }: PlansSectionProps) {
       id: plan.id,
       name: plan.name,
       type: plan.type,
-      annualPrice: plan.annualPrice,
-      monthlyPrice: plan.monthlyPrice ?? undefined,
-      adhesionFee: plan.adhesionFee,
-      maxDependents: plan.maxDependents ?? undefined,
+      annualPrice: (parseFloat(plan.monthlyPrice) * 12).toString(),
+      monthlyPrice: plan.monthlyPrice,
+      adhesionFee: "0",
+      maxDependents: 4,
     });
   };
 
-  const getPlanFeatures = (planType: string) => {
-    const baseFeatures = [
-      "Acesso a todos os benefícios",
-      "Cartão digital com QR Code", 
-      "Suporte 24/7"
-    ];
 
-    if (planType === 'familiar') {
-      return [
-        ...baseFeatures,
-        "Cobertura familiar completa",
-        "Até 4 dependentes",
-        "Benefícios exclusivos"
-      ];
-    }
-
-    if (planType === 'empresarial') {
-      return [
-        "Gestão centralizada",
-        "Relatórios de uso",
-        "Suporte dedicado",
-        "Sem taxa de boleto"
-      ];
-    }
-
-    return baseFeatures;
-  };
-
-  const getPaymentOptions = (plan: Plan) => {
-    const annualPrice = parseFloat(plan.annualPrice);
-    const adhesionFee = parseFloat(plan.adhesionFee);
-    const monthlyPrice = parseFloat(plan.monthlyPrice || "0");
-
-    const pixPrice = calculateDiscount(annualPrice, 10);
-    
-    const creditInstallment = plan.type === 'individual' ? 24.90 : 34.90;
-    const boletoInstallment = plan.type === 'individual' ? 27.90 : 37.90;
-
-    return {
-      pix: { total: pixPrice + adhesionFee, label: `À vista (PIX): ${formatCurrency(pixPrice)}` },
-      credit: { total: (creditInstallment * 12) + adhesionFee, label: `Cartão 12x: R$ ${creditInstallment.toFixed(2)}` },
-      boleto: { total: (boletoInstallment * 12) + adhesionFee, label: `Boleto 12x: R$ ${boletoInstallment.toFixed(2)}` }
-    };
-  };
-
-  if (isLoading) {
-    return (
-      <section id="planos" className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#00B894] mx-auto"></div>
-            <p className="mt-4 text-[#636E72]">Carregando planos...</p>
-          </div>
-        </div>
-      </section>
-    );
-  }
 
   return (
     <section id="planos" className="py-20 bg-gray-50">
@@ -101,18 +65,13 @@ export default function PlansSection({ onSelectPlan }: PlansSectionProps) {
             Escolha seu <span className="gradient-text">Plano Ideal</span>
           </h2>
           <p className="text-xl text-[#636E72] max-w-3xl mx-auto">
-            Planos flexíveis para atender suas necessidades, seja individual, familiar ou empresarial.
+            Economize com saúde, educação, mobilidade e bem-estar. Com o Cartão + Vidah, você e sua família aproveitam benefícios exclusivos em empresas parceiras.
           </p>
         </div>
 
-
-
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {plans.map((plan) => {
-            const isPopular = plan.type === 'familiar';
             const isEnterprise = plan.type === 'empresarial';
-            const features = getPlanFeatures(plan.type);
-            const paymentOptions = getPaymentOptions(plan);
 
             return (
               <div 
