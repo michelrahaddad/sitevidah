@@ -96,12 +96,7 @@ export default function LeadCaptureModal({
     e.target.value = formatted;
   };
 
-  if (!isOpen) {
-    console.log('Modal não está aberto:', isOpen);
-    return null;
-  }
-  
-  console.log('Modal está sendo renderizado:', { isOpen, buttonType, planName, doctorName });
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">

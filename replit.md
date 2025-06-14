@@ -92,11 +92,13 @@ Changelog:
   * Removidos todos os links visíveis do site
   * Acesso apenas via URL direta: /admin/login
   * Sistema invisível para usuários comuns
-- June 14, 2025. Sistema de captura de leads implementado:
+- June 14, 2025. Sistema de captura de leads implementado e testado:
   * Modal de captura de dados antes do redirecionamento WhatsApp
   * Coleta nome e telefone de todos os interessados
   * Integrado nos botões de planos e consultas médicas
   * Dados salvos automaticamente no sistema de gestão
+  * Validação e formatação automática de dados
+  * Testado e funcionando corretamente
 ```
 
 ## User Preferences

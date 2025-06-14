@@ -149,26 +149,6 @@ export default function PlansSection({ onSelectPlan }: PlansSectionProps) {
             );
           })}
         </div>
-        
-        {/* Botão de teste para o modal */}
-        <div className="text-center mt-8">
-          <button
-            onClick={() => {
-              console.log('Botão teste clicado');
-              setModalData({
-                isOpen: true,
-                buttonType: 'plan_subscription',
-                planName: 'Teste',
-                whatsappPhone: '5516993247676',
-                whatsappMessage: 'Teste do modal'
-              });
-              console.log('Estado do modal atualizado');
-            }}
-            className="bg-red-500 text-white px-4 py-2 rounded"
-          >
-            TESTE MODAL
-          </button>
-        </div>
       </div>
 
       <LeadCaptureModal
