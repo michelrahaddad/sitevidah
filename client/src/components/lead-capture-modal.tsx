@@ -103,7 +103,7 @@ export default function LeadCaptureModal({
       const whatsappUrl = generateWhatsAppUrl(whatsappPhone, personalizedMessage);
       
       // Detecta se é iOS Safari para usar método adequado
-      const isIOSSafari = /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
+      const isIOSSafari = /iPad|iPhone|iPod/.test(navigator.userAgent);
       
       if (isIOSSafari) {
         // Para iOS Safari, mostra botão de fallback pois window.location.href pode não funcionar com WhatsApp
