@@ -54,9 +54,12 @@ export default function Header() {
             FAQ
           </button>
           <Link href="/admin/login">
-            <button className="text-[#636E72] hover:text-[#00B894] transition-colors flex items-center gap-2">
+            <button 
+              className="text-[#636E72] hover:text-[#00B894] transition-colors p-2 rounded-full hover:bg-gray-100"
+              title="Sistema de Gestão"
+              aria-label="Acessar sistema de gestão"
+            >
               <Settings size={16} />
-              Gestão
             </button>
           </Link>
           <button 
@@ -103,12 +106,7 @@ export default function Header() {
             >
               FAQ
             </button>
-            <Link href="/admin/login">
-              <button className="block w-full text-left text-[#636E72] hover:text-[#00B894] transition-colors py-2 flex items-center gap-2">
-                <Settings size={16} />
-                Sistema de Gestão
-              </button>
-            </Link>
+
             <button 
               onClick={() => handleNavClick('planos')}
               className="w-full bg-[#00B894] text-white px-6 py-3 rounded-full hover:bg-[#009d7f] transition-colors font-medium"
