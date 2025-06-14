@@ -87,8 +87,12 @@ export const validateRequestSize = (req: Request, res: Response, next: NextFunct
 const suspiciousIPs = new Map<string, { attempts: number; lastAttempt: number }>();
 
 export const monitorSuspiciousActivity = (req: Request, res: Response, next: NextFunction) => {
-  // Skip monitoring in development mode
-  if (process.env.NODE_ENV === 'development') {
+  // Skip monitoring in development mode or for internal IPs
+  if (process.env.NODE_ENV === 'development' || 
+      clientIP.startsWith('127.') || 
+      clientIP.startsWith('10.') || 
+      clientIP.startsWith('172.') || 
+      clientIP.startsWith('192.168.')) {
     return next();
   }
   
