@@ -91,11 +91,11 @@ export const monitorSuspiciousActivity = (req: Request, res: Response, next: Nex
   const now = Date.now();
   
   // Clean old entries (older than 1 hour)
-  for (const [ip, data] of suspiciousIPs.entries()) {
+  Array.from(suspiciousIPs.entries()).forEach(([ip, data]) => {
     if (now - data.lastAttempt > 3600000) {
       suspiciousIPs.delete(ip);
     }
-  }
+  });
   
   const ipData = suspiciousIPs.get(clientIP) || { attempts: 0, lastAttempt: 0 };
   

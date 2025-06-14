@@ -111,6 +111,16 @@ Changelog:
   * Após captura de dados, usuário é redirecionado automaticamente para WhatsApp
   * Sistema elimina necessidade de cliques manuais adicionais
   * Experiência otimizada com fluxo contínuo de captura → registro → redirecionamento
+- June 14, 2025. Segurança e estabilidade para produção implementadas:
+  * Headers de segurança (Helmet, CSP, XSS Protection, HSTS)
+  * Rate limiting em múltiplas camadas (geral, API, admin, login)
+  * Sanitização robusta de entrada para prevenção de XSS e injection
+  * Validação avançada com express-validator em todas as rotas
+  * Autenticação JWT aprimorada com verificação de payload e expiração
+  * Monitoramento de IPs suspeitos com bloqueio automático
+  * Timeouts de query e limitação de tamanho de requests
+  * Middleware de segurança frontend com validação de formulários
+  * Logs de segurança detalhados para monitoramento de produção
 ```
 
 ## User Preferences

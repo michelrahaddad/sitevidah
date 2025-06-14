@@ -6,6 +6,7 @@ import morgan from "morgan";
 import rateLimit from "express-rate-limit";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import { securityHeaders, validateRequestSize, monitorSuspiciousActivity, queryTimeout } from "./security";
 
 const app = express();
 
@@ -39,6 +40,12 @@ app.use(compression());
 
 // Trust proxy for accurate client IPs
 app.set('trust proxy', 1);
+
+// Additional security middleware
+app.use(securityHeaders);
+app.use(validateRequestSize);
+app.use(monitorSuspiciousActivity);
+app.use(queryTimeout(30000)); // 30 second timeout
 
 // Rate limiting
 const limiter = rateLimit({
