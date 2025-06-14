@@ -10,7 +10,7 @@ export default function ProfessionalsSection() {
       experience: "20+ anos",
       location: "Ibitinga/SP",
       photo: "/placeholder-doctor1.jpg",
-      featured: true,
+      featured: false,
       achievements: [
         "Especialista em Cardiologia - SBC",
         "Residência no InCor - HCFMUSP",
@@ -25,7 +25,7 @@ export default function ProfessionalsSection() {
       experience: "15+ anos",
       location: "Ibitinga/SP",
       photo: "/placeholder-doctor2.jpg",
-      featured: true,
+      featured: false,
       achievements: [
         "Especialista em Medicina de Família",
         "Pós-graduação em Medicina Preventiva",
@@ -40,7 +40,7 @@ export default function ProfessionalsSection() {
       experience: "12+ anos",
       location: "Ibitinga/SP",
       photo: "/placeholder-doctor3.jpg",
-      featured: true,
+      featured: false,
       achievements: [
         "Especialista em Ortopedia e Traumatologia",
         "Fellowship em Cirurgia do Joelho",
