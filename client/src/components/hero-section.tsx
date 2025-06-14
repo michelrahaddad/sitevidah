@@ -11,19 +11,19 @@ export default function HeroSection({ onSelectPlan }: HeroSectionProps) {
     <section className="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden">
       <div className="absolute inset-0 gradient-bg opacity-5"></div>
       
-      {/* Floating geometric elements */}
-      <div className="absolute top-20 left-10 w-20 h-20 bg-[#00B894]/20 rounded-full animate-float"></div>
-      <div className="absolute bottom-20 right-10 w-32 h-32 bg-[#0984E3]/20 rounded-xl animate-float" style={{animationDelay: '-2s'}}></div>
-      <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-[#00B894]/30 rounded-lg animate-float" style={{animationDelay: '-4s'}}></div>
+      {/* Floating geometric elements - hidden on mobile */}
+      <div className="hidden md:block absolute top-20 left-10 w-20 h-20 bg-[#00B894]/20 rounded-full animate-float"></div>
+      <div className="hidden md:block absolute bottom-20 right-10 w-32 h-32 bg-[#0984E3]/20 rounded-xl animate-float" style={{animationDelay: '-2s'}}></div>
+      <div className="hidden md:block absolute top-1/2 left-1/4 w-16 h-16 bg-[#00B894]/30 rounded-lg animate-float" style={{animationDelay: '-4s'}}></div>
       
       <div className="container mx-auto px-4 text-center relative z-10">
         <div className="animate-slide-up">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-6 leading-tight">
             <span className="gradient-text">Seu Cartão de Benefícios,</span>
             <br />
             <span className="text-[#636E72]">Seu Estilo de Vida</span>
           </h1>
-          <p className="text-xl md:text-2xl text-[#636E72] mb-8 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#636E72] mb-6 md:mb-8 max-w-3xl mx-auto leading-relaxed px-4">
             Descontos em saúde, bem-estar e muito mais. Um cartão para facilitar sua vida e cuidar da sua família.
           </p>
           

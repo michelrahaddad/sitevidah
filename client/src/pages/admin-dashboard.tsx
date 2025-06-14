@@ -226,22 +226,23 @@ export default function AdminDashboard() {
       {/* Header */}
       <div className="bg-white shadow-sm border-b">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-[#00B894] to-[#0984E3] rounded-full flex items-center justify-center">
-                <BarChart3 className="text-white text-lg" />
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="flex items-center space-x-3">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-[#00B894] to-[#0984E3] rounded-full flex items-center justify-center">
+                <BarChart3 className="text-white text-sm sm:text-lg" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-[#636E72]">Dashboard Administrativo</h1>
-                <p className="text-sm text-gray-600">Bem-vindo, {adminUser.username}</p>
+                <h1 className="text-lg sm:text-2xl font-bold text-[#636E72]">Dashboard Administrativo</h1>
+                <p className="text-xs sm:text-sm text-gray-600">Bem-vindo, {adminUser.username}</p>
               </div>
             </div>
             <Button
               onClick={handleLogout}
               variant="outline"
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 text-sm"
+              size="sm"
             >
-              <LogOut size={16} />
+              <LogOut size={14} />
               Sair
             </Button>
           </div>
@@ -301,34 +302,51 @@ export default function AdminDashboard() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="flex flex-col md:flex-row gap-4 items-end">
-              <div className="flex-1">
-                <label className="text-sm font-medium mb-2 block">Data Inicial</label>
-                <Input
-                  type="date"
-                  value={startDate}
-                  onChange={(e) => setStartDate(e.target.value)}
-                />
+            <div className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-sm font-medium mb-2 block">Data Inicial</label>
+                  <Input
+                    type="date"
+                    value={startDate}
+                    onChange={(e) => setStartDate(e.target.value)}
+                    className="w-full"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium mb-2 block">Data Final</label>
+                  <Input
+                    type="date"
+                    value={endDate}
+                    onChange={(e) => setEndDate(e.target.value)}
+                    className="w-full"
+                  />
+                </div>
               </div>
-              <div className="flex-1">
-                <label className="text-sm font-medium mb-2 block">Data Final</label>
-                <Input
-                  type="date"
-                  value={endDate}
-                  onChange={(e) => setEndDate(e.target.value)}
-                />
-              </div>
-              <div className="flex gap-2">
-                <Button onClick={() => refetch()} variant="outline">
+              <div className="flex flex-col sm:flex-row gap-2">
+                <Button 
+                  onClick={() => refetch()} 
+                  variant="outline" 
+                  className="w-full sm:w-auto"
+                >
                   Filtrar
                 </Button>
-                <Button onClick={handleExportMarketing} className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700">
+                <Button 
+                  onClick={handleExportMarketing} 
+                  className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 w-full sm:w-auto"
+                >
                   <Download size={16} />
-                  Exportar para Anúncios
+                  <span className="hidden sm:inline">Exportar para Anúncios</span>
+                  <span className="sm:hidden">Anúncios</span>
                 </Button>
-                <Button onClick={handleExportInternal} variant="outline" className="flex items-center gap-2">
+                <Button 
+                  onClick={handleExportInternal} 
+                  variant="outline" 
+                  className="flex items-center justify-center gap-2 w-full sm:w-auto"
+                >
                   <Download size={16} />
-                  Gestão Interna
+                  <span className="hidden sm:inline">Gestão Interna</span>
+                  <span className="sm:hidden">Interna</span>
                 </Button>
               </div>
             </div>
@@ -351,46 +369,104 @@ export default function AdminDashboard() {
                 Nenhuma conversão encontrada
               </div>
             ) : (
-              <div className="overflow-x-auto">
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>ID</TableHead>
-                      <TableHead>Nome</TableHead>
-                      <TableHead>Email</TableHead>
-                      <TableHead>Telefone</TableHead>
-                      <TableHead>Tipo</TableHead>
-                      <TableHead>Plano/Médico</TableHead>
-                      <TableHead>IP</TableHead>
-                      <TableHead>Data</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {conversions.map((conversion: WhatsappConversion) => (
-                      <TableRow key={conversion.id}>
-                        <TableCell className="font-medium">#{conversion.id}</TableCell>
-                        <TableCell>{conversion.name || "-"}</TableCell>
-                        <TableCell>{conversion.email || "-"}</TableCell>
-                        <TableCell>{conversion.phone || "-"}</TableCell>
-                        <TableCell>
-                          <Badge className={getButtonTypeColor(conversion.buttonType)}>
-                            {getButtonTypeLabel(conversion.buttonType)}
-                          </Badge>
-                        </TableCell>
-                        <TableCell>
-                          {conversion.planName || conversion.doctorName || "-"}
-                        </TableCell>
-                        <TableCell className="text-xs text-gray-500">
-                          {conversion.ipAddress || "-"}
-                        </TableCell>
-                        <TableCell>
-                          {new Date(conversion.createdAt).toLocaleString("pt-BR")}
-                        </TableCell>
+              <>
+                {/* Desktop Table */}
+                <div className="hidden lg:block overflow-x-auto">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>ID</TableHead>
+                        <TableHead>Nome</TableHead>
+                        <TableHead>Email</TableHead>
+                        <TableHead>Telefone</TableHead>
+                        <TableHead>Tipo</TableHead>
+                        <TableHead>Plano/Médico</TableHead>
+                        <TableHead>IP</TableHead>
+                        <TableHead>Data</TableHead>
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </div>
+                    </TableHeader>
+                    <TableBody>
+                      {conversions.map((conversion: WhatsappConversion) => (
+                        <TableRow key={conversion.id}>
+                          <TableCell className="font-medium">#{conversion.id}</TableCell>
+                          <TableCell>{conversion.name || "-"}</TableCell>
+                          <TableCell>{conversion.email || "-"}</TableCell>
+                          <TableCell>{conversion.phone || "-"}</TableCell>
+                          <TableCell>
+                            <Badge className={getButtonTypeColor(conversion.buttonType)}>
+                              {getButtonTypeLabel(conversion.buttonType)}
+                            </Badge>
+                          </TableCell>
+                          <TableCell>
+                            {conversion.planName || conversion.doctorName || "-"}
+                          </TableCell>
+                          <TableCell className="text-xs text-gray-500">
+                            {conversion.ipAddress || "-"}
+                          </TableCell>
+                          <TableCell>
+                            {new Date(conversion.createdAt).toLocaleString("pt-BR")}
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
+
+                {/* Mobile Cards */}
+                <div className="lg:hidden space-y-4">
+                  {conversions.map((conversion: WhatsappConversion) => (
+                    <div key={conversion.id} className="bg-gray-50 rounded-lg p-4 space-y-3">
+                      <div className="flex items-center justify-between">
+                        <span className="font-medium text-gray-900">#{conversion.id}</span>
+                        <Badge className={getButtonTypeColor(conversion.buttonType)}>
+                          {getButtonTypeLabel(conversion.buttonType)}
+                        </Badge>
+                      </div>
+                      
+                      {conversion.name && (
+                        <div className="flex justify-between">
+                          <span className="text-sm text-gray-600">Nome:</span>
+                          <span className="text-sm font-medium">{conversion.name}</span>
+                        </div>
+                      )}
+                      
+                      {conversion.email && (
+                        <div className="flex justify-between">
+                          <span className="text-sm text-gray-600">Email:</span>
+                          <span className="text-sm font-medium break-all">{conversion.email}</span>
+                        </div>
+                      )}
+                      
+                      {conversion.phone && (
+                        <div className="flex justify-between">
+                          <span className="text-sm text-gray-600">Telefone:</span>
+                          <span className="text-sm font-medium">{conversion.phone}</span>
+                        </div>
+                      )}
+                      
+                      {(conversion.planName || conversion.doctorName) && (
+                        <div className="flex justify-between">
+                          <span className="text-sm text-gray-600">
+                            {conversion.planName ? 'Plano:' : 'Médico:'}
+                          </span>
+                          <span className="text-sm font-medium">
+                            {conversion.planName || conversion.doctorName}
+                          </span>
+                        </div>
+                      )}
+                      
+                      <div className="flex justify-between pt-2 border-t border-gray-200">
+                        <span className="text-xs text-gray-500">
+                          {new Date(conversion.createdAt).toLocaleDateString("pt-BR")}
+                        </span>
+                        <span className="text-xs text-gray-500">
+                          {conversion.ipAddress || "-"}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </>
             )}
           </CardContent>
         </Card>
