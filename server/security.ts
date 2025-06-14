@@ -87,6 +87,11 @@ export const validateRequestSize = (req: Request, res: Response, next: NextFunct
 const suspiciousIPs = new Map<string, { attempts: number; lastAttempt: number }>();
 
 export const monitorSuspiciousActivity = (req: Request, res: Response, next: NextFunction) => {
+  // Skip monitoring in development mode
+  if (process.env.NODE_ENV === 'development') {
+    return next();
+  }
+  
   const clientIP = req.ip || req.connection.remoteAddress || 'unknown';
   const now = Date.now();
   
@@ -104,8 +109,8 @@ export const monitorSuspiciousActivity = (req: Request, res: Response, next: Nex
     ipData.attempts = 0;
   }
   
-  // Block if too many attempts
-  if (ipData.attempts > 50) {
+  // Block if too many attempts (only in production)
+  if (ipData.attempts > 100) {
     console.error(`[Security Alert] Blocked suspicious IP: ${clientIP}`);
     return res.status(429).json({ error: 'Access temporarily blocked due to suspicious activity' });
   }
