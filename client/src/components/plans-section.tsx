@@ -1,12 +1,27 @@
+import { useState } from "react";
 import { Check, MessageCircle, Users, Building } from "lucide-react";
 import type { SelectedPlan } from "@/pages/home";
 import { trackWhatsAppConversion } from "@/lib/whatsapp-tracking";
+import LeadCaptureModal from "./lead-capture-modal";
 
 interface PlansSectionProps {
   onSelectPlan: (plan: SelectedPlan) => void;
 }
 
 export default function PlansSection({ onSelectPlan }: PlansSectionProps) {
+  const [modalData, setModalData] = useState<{
+    isOpen: boolean;
+    buttonType: 'plan_subscription' | 'doctor_appointment' | 'enterprise_quote';
+    planName?: string;
+    doctorName?: string;
+    whatsappPhone: string;
+    whatsappMessage: string;
+  }>({
+    isOpen: false,
+    buttonType: 'plan_subscription',
+    whatsappPhone: '5516993247676',
+    whatsappMessage: ''
+  });
 
   // Static plans as specified in the document
   const plans = [
@@ -38,27 +53,23 @@ export default function PlansSection({ onSelectPlan }: PlansSectionProps) {
 
   const handleSelectPlan = (plan: any) => {
     if (plan.type === 'empresarial') {
-      // Track enterprise quote conversion
-      trackWhatsAppConversion({
+      setModalData({
+        isOpen: true,
         buttonType: 'enterprise_quote',
-        planName: plan.name
+        planName: plan.name,
+        whatsappPhone: '5516993247676',
+        whatsappMessage: `Gostaria de saber mais sobre o plano empresarial do Cartão + Vidah`
       });
-      
-      const message = `Olá! Gostaria de saber mais sobre o plano empresarial do Cartão + Vidah`;
-      const whatsappUrl = `https://wa.me/5516993247676?text=${encodeURIComponent(message)}`;
-      window.open(whatsappUrl, '_blank');
       return;
     }
 
-    // Track plan subscription conversion for family plan
-    trackWhatsAppConversion({
+    setModalData({
+      isOpen: true,
       buttonType: 'plan_subscription',
-      planName: plan.name
+      planName: plan.name,
+      whatsappPhone: '5516993247676',
+      whatsappMessage: `Gostaria de assinar o ${plan.name} por R$ ${plan.monthlyPrice}/mês. Pode me ajudar com o processo?`
     });
-
-    const message = `Olá! Gostaria de assinar o ${plan.name} por R$ ${plan.monthlyPrice}/mês. Pode me ajudar com o processo?`;
-    const whatsappUrl = `https://wa.me/5516993247676?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
   };
 
   return (
@@ -139,6 +150,16 @@ export default function PlansSection({ onSelectPlan }: PlansSectionProps) {
           })}
         </div>
       </div>
+
+      <LeadCaptureModal
+        isOpen={modalData.isOpen}
+        onClose={() => setModalData(prev => ({ ...prev, isOpen: false }))}
+        buttonType={modalData.buttonType}
+        planName={modalData.planName}
+        doctorName={modalData.doctorName}
+        whatsappPhone={modalData.whatsappPhone}
+        whatsappMessage={modalData.whatsappMessage}
+      />
     </section>
   );
 }
