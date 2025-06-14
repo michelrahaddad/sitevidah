@@ -138,14 +138,6 @@ export default function ProfessionalsSection() {
 
         {/* Unified Professionals Section */}
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h3 className="text-2xl font-bold text-[#636E72] mb-4">
-              <span className="gradient-text">Médicos Credenciados</span>
-            </h3>
-            <p className="text-lg text-[#636E72]">
-              Profissionais especializados da nossa rede de atendimento
-            </p>
-          </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {professionals.map((professional) => (
