@@ -43,15 +43,10 @@ export default function PlansSection({ onSelectPlan }: PlansSectionProps) {
       return;
     }
 
-    onSelectPlan({
-      id: plan.id,
-      name: plan.name,
-      type: plan.type,
-      annualPrice: (parseFloat(plan.monthlyPrice) * 12).toString(),
-      monthlyPrice: plan.monthlyPrice,
-      adhesionFee: "0",
-      maxDependents: 4,
-    });
+    // Para plano familiar, também direcionar para WhatsApp
+    const message = `Olá! Gostaria de assinar o ${plan.name} por R$ ${plan.monthlyPrice}/mês. Pode me ajudar com o processo?`;
+    const whatsappUrl = `https://wa.me/5516993247676?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
   };
 
   return (
