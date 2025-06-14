@@ -118,6 +118,18 @@ export default function PartnersSection() {
   const topMedicos = medicos.slice(0, 4);
   const displayedMedicos = showAllSegments ? medicos : topMedicos;
 
+  const handleDoctorAppointment = (medico: any) => {
+    // Track doctor appointment conversion
+    trackWhatsAppConversion({
+      buttonType: 'doctor_appointment',
+      doctorName: medico.nome
+    });
+
+    const message = `Olá! Gostaria de agendar uma consulta com ${medico.nome} (${medico.especialidade}). Poderia me ajudar com os horários disponíveis?`;
+    const whatsappUrl = `https://wa.me/5516993247676?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
   return (
     <section id="parceiros" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
       {/* Background decorative elements */}
@@ -291,9 +303,16 @@ export default function PartnersSection() {
                   <h4 className="font-bold text-[#636E72] mb-2 group-hover:text-[#00B894] transition-colors">
                     {medico.nome}
                   </h4>
-                  <p className="text-sm text-[#636E72]/80 font-medium">
+                  <p className="text-sm text-[#636E72]/80 font-medium mb-4">
                     {medico.especialidade}
                   </p>
+                  <button
+                    onClick={() => handleDoctorAppointment(medico)}
+                    className="w-full bg-[#00B894] text-white py-2 px-4 rounded-lg font-medium text-sm hover:bg-[#009d7f] transition-colors flex items-center justify-center gap-2"
+                  >
+                    <MessageCircle size={16} />
+                    Agendar Consulta
+                  </button>
                 </div>
               </motion.div>
             ))}

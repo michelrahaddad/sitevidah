@@ -1,7 +1,14 @@
 import { MessageCircle } from "lucide-react";
+import { trackWhatsAppConversion } from "@/lib/whatsapp-tracking";
 
 export default function WhatsAppFloat() {
   const handleWhatsAppClick = () => {
+    // Track general inquiry conversion
+    trackWhatsAppConversion({
+      buttonType: 'plan_subscription',
+      planName: 'Consulta Geral'
+    });
+
     const message = "Olá! Gostaria de saber mais sobre o Cartão + Vidah";
     const whatsappUrl = `https://wa.me/5516993247676?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
