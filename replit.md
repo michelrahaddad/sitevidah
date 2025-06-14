@@ -82,6 +82,12 @@ The application is configured for Replit's deployment platform:
 ```
 Changelog:
 - June 14, 2025. Initial setup
+- June 14, 2025. Sistema de gestão administrativo implementado com:
+  * Dashboard de conversões do WhatsApp
+  * Autenticação JWT para administradores  
+  * Rastreamento automático de todos os botões
+  * Exportação de dados em CSV
+  * Estatísticas em tempo real
 ```
 
 ## User Preferences
