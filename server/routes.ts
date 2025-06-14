@@ -5,12 +5,67 @@ import { insertCustomerSchema, insertSubscriptionSchema, insertAdminUserSchema, 
 import { z } from "zod";
 import jwt from "jsonwebtoken";
 import type { Request, Response, NextFunction } from "express";
+import { body, validationResult, param } from "express-validator";
+import rateLimit from "express-rate-limit";
 
 const createSubscriptionRequestSchema = z.object({
   customer: insertCustomerSchema,
   planId: z.number(),
   paymentMethod: z.enum(['pix', 'credit', 'boleto']),
   installments: z.number().optional().default(1),
+});
+
+// Validation middleware
+const validateRequest = (req: Request, res: Response, next: NextFunction) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
+      error: 'Invalid input data',
+      details: errors.array()
+    });
+  }
+  next();
+};
+
+// Input sanitization middleware
+const sanitizeInput = (req: Request, res: Response, next: NextFunction) => {
+  const sanitizeString = (str: string): string => {
+    return str
+      .trim()
+      .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+      .replace(/javascript:/gi, '')
+      .replace(/on\w+\s*=/gi, '');
+  };
+
+  const sanitizeObject = (obj: any): any => {
+    if (typeof obj === 'string') {
+      return sanitizeString(obj);
+    }
+    if (typeof obj === 'object' && obj !== null) {
+      const sanitized: any = {};
+      for (const [key, value] of Object.entries(obj)) {
+        sanitized[key] = sanitizeObject(value);
+      }
+      return sanitized;
+    }
+    return obj;
+  };
+
+  if (req.body) {
+    req.body = sanitizeObject(req.body);
+  }
+  next();
+};
+
+// JWT secret with fallback for production
+const JWT_SECRET = process.env.JWT_SECRET || 'your-super-secure-secret-key-change-in-production';
+
+// Enhanced login rate limiting
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 5, // limit each IP to 5 login attempts per windowMs
+  message: { error: "Too many login attempts, please try again later." },
+  skipSuccessfulRequests: true
 });
 
 export async function registerRoutes(app: Express): Promise<Server> {
