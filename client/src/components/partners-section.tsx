@@ -6,16 +6,17 @@ import LeadCaptureModal from "./lead-capture-modal";
 const placeholderLogo = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='60' viewBox='0 0 120 60'%3E%3Crect width='120' height='60' fill='%23f3f4f6'/%3E%3Ctext x='60' y='35' text-anchor='middle' fill='%23374151' font-family='Arial' font-size='10'%3ELogo%3C/text%3E%3C/svg%3E";
 
 // Import real logos for existing partners
-const vidahLogo = "/assets/vidah_1749439341688.png";
-const prontoVetLogo = "/assets/PRONTO VET_1749498084808.png";
-const domPedroLogo = "/assets/VAREJAO DOM PEDRO_1749498084809.jpg";
-const santaTerezaLogo = "/assets/RACOES SANTA TEREZA_1749498084809.png";
-const hospitalMalzoniLogo = "/assets/HOSPITAL MALZONI_1749498084810.png";
-const oticasCarolLogo = "/assets/OTICAS CAROL_1749498084810.png";
-const sosEnfermagemLogo = "/assets/SOS ENFERMAGEM_1749498084810.jpg";
-const funerariaCanaaLogo = "/assets/FUNERARIA CANAA_1749498084810.png";
-const fiduciaEletroLogo = "/assets/FIDUCIA ELETRO_1749498084811.png";
-const drogavenLogo = "/assets/DROGAVEN_1749498084811.png";
+import vidahLogo from "@assets/vidah_1749439341688.png";
+import prontoVetLogo from "@assets/PRONTO VET_1749498084808.png";
+import domPedroLogo from "@assets/VAREJAO DOM PEDRO_1749498084809.jpg";
+import santaTerezaLogo from "@assets/RACOES SANTA TEREZA_1749498084809.png";
+import hospitalMalzoniLogo from "@assets/HOSPITAL MALZONI_1749498084810.png";
+import sosEnfermagemLogo from "@assets/SOS ENFERMAGEM_1749498084810.jpg";
+import funerariaCanaaLogo from "@assets/FUNERARIA CANAA_1749498084810.png";
+import fiduciaEletroLogo from "@assets/FIDUCIA ELETRO_1749498084811.png";
+import drogavenLogo from "@assets/DROGAVEN_1749498084811.png";
+
+const oticasCarolLogo = placeholderLogo;
 const silagasLogo = placeholderLogo;
 
 // Create optimized logo variables
