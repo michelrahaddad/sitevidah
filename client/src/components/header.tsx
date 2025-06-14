@@ -53,15 +53,7 @@ export default function Header() {
           >
             FAQ
           </button>
-          <Link href="/admin/login">
-            <button 
-              className="text-[#636E72] hover:text-[#00B894] transition-colors p-2 rounded-full hover:bg-gray-100"
-              title="Sistema de Gestão"
-              aria-label="Acessar sistema de gestão"
-            >
-              <Settings size={16} />
-            </button>
-          </Link>
+
           <button 
             onClick={() => handleNavClick('planos')}
             className="bg-[#00B894] text-white px-6 py-2 rounded-full hover:bg-[#009d7f] transition-colors font-medium"
