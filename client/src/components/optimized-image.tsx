@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from 'react';
+import { useIntersection } from '@/hooks/use-intersection';
+import { imageCache } from '@/lib/image-cache';
 
 interface OptimizedImageProps {
   src: string;
@@ -12,42 +14,62 @@ interface OptimizedImageProps {
 export default function OptimizedImage({ 
   src, 
   alt, 
-  className = "", 
+  className = '', 
   width, 
   height, 
   priority = false 
 }: OptimizedImageProps) {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [hasError, setHasError] = useState(false);
+  const [imageSrc, setImageSrc] = useState<string>('');
+  const [ref, isVisible] = useIntersection({ threshold: 0.1 });
+
+  useEffect(() => {
+    if (priority || isVisible) {
+      const loadImage = async () => {
+        try {
+          await imageCache.preload(src);
+          setImageSrc(src);
+          setIsLoaded(true);
+        } catch (error) {
+          console.warn(`Failed to load image: ${src}`);
+          // Fallback to direct src
+          setImageSrc(src);
+          setIsLoaded(true);
+        }
+      };
+
+      loadImage();
+    }
+  }, [src, isVisible, priority]);
 
   return (
-    <div className={`relative overflow-hidden ${className}`}>
-      {!isLoaded && !hasError && (
-        <div className="absolute inset-0 bg-gray-200 animate-pulse" />
+    <div ref={ref} className={`${className} overflow-hidden`}>
+      {imageSrc && (
+        <img
+          src={imageSrc}
+          alt={alt}
+          width={width}
+          height={height}
+          loading={priority ? 'eager' : 'lazy'}
+          decoding="async"
+          className={`transition-opacity duration-300 ${
+            isLoaded ? 'opacity-100' : 'opacity-0'
+          } object-cover w-full h-full`}
+          onLoad={() => setIsLoaded(true)}
+          style={{
+            contentVisibility: 'auto',
+            containIntrinsicSize: width && height ? `${width}px ${height}px` : 'auto'
+          }}
+        />
       )}
-      
-      <img
-        src={src}
-        alt={alt}
-        width={width}
-        height={height}
-        loading={priority ? "eager" : "lazy"}
-        decoding="async"
-        className={`transition-opacity duration-300 ${
-          isLoaded ? "opacity-100" : "opacity-0"
-        } ${className}`}
-        onLoad={() => setIsLoaded(true)}
-        onError={() => setHasError(true)}
-        style={{
-          width: width ? `${width}px` : "100%",
-          height: height ? `${height}px` : "auto",
-        }}
-      />
-      
-      {hasError && (
-        <div className="absolute inset-0 bg-gray-100 flex items-center justify-center text-gray-400">
-          <span className="text-sm">Erro ao carregar imagem</span>
-        </div>
+      {!isLoaded && (
+        <div 
+          className="bg-gray-200 animate-pulse w-full h-full"
+          style={{ 
+            width: width || '100%', 
+            height: height || '100%' 
+          }}
+        />
       )}
     </div>
   );

@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
-import { useState, useMemo, lazy, Suspense } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { Stethoscope, ShoppingBag, Star, Users, MapPin, Percent, User, Building, Phone, Globe, MessageCircle } from "lucide-react";
-import { trackWhatsAppConversion } from "@/lib/whatsapp-tracking";
 import LeadCaptureModal from "./lead-capture-modal";
 import vidahLogo from "@assets/vidah_1749439341688.png";
 import prontoVetLogo from "@assets/PRONTO VET_1749498084808.png";
@@ -13,14 +12,6 @@ import sosEnfermagemLogo from "@assets/SOS ENFERMAGEM_1749498084810.jpg";
 import funerariaCanaaLogo from "@assets/FUNERARIA CANAA_1749498084810.png";
 import fiduciaEletroLogo from "@assets/FIDUCIA ELETRO_1749498084811.png";
 import drogavenLogo from "@assets/DROGAVEN_1749498084811.png";
-import magiaDoSorrisoLogo from "@/assets/magia-do-sorriso-logo.svg";
-import evolucaoLogo from "@/assets/evolucao-logo.svg";
-import reabilitarNeuropedLogo from "@/assets/reabilitar-neuroped-logo.svg";
-import corpoHarmoniaLogo from "@/assets/corpo-harmonia-logo.svg";
-import lab7Logo from "@/assets/lab7-logo.svg";
-import inerpLogo from "@/assets/inerp-logo.svg";
-import ipcLogo from "@/assets/ipc-logo.svg";
-import silagasLogo from "@/assets/silagas-logo.svg";
 
 // Doctor photos
 import drDiegoFoto from "@/assets/doctors/dr-diego.jpg";
@@ -137,7 +128,7 @@ export default function PartnersSection() {
     };
   }, [showAllPartners, showAllSegments]);
 
-  const handleDoctorAppointment = (medico: any) => {
+  const handleDoctorAppointment = useCallback((medico: any) => {
     setModalData({
       isOpen: true,
       buttonType: 'doctor_appointment',
@@ -145,7 +136,7 @@ export default function PartnersSection() {
       whatsappPhone: '5516993247676',
       whatsappMessage: `Gostaria de agendar uma consulta com ${medico.nome} (${medico.especialidade}). Poderia me ajudar com os horários disponíveis?`
     });
-  };
+  }, []);
 
   return (
     <section id="parceiros" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
