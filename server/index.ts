@@ -127,11 +127,18 @@ app.use((req, res, next) => {
 });
 
 (async () => {
-  // Initialize system components
-  const initSuccess = await systemInitializer.initialize();
-  if (!initSuccess) {
-    logger.error('System initialization failed, exiting');
-    process.exit(1);
+  // Initialize system components (non-blocking for development)
+  if (process.env.NODE_ENV === 'production') {
+    const initSuccess = await systemInitializer.initialize();
+    if (!initSuccess) {
+      logger.error('System initialization failed, exiting');
+      process.exit(1);
+    }
+  } else {
+    // In development, initialize without blocking
+    systemInitializer.initialize().catch(error => {
+      logger.warn('System initialization warning in development', { error: error.message });
+    });
   }
 
   // Initialize health check routes
