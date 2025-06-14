@@ -2,6 +2,9 @@ import { motion } from "framer-motion";
 import { useState, useMemo, useCallback } from "react";
 import { Stethoscope, ShoppingBag, Star, Users, MapPin, Percent, User, Building, Phone, Globe, MessageCircle } from "lucide-react";
 import LeadCaptureModal from "./lead-capture-modal";
+// Placeholder for partners without logos
+const placeholderLogo = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='60' viewBox='0 0 120 60'%3E%3Crect width='120' height='60' fill='%23f3f4f6'/%3E%3Ctext x='60' y='35' text-anchor='middle' fill='%23374151' font-family='Arial' font-size='10'%3ELogo%3C/text%3E%3C/svg%3E";
+
 // Import real logos for existing partners
 const vidahLogo = "/assets/vidah_1749439341688.png";
 const prontoVetLogo = "/assets/PRONTO VET_1749498084808.png";
@@ -13,10 +16,7 @@ const sosEnfermagemLogo = "/assets/SOS ENFERMAGEM_1749498084810.jpg";
 const funerariaCanaaLogo = "/assets/FUNERARIA CANAA_1749498084810.png";
 const fiduciaEletroLogo = "/assets/FIDUCIA ELETRO_1749498084811.png";
 const drogavenLogo = "/assets/DROGAVEN_1749498084811.png";
-const silagasLogo = "/assets/SILAGÁS_1749499367550.jpeg";
-
-// Placeholder for partners without logos
-const placeholderLogo = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='60' viewBox='0 0 120 60'%3E%3Crect width='120' height='60' fill='%23f3f4f6'/%3E%3Ctext x='60' y='35' text-anchor='middle' fill='%23374151' font-family='Arial' font-size='10'%3ELogo%3C/text%3E%3C/svg%3E";
+const silagasLogo = placeholderLogo;
 
 // Create optimized logo variables
 const evolucaoLogo = placeholderLogo;
