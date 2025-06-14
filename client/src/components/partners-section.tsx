@@ -201,7 +201,7 @@ export default function PartnersSection() {
             <div className="w-10 h-10 md:w-12 md:h-12 bg-[#00B894]/10 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
               <Percent className="w-5 h-5 md:w-6 md:h-6 text-[#00B894]" />
             </div>
-            <div className="text-2xl md:text-3xl font-bold text-[#636E72] mb-1 md:mb-2">20%</div>
+            <div className="text-2xl md:text-3xl font-bold text-[#636E72] mb-1 md:mb-2">50%</div>
             <div className="text-[#636E72] font-medium text-sm md:text-base">Desconto Máximo</div>
           </motion.div>
 

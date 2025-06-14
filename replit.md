@@ -99,6 +99,8 @@ Changelog:
   * Dados salvos automaticamente no sistema de gestão
   * Validação e formatação automática de dados
   * Testado e funcionando corretamente
+- June 14, 2025. Atualização de conteúdo:
+  * Desconto máximo alterado de 20% para 50%
 ```
 
 ## User Preferences
