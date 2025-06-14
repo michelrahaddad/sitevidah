@@ -247,11 +247,11 @@ export default function PartnersSection() {
               </div>
               
               <div className="relative z-10">
-                <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg p-2">
+                <div className="w-24 h-24 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg p-3">
                   <img 
                     src={vidahLogo} 
                     alt="Grupo Vidah Logo"
-                    className="w-full h-full object-cover rounded-xl"
+                    className="w-full h-full object-contain rounded-xl"
                   />
                 </div>
                 
@@ -379,18 +379,18 @@ export default function PartnersSection() {
                 variants={itemVariants}
                 className="glass-card p-6 rounded-xl hover:shadow-lg transition-all duration-300 group hover:scale-105"
               >
-                {/* Logo placeholder - replace with actual partner logos */}
-                <div className="w-12 h-12 bg-gradient-to-br from-[#0984E3]/20 to-[#00B894]/20 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                {/* Logo das empresas parceiras */}
+                <div className="w-full h-20 bg-white rounded-lg flex items-center justify-center mb-4 group-hover:scale-105 transition-transform shadow-sm border border-gray-100">
                   {parceiro.logo ? (
                     <img 
                       src={parceiro.logo} 
                       alt={`Logo ${parceiro.nome}`}
-                      className="w-full h-full rounded-lg object-contain p-1"
+                      className="w-full h-full rounded-lg object-contain p-2"
                       loading="lazy"
                       decoding="async"
                     />
                   ) : (
-                    <Building className="w-6 h-6 text-[#0984E3]" />
+                    <Building className="w-8 h-8 text-[#0984E3]" />
                   )}
                 </div>
                 
