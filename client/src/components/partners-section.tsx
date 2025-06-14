@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Stethoscope, ShoppingBag, Star, Users, MapPin, Percent, User, Building, Phone, Globe, MessageCircle } from "lucide-react";
 import { trackWhatsAppConversion } from "@/lib/whatsapp-tracking";
+import LeadCaptureModal from "./lead-capture-modal";
 import vidahLogo from "@assets/vidah_1749439341688.png";
 import prontoVetLogo from "@assets/PRONTO VET_1749498084808.png";
 import domPedroLogo from "@assets/VAREJAO DOM PEDRO_1749498084809.jpg";
@@ -88,6 +89,19 @@ const parceiros = [
 export default function PartnersSection() {
   const [showAllPartners, setShowAllPartners] = useState(false);
   const [showAllSegments, setShowAllSegments] = useState(false);
+  const [modalData, setModalData] = useState<{
+    isOpen: boolean;
+    buttonType: 'plan_subscription' | 'doctor_appointment' | 'enterprise_quote';
+    planName?: string;
+    doctorName?: string;
+    whatsappPhone: string;
+    whatsappMessage: string;
+  }>({
+    isOpen: false,
+    buttonType: 'doctor_appointment',
+    whatsappPhone: '5516993247676',
+    whatsappMessage: ''
+  });
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -119,15 +133,13 @@ export default function PartnersSection() {
   const displayedMedicos = showAllSegments ? medicos : topMedicos;
 
   const handleDoctorAppointment = (medico: any) => {
-    // Track doctor appointment conversion
-    trackWhatsAppConversion({
+    setModalData({
+      isOpen: true,
       buttonType: 'doctor_appointment',
-      doctorName: medico.nome
+      doctorName: medico.nome,
+      whatsappPhone: '5516993247676',
+      whatsappMessage: `Gostaria de agendar uma consulta com ${medico.nome} (${medico.especialidade}). Poderia me ajudar com os horários disponíveis?`
     });
-
-    const message = `Olá! Gostaria de agendar uma consulta com ${medico.nome} (${medico.especialidade}). Poderia me ajudar com os horários disponíveis?`;
-    const whatsappUrl = `https://wa.me/5516993247676?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
   };
 
   return (
@@ -423,6 +435,16 @@ export default function PartnersSection() {
           </motion.div>
         </motion.div>
       </div>
+
+      <LeadCaptureModal
+        isOpen={modalData.isOpen}
+        onClose={() => setModalData(prev => ({ ...prev, isOpen: false }))}
+        buttonType={modalData.buttonType}
+        planName={modalData.planName}
+        doctorName={modalData.doctorName}
+        whatsappPhone={modalData.whatsappPhone}
+        whatsappMessage={modalData.whatsappMessage}
+      />
     </section>
   );
 }
