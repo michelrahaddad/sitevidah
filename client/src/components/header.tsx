@@ -41,12 +41,6 @@ export default function Header() {
             Como Funciona
           </button>
           <button 
-            onClick={() => handleNavClick('profissionais')}
-            className="text-[#636E72] hover:text-[#00B894] transition-colors"
-          >
-            Profissionais
-          </button>
-          <button 
             onClick={() => handleNavClick('parceiros')}
             className="text-[#636E72] hover:text-[#00B894] transition-colors"
           >
@@ -95,12 +89,6 @@ export default function Header() {
               className="block w-full text-left text-[#636E72] hover:text-[#00B894] transition-colors py-2"
             >
               Como Funciona
-            </button>
-            <button 
-              onClick={() => handleNavClick('profissionais')}
-              className="block w-full text-left text-[#636E72] hover:text-[#00B894] transition-colors py-2"
-            >
-              Profissionais
             </button>
             <button 
               onClick={() => handleNavClick('faq')}
