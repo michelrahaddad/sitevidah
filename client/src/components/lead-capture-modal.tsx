@@ -92,10 +92,7 @@ export default function LeadCaptureModal({
       // Gera mensagem personalizada do WhatsApp incluindo email
       const personalizedMessage = `Olá! Meu nome é ${data.name}, meu email é ${data.email} e meu telefone é ${formatPhone(data.phone)}. ${whatsappMessage}`;
       
-      // Redireciona para WhatsApp
-      const whatsappUrl = generateWhatsAppUrl(whatsappPhone, personalizedMessage);
-      window.open(whatsappUrl, '_blank');
-      
+      // Exibe mensagem de sucesso
       toast({
         title: "Sucesso!",
         description: "Seus dados foram registrados e você será redirecionado para o WhatsApp.",
@@ -104,6 +101,12 @@ export default function LeadCaptureModal({
       // Limpa o formulário e fecha o modal
       reset();
       onClose();
+      
+      // Redireciona automaticamente para WhatsApp após 1 segundo
+      setTimeout(() => {
+        const whatsappUrl = generateWhatsAppUrl(whatsappPhone, personalizedMessage);
+        window.open(whatsappUrl, '_blank');
+      }, 1000);
       
     } catch (error) {
       console.error('Erro no onSubmit:', error);

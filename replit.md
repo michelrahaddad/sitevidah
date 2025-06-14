@@ -107,6 +107,10 @@ Changelog:
   * Duas opções de exportação: Marketing Digital e Gestão Interna
   * Formatação automática de dados para campanhas (nome separado, telefone limpo, categorias de interesse)
   * Campos padronizados: Email, Phone, First_Name, Last_Name, Interest_Category, Campaign_Type
+- June 14, 2025. Redirecionamento automático implementado:
+  * Após captura de dados, usuário é redirecionado automaticamente para WhatsApp
+  * Sistema elimina necessidade de cliques manuais adicionais
+  * Experiência otimizada com fluxo contínuo de captura → registro → redirecionamento
 ```
 
 ## User Preferences
