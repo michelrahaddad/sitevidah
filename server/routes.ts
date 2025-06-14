@@ -217,47 +217,88 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // JWT secret for admin authentication
   const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key-here";
 
-  // Middleware for admin authentication
+  // Enhanced admin authentication middleware
   const authenticateAdmin = (req: Request & { user?: any }, res: Response, next: NextFunction) => {
-    const token = req.headers.authorization?.split(' ')[1];
+    const authHeader = req.headers.authorization;
     
-    if (!token) {
-      return res.status(401).json({ message: "Token de acesso requerido" });
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return res.status(401).json({ error: "Access denied. Invalid authorization header." });
     }
 
+    const token = authHeader.split(' ')[1];
+
     try {
-      const decoded = jwt.verify(token, JWT_SECRET);
+      const decoded = jwt.verify(token, JWT_SECRET) as any;
+      
+      // Verify token contains required fields
+      if (!decoded.id || !decoded.username) {
+        return res.status(401).json({ error: "Invalid token payload." });
+      }
+      
+      // Check token expiration
+      if (decoded.exp && Date.now() >= decoded.exp * 1000) {
+        return res.status(401).json({ error: "Token expired." });
+      }
+      
       req.user = decoded;
       next();
     } catch (error) {
-      return res.status(401).json({ message: "Token inválido" });
+      console.error('JWT verification error:', error);
+      return res.status(401).json({ error: "Invalid or expired token." });
     }
   };
 
-  // Admin login route
-  app.post("/api/admin/login", async (req, res) => {
+  // Admin login route with enhanced security
+  app.post("/api/admin/login", 
+    loginLimiter,
+    sanitizeInput,
+    [
+      body('username')
+        .isLength({ min: 3, max: 50 })
+        .trim()
+        .escape()
+        .matches(/^[a-zA-Z0-9_-]+$/)
+        .withMessage('Username must contain only alphanumeric characters, underscores, and hyphens'),
+      body('password')
+        .isLength({ min: 6, max: 100 })
+        .withMessage('Password must be between 6 and 100 characters')
+    ],
+    validateRequest,
+    async (req, res) => {
     try {
       const { username, password } = req.body;
       
-      if (!username || !password) {
-        return res.status(400).json({ message: "Usuário e senha são obrigatórios" });
+      // Additional security checks
+      if (!username || !password || typeof username !== 'string' || typeof password !== 'string') {
+        return res.status(400).json({ error: "Invalid input format" });
       }
+
+      // Log login attempt for security monitoring
+      console.log(`[Security] Login attempt for username: ${username} from IP: ${req.ip}`);
 
       const isValid = await storage.verifyAdminPassword(username, password);
       
       if (!isValid) {
-        return res.status(401).json({ message: "Credenciais inválidas" });
+        console.log(`[Security] Failed login attempt for username: ${username} from IP: ${req.ip}`);
+        return res.status(401).json({ error: "Invalid credentials" });
       }
 
       const admin = await storage.getAdminByUsername(username);
       if (!admin || !admin.isActive) {
-        return res.status(401).json({ message: "Usuário inativo" });
+        console.log(`[Security] Login attempt for inactive user: ${username} from IP: ${req.ip}`);
+        return res.status(401).json({ error: "Account not active" });
       }
 
+      // Generate secure JWT token
       const token = jwt.sign(
-        { id: admin.id, username: admin.username },
+        { 
+          id: admin.id, 
+          username: admin.username,
+          iat: Math.floor(Date.now() / 1000),
+          exp: Math.floor(Date.now() / 1000) + (2 * 60 * 60) // 2 hours
+        },
         JWT_SECRET,
-        { expiresIn: '24h' }
+        { algorithm: 'HS256' }
       );
 
       res.json({
@@ -301,14 +342,49 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Track WhatsApp conversion
-  app.post("/api/whatsapp/track", async (req, res) => {
+  // Track WhatsApp conversion with enhanced security
+  app.post("/api/whatsapp/track", 
+    sanitizeInput,
+    [
+      body('phone')
+        .optional()
+        .matches(/^[\d\s\-\+\(\)]+$/)
+        .isLength({ max: 20 })
+        .withMessage('Invalid phone format'),
+      body('name')
+        .optional()
+        .trim()
+        .isLength({ max: 100 })
+        .matches(/^[a-zA-ZÀ-ÿ\s]+$/)
+        .withMessage('Name must contain only letters and spaces'),
+      body('email')
+        .optional()
+        .isEmail()
+        .normalizeEmail()
+        .isLength({ max: 100 })
+        .withMessage('Invalid email format'),
+      body('buttonType')
+        .isIn(['plan_subscription', 'doctor_appointment', 'enterprise_quote'])
+        .withMessage('Invalid button type'),
+      body('planName')
+        .optional()
+        .trim()
+        .isLength({ max: 100 })
+        .withMessage('Plan name too long'),
+      body('doctorName')
+        .optional()
+        .trim()
+        .isLength({ max: 100 })
+        .withMessage('Doctor name too long')
+    ],
+    validateRequest,
+    async (req, res) => {
     try {
       const conversionData = insertWhatsappConversionSchema.parse(req.body);
       
-      // Add IP address and user agent
+      // Add security tracking info with length limits
       const ipAddress = req.ip || req.connection.remoteAddress;
-      const userAgent = req.headers['user-agent'];
+      const userAgent = req.headers['user-agent']?.substring(0, 500); // Limit user agent length
       
       const conversion = await storage.createWhatsappConversion({
         ...conversionData,
@@ -323,10 +399,32 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Get all WhatsApp conversions (admin only)
-  app.get("/api/admin/conversions", authenticateAdmin, async (req, res) => {
+  // Get all WhatsApp conversions (admin only) with enhanced security
+  app.get("/api/admin/conversions", 
+    authenticateAdmin,
+    [
+      param('startDate').optional().isISO8601().withMessage('Invalid start date format'),
+      param('endDate').optional().isISO8601().withMessage('Invalid end date format')
+    ],
+    async (req: Request, res: Response) => {
     try {
       const { startDate, endDate } = req.query;
+      
+      // Validate date range
+      if (startDate && endDate) {
+        const start = new Date(startDate as string);
+        const end = new Date(endDate as string);
+        
+        if (start > end) {
+          return res.status(400).json({ error: "Start date cannot be after end date" });
+        }
+        
+        // Limit date range to prevent excessive queries
+        const daysDiff = (end.getTime() - start.getTime()) / (1000 * 3600 * 24);
+        if (daysDiff > 365) {
+          return res.status(400).json({ error: "Date range cannot exceed 365 days" });
+        }
+      }
       
       let conversions;
       if (startDate && endDate) {
@@ -338,10 +436,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
         conversions = await storage.getAllWhatsappConversions();
       }
 
+      // Limit response size for performance
+      if (conversions.length > 10000) {
+        return res.status(413).json({ 
+          error: "Result set too large. Please use date filters to narrow your search." 
+        });
+      }
+
       res.json(conversions);
     } catch (error) {
       console.error("Error fetching conversions:", error);
-      res.status(500).json({ message: "Erro ao buscar conversões" });
+      res.status(500).json({ error: "Failed to fetch conversions" });
     }
   });
 
