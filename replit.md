@@ -88,6 +88,10 @@ Changelog:
   * Rastreamento automático de todos os botões
   * Exportação de dados em CSV
   * Estatísticas em tempo real
+- June 14, 2025. Sistema de gestão tornado completamente secreto:
+  * Removidos todos os links visíveis do site
+  * Acesso apenas via URL direta: /admin/login
+  * Sistema invisível para usuários comuns
 ```
 
 ## User Preferences
