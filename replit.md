@@ -111,20 +111,16 @@ Changelog:
   * Após captura de dados, usuário é redirecionado automaticamente para WhatsApp
   * Sistema elimina necessidade de cliques manuais adicionais
   * Experiência otimizada com fluxo contínuo de captura → registro → redirecionamento
-- June 14, 2025. Sistema Enterprise de Segurança e Estabilidade Implementado:
-  * Sistema de logs avançado com Winston (rotação diária, níveis separados)
-  * Health checks e monitoramento completo (/health, /metrics, /ready)
-  * Circuit breakers para proteção de banco de dados
-  * Cache Redis com fallback tolerante a falhas
-  * Backup automático diário com limpeza programada
-  * Sistema 2FA/TOTP para administradores
-  * Performance monitoring em tempo real
-  * Graceful shutdown com cleanup automático
-  * Inicialização robusta com verificações de sistema
-  * Audit trail completo para ações administrativas
-  * Rate limiting inteligente (desenvolvimento vs produção)
-  * Monitoramento de IPs com whitelist para redes internas
-  * Middleware de segurança multicamada enterprise-grade
+- June 14, 2025. Segurança e estabilidade para produção implementadas:
+  * Headers de segurança (Helmet, CSP, XSS Protection, HSTS)
+  * Rate limiting em múltiplas camadas (geral, API, admin, login)
+  * Sanitização robusta de entrada para prevenção de XSS e injection
+  * Validação avançada com express-validator em todas as rotas
+  * Autenticação JWT aprimorada com verificação de payload e expiração
+  * Monitoramento de IPs suspeitos com bloqueio automático
+  * Timeouts de query e limitação de tamanho de requests
+  * Middleware de segurança frontend com validação de formulários
+  * Logs de segurança detalhados para monitoramento de produção
 ```
 
 ## User Preferences
