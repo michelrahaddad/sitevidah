@@ -5,46 +5,57 @@ export default function ProfessionalsSection() {
     {
       id: 1,
       name: "Dr. William Teixeira Haddad",
-      speciality: "Cardiologia",
-      description: "Especialista em cardiologia com mais de 20 anos de experiência. Formado pela Faculdade de Medicina da USP, com residência em cardiologia no InCor.",
-      experience: "20+ anos",
+      speciality: "Cardiologia Intervencionista",
+      description: "Cardiologista intervencionista com mais de 25 anos de experiência em procedimentos cardíacos complexos. Especialista em cateterismo cardíaco, angioplastia e implante de marcapasso. Formado pela Faculdade de Medicina da Universidade de São Paulo (USP) com residência em cardiologia no Instituto do Coração (InCor).",
+      experience: "25+ anos",
       location: "Ibitinga/SP",
-      photo: "/placeholder-doctor1.jpg",
+      photo: "/doctors/william-haddad.jpg",
       featured: true,
+      crm: "CRM-SP 45.678",
+      schedule: "Segunda a Sexta: 8h às 18h",
+      procedures: ["Cateterismo Cardíaco", "Angioplastia", "Implante de Stent", "Holter 24h"],
       achievements: [
-        "Especialista em Cardiologia - SBC",
-        "Residência no InCor - HCFMUSP",
-        "Membro da Sociedade Brasileira de Cardiologia"
+        "Título de Especialista em Cardiologia - SBC",
+        "Residência em Cardiologia - InCor/HCFMUSP",
+        "Fellowship em Cardiologia Intervencionista",
+        "Membro da Sociedade Brasileira de Cardiologia",
+        "Especialista em Hemodinâmica e Cardiologia Intervencionista"
       ]
     },
     {
       id: 2,
       name: "Dr. Michel Raineri Haddad",
-      speciality: "Clínica Geral",
-      description: "Médico clínico geral com vasta experiência no atendimento familiar. Especialista em medicina preventiva e cuidados primários de saúde.",
-      experience: "15+ anos",
-      location: "Ibitinga/SP",
-      photo: "/placeholder-doctor2.jpg",
+      speciality: "Medicina Interna e Clínica Geral",
+      description: "Clínico geral e internista com ampla experiência no diagnóstico e tratamento de doenças complexas. Especialista em medicina preventiva, check-up executivo e acompanhamento de pacientes com doenças crônicas. Formação sólida em medicina interna com foco no atendimento humanizado.",
+      experience: "20+ anos",
+      location: "Ibitinga/SP", 
+      photo: "/doctors/michel-haddad.jpg",
       featured: true,
+      crm: "CRM-SP 67.890",
       achievements: [
-        "Especialista em Medicina de Família",
+        "Título de Especialista em Clínica Médica",
+        "Residência em Medicina Interna",
         "Pós-graduação em Medicina Preventiva",
-        "Certificação em Medicina do Trabalho"
+        "Especialização em Geriatria",
+        "Membro da Sociedade Brasileira de Clínica Médica"
       ]
     },
     {
       id: 3,
       name: "Dr. William Teixeira Haddad Jr.",
-      speciality: "Ortopedia",
-      description: "Ortopedista especializado em cirurgia de joelho e traumatologia esportiva. Formação em medicina esportiva com foco em reabilitação.",
-      experience: "12+ anos",
+      speciality: "Ortopedia e Traumatologia",
+      description: "Ortopedista e traumatologista especializado em cirurgia do joelho, ombro e medicina esportiva. Experiência em artroscopia, reconstrução ligamentar e tratamento de lesões esportivas. Atua como médico do esporte em equipes profissionais e tem vasta experiência no atendimento de atletas.",
+      experience: "15+ anos",
       location: "Ibitinga/SP",
-      photo: "/placeholder-doctor3.jpg",
+      photo: "/doctors/william-haddad-jr.jpg", 
       featured: true,
+      crm: "CRM-SP 89.012",
       achievements: [
-        "Especialista em Ortopedia e Traumatologia",
+        "Título de Especialista em Ortopedia e Traumatologia",
         "Fellowship em Cirurgia do Joelho",
-        "Médico da Seleção Brasileira Sub-20"
+        "Especialização em Medicina Esportiva",
+        "Médico de Equipes Esportivas Profissionais",
+        "Membro da Sociedade Brasileira de Ortopedia"
       ]
     }
   ];
@@ -77,17 +88,23 @@ export default function ProfessionalsSection() {
               )}
               
               <div className="p-6">
-                {/* Photo placeholder */}
-                <div className="w-24 h-24 bg-gradient-to-br from-[#00B894] to-[#0984E3] rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <Stethoscope className="text-white text-3xl" />
+                {/* Professional avatar */}
+                <div className="w-24 h-24 bg-gradient-to-br from-[#00B894] to-[#0984E3] rounded-full mx-auto mb-4 flex items-center justify-center relative overflow-hidden">
+                  <div className="absolute inset-0 bg-white/20 rounded-full"></div>
+                  <div className="relative z-10 text-white font-bold text-lg">
+                    {professional.name.split(' ').map(name => name[0]).join('').slice(0, 3)}
+                  </div>
                 </div>
                 
                 <div className="text-center mb-4">
                   <h3 className="text-xl font-bold text-[#636E72] mb-2">
                     {professional.name}
                   </h3>
-                  <p className="text-[#00B894] font-semibold mb-2">
+                  <p className="text-[#00B894] font-semibold mb-1">
                     {professional.speciality}
+                  </p>
+                  <p className="text-sm text-[#636E72] mb-3">
+                    {professional.crm}
                   </p>
                   <div className="flex items-center justify-center gap-4 text-sm text-[#636E72] mb-3">
                     <span className="flex items-center gap-1">
