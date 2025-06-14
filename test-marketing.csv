@@ -1,0 +1,4 @@
+Email,Phone,First_Name,Last_Name,Full_Name,Interest_Category,Product_Interest,Lead_Source,Campaign_Type,IP_Address,Conversion_Date,Lead_ID
+"","","","","","Health_Plans","Cartão Familiar","Website","Plan_Conversion","127.0.0.1","Sat Jun 14 2025 02:24:04 GMT+0000 (Coordinated Universal Time)","1"
+"","","","","","Health_Plans","Cartão Familiar","Website","Plan_Conversion","127.0.0.1","Sat Jun 14 2025 02:50:01 GMT+0000 (Coordinated Universal Time)","2"
+"teste@exemplo.com","11999999999","Teste","","Teste","Health_Plans","Plano Individual","Website","Plan_Conversion","127.0.0.1","Sat Jun 14 2025 11:38:56 GMT+0000 (Coordinated Universal Time)","3"

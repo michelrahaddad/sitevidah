@@ -52,32 +52,53 @@ export default function LeadCaptureModal({
 
   const trackConversionMutation = useMutation({
     mutationFn: async (data: LeadCaptureData) => {
-      await apiRequest('/api/whatsapp/track', 'POST', {
-        buttonType,
-        planName,
-        doctorName,
-        name: data.name,
-        email: data.email,
-        phone: data.phone,
-      });
+      try {
+        const response = await fetch('/api/whatsapp/track', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            buttonType,
+            planName,
+            doctorName,
+            name: data.name,
+            email: data.email,
+            phone: data.phone,
+          }),
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({ message: 'Erro desconhecido' }));
+          throw new Error(errorData.message || 'Erro ao registrar conversão');
+        }
+
+        return await response.json();
+      } catch (error) {
+        console.error('Erro ao registrar conversão:', error);
+        throw error;
+      }
     },
   });
 
   const onSubmit = async (data: LeadCaptureData) => {
     try {
-      // Registra a conversão no sistema
-      await trackConversionMutation.mutateAsync(data);
+      console.log('Enviando dados:', data);
       
-      // Gera mensagem personalizada do WhatsApp
-      const personalizedMessage = `Olá! Meu nome é ${data.name} e meu telefone é ${formatPhone(data.phone)}. ${whatsappMessage}`;
+      // Registra a conversão no sistema
+      const result = await trackConversionMutation.mutateAsync(data);
+      console.log('Conversão registrada:', result);
+      
+      // Gera mensagem personalizada do WhatsApp incluindo email
+      const personalizedMessage = `Olá! Meu nome é ${data.name}, meu email é ${data.email} e meu telefone é ${formatPhone(data.phone)}. ${whatsappMessage}`;
       
       // Redireciona para WhatsApp
       const whatsappUrl = generateWhatsAppUrl(whatsappPhone, personalizedMessage);
       window.open(whatsappUrl, '_blank');
       
       toast({
-        title: "Redirecionando para WhatsApp",
-        description: "Seus dados foram registrados com sucesso!",
+        title: "Sucesso!",
+        description: "Seus dados foram registrados e você será redirecionado para o WhatsApp.",
       });
       
       // Limpa o formulário e fecha o modal
@@ -85,9 +106,10 @@ export default function LeadCaptureModal({
       onClose();
       
     } catch (error) {
+      console.error('Erro no onSubmit:', error);
       toast({
         title: "Erro",
-        description: "Não foi possível processar sua solicitação. Tente novamente.",
+        description: error instanceof Error ? error.message : "Não foi possível processar sua solicitação. Tente novamente.",
         variant: "destructive",
       });
     }
