@@ -62,6 +62,7 @@ export const whatsappConversions = pgTable("whatsapp_conversions", {
   id: serial("id").primaryKey(),
   phone: text("phone"),
   name: text("name"),
+  email: text("email"),
   buttonType: text("button_type").notNull(), // 'plan_subscription', 'doctor_appointment', 'enterprise_quote'
   planName: text("plan_name"),
   doctorName: text("doctor_name"),

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { X, Phone, User } from "lucide-react";
+import { X, Phone, User, Mail } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
@@ -11,6 +11,7 @@ import { generateWhatsAppUrl } from "@/lib/utils";
 
 const leadCaptureSchema = z.object({
   name: z.string().min(2, "Nome deve ter pelo menos 2 caracteres"),
+  email: z.string().email("Email deve ter um formato válido"),
   phone: z.string().min(10, "Telefone deve ter pelo menos 10 dígitos"),
 });
 
@@ -56,6 +57,7 @@ export default function LeadCaptureModal({
         planName,
         doctorName,
         name: data.name,
+        email: data.email,
         phone: data.phone,
       });
     },
@@ -162,6 +164,25 @@ export default function LeadCaptureModal({
               </div>
               {errors.name && (
                 <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
+              )}
+            </div>
+
+            {/* Email */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Email
+              </label>
+              <div className="relative">
+                <Mail size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <input
+                  {...register("email")}
+                  type="email"
+                  placeholder="Digite seu email"
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00B894] focus:border-transparent outline-none transition-all"
+                />
+              </div>
+              {errors.email && (
+                <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
               )}
             </div>
 
