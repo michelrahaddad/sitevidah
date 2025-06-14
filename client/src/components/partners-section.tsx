@@ -134,6 +134,15 @@ export default function PartnersSection() {
   const topMedicos = medicos.slice(0, 4);
   const displayedMedicos = showAllSegments ? medicos : topMedicos;
 
+  console.log('Dados calculados:', {
+    totalMedicos: medicos.length,
+    totalParceiros: parceiros.length,
+    displayedMedicos: displayedMedicos.length,
+    displayedPartners: displayedPartners.length,
+    showAllSegments,
+    showAllPartners
+  });
+
   const handleDoctorAppointment = (medico: any) => {
     setModalData({
       isOpen: true,
@@ -283,9 +292,9 @@ export default function PartnersSection() {
 
         {/* Medical Professionals */}
         <motion.div
+          key={`medicos-container-${showAllSegments}`}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
+          animate="visible"
           variants={containerVariants}
           className="mb-16"
         >
@@ -297,7 +306,7 @@ export default function PartnersSection() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {displayedMedicos.map((medico, index) => (
               <motion.div
-                key={index}
+                key={`medico-${medico.nome}-${index}`}
                 variants={itemVariants}
                 className="glass-card p-6 rounded-xl hover:shadow-lg transition-all duration-300 group hover:scale-105"
               >
@@ -351,9 +360,9 @@ export default function PartnersSection() {
 
         {/* Business Partners */}
         <motion.div
+          key={`parceiros-container-${showAllPartners}`}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
+          animate="visible"
           variants={containerVariants}
         >
           <motion.h3 variants={itemVariants} className="text-2xl md:text-3xl font-bold text-[#636E72] mb-6 md:mb-8 flex items-center justify-center md:justify-start">
@@ -364,7 +373,7 @@ export default function PartnersSection() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {displayedPartners.map((parceiro, index) => (
               <motion.div
-                key={index}
+                key={`parceiro-${parceiro.nome}-${index}`}
                 variants={itemVariants}
                 className="glass-card p-6 rounded-xl hover:shadow-lg transition-all duration-300 group hover:scale-105"
               >
