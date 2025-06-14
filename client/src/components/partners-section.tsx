@@ -33,10 +33,10 @@ import draVanessaYucraFoto from "@/assets/doctors/dra-vanessa-yucra.jpg";
 import draBrunaMargadonaFoto from "@/assets/doctors/dra-bruna-margadona.jpg";
 
 const medicos = [
-  { nome: "Dr. William Teixeira Haddad", especialidade: "Cardiologia", foto: null },
-  { nome: "Dr. Michel Raineri Haddad", especialidade: "Clínica Geral", foto: null },
-  { nome: "Dr. William Teixeira Haddad Jr.", especialidade: "Ortopedia", foto: null },
-  { nome: "Dr. Alex Teles Vasconcelos", especialidade: "Dermatologia", foto: null },
+  { nome: "Dr. William Teixeira Haddad", especialidade: "Cardiologia e Clínica Médica", foto: null },
+  { nome: "Dr. Michel Raineri Haddad", especialidade: "Cardiologia e Clínica Médica", foto: null },
+  { nome: "Dr. William Teixeira Haddad Jr.", especialidade: "Radiologia", foto: null },
+  { nome: "Dr. Alex Teles Vasconcelos", especialidade: "Oftalmologia", foto: null },
   { nome: "Dr Diego Rodrigues Charamitara", especialidade: "Clínico Geral", foto: drDiegoFoto },
   { nome: "Dra Isabela Cardoso", especialidade: "Ginecologia e Obstetrícia", foto: draIsabelaCardosoFoto },
   { nome: "Dra Ana Soler", especialidade: "Dermatologista", foto: draAnaSollerFoto },
