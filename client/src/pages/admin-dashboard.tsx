@@ -82,7 +82,7 @@ export default function AdminDashboard() {
     setLocation("/admin/login");
   };
 
-  const handleExport = async () => {
+  const handleExportMarketing = async () => {
     try {
       const token = localStorage.getItem("admin_token");
       if (!token) {
@@ -113,7 +113,7 @@ export default function AdminDashboard() {
       const downloadUrl = window.URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = downloadUrl;
-      link.download = "conversoes-whatsapp.csv";
+      link.download = "leads-marketing-digital.csv";
       document.body.appendChild(link);
       link.click();
       link.remove();
@@ -121,7 +121,58 @@ export default function AdminDashboard() {
 
       toast({
         title: "Sucesso",
-        description: "Arquivo exportado com sucesso!",
+        description: "Lista para anúncios exportada! Compatível com Google e Facebook Ads.",
+      });
+    } catch (error) {
+      console.error("Export error:", error);
+      toast({
+        title: "Erro",
+        description: "Erro ao exportar dados",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handleExportInternal = async () => {
+    try {
+      const token = localStorage.getItem("admin_token");
+      if (!token) {
+        toast({
+          title: "Erro",
+          description: "Token de acesso não encontrado",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      let url = "/api/admin/conversions/export-internal";
+      if (startDate && endDate) {
+        url += `?startDate=${startDate}&endDate=${endDate}`;
+      }
+
+      const response = await fetch(url, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Erro ao exportar dados");
+      }
+
+      const blob = await response.blob();
+      const downloadUrl = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = downloadUrl;
+      link.download = "gestao-interna-leads.csv";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(downloadUrl);
+
+      toast({
+        title: "Sucesso",
+        description: "Dados de gestão interna exportados com sucesso!",
       });
     } catch (error) {
       console.error("Export error:", error);
@@ -271,9 +322,13 @@ export default function AdminDashboard() {
                 <Button onClick={() => refetch()} variant="outline">
                   Filtrar
                 </Button>
-                <Button onClick={handleExport} className="flex items-center gap-2">
+                <Button onClick={handleExportMarketing} className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700">
                   <Download size={16} />
-                  Exportar CSV
+                  Exportar para Anúncios
+                </Button>
+                <Button onClick={handleExportInternal} variant="outline" className="flex items-center gap-2">
+                  <Download size={16} />
+                  Gestão Interna
                 </Button>
               </div>
             </div>

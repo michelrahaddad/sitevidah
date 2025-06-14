@@ -290,7 +290,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Export conversions as CSV (admin only)
+  // Export conversions as CSV for marketing campaigns (admin only)
   app.get("/api/admin/conversions/export", authenticateAdmin, async (req, res) => {
     try {
       const { startDate, endDate } = req.query;
@@ -305,16 +305,66 @@ export async function registerRoutes(app: Express): Promise<Server> {
         conversions = await storage.getAllWhatsappConversions();
       }
 
-      // Generate CSV content
-      const csvHeader = "ID,Nome,Email,Telefone,Tipo,Plano,Médico,IP,Data\n";
+      // Generate CSV content compatible with Google/Facebook Ads
+      const csvHeader = "Email,Phone,First_Name,Last_Name,Full_Name,Interest_Category,Product_Interest,Lead_Source,Campaign_Type,IP_Address,Conversion_Date,Lead_ID\n";
+      const csvRows = conversions.map(conv => {
+        const fullName = conv.name || '';
+        const nameParts = fullName.split(' ');
+        const firstName = nameParts[0] || '';
+        const lastName = nameParts.slice(1).join(' ') || '';
+        
+        // Map button types to marketing categories
+        const interestCategory = conv.buttonType === 'plan_subscription' ? 'Health_Plans' : 
+                                conv.buttonType === 'doctor_appointment' ? 'Medical_Consultation' : 
+                                'Enterprise_Solutions';
+        
+        const productInterest = conv.planName || conv.doctorName || 'General_Inquiry';
+        const campaignType = conv.buttonType === 'plan_subscription' ? 'Plan_Conversion' : 
+                            conv.buttonType === 'doctor_appointment' ? 'Appointment_Request' : 
+                            'B2B_Quote';
+        
+        // Format phone for ads (remove special characters)
+        const cleanPhone = (conv.phone || '').replace(/[^\d]/g, '');
+        
+        return `"${conv.email || ''}","${cleanPhone}","${firstName}","${lastName}","${fullName}","${interestCategory}","${productInterest}","Website","${campaignType}","${conv.ipAddress || ''}","${conv.createdAt}","${conv.id}"`;
+      }).join('\n');
+      
+      const csv = csvHeader + csvRows;
+      
+      res.setHeader('Content-Type', 'text/csv');
+      res.setHeader('Content-Disposition', 'attachment; filename="leads-marketing-digital.csv"');
+      res.send(csv);
+    } catch (error) {
+      console.error("Error exporting conversions:", error);
+      res.status(500).json({ message: "Erro ao exportar conversões" });
+    }
+  });
+
+  // Export conversions as CSV for internal management (admin only)
+  app.get("/api/admin/conversions/export-internal", authenticateAdmin, async (req, res) => {
+    try {
+      const { startDate, endDate } = req.query;
+      
+      let conversions;
+      if (startDate && endDate) {
+        conversions = await storage.getWhatsappConversionsByDateRange(
+          new Date(startDate as string),
+          new Date(endDate as string)
+        );
+      } else {
+        conversions = await storage.getAllWhatsappConversions();
+      }
+
+      // Generate CSV content for internal management
+      const csvHeader = "ID,Nome,Email,Telefone,Tipo,Plano,Médico,IP,User_Agent,Data\n";
       const csvRows = conversions.map(conv => 
-        `${conv.id},"${conv.name || ''}","${conv.email || ''}","${conv.phone || ''}","${conv.buttonType}","${conv.planName || ''}","${conv.doctorName || ''}","${conv.ipAddress || ''}","${conv.createdAt}"`
+        `${conv.id},"${conv.name || ''}","${conv.email || ''}","${conv.phone || ''}","${conv.buttonType}","${conv.planName || ''}","${conv.doctorName || ''}","${conv.ipAddress || ''}","${conv.userAgent || ''}","${conv.createdAt}"`
       ).join('\n');
       
       const csv = csvHeader + csvRows;
       
       res.setHeader('Content-Type', 'text/csv');
-      res.setHeader('Content-Disposition', 'attachment; filename="conversoes-whatsapp.csv"');
+      res.setHeader('Content-Disposition', 'attachment; filename="gestao-interna-leads.csv"');
       res.send(csv);
     } catch (error) {
       console.error("Error exporting conversions:", error);
