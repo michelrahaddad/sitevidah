@@ -89,6 +89,8 @@ const parceiros = [
 export default function PartnersSection() {
   const [showAllPartners, setShowAllPartners] = useState(false);
   const [showAllSegments, setShowAllSegments] = useState(false);
+  
+  console.log('PartnersSection renderizando:', { showAllPartners, showAllSegments });
   const [modalData, setModalData] = useState<{
     isOpen: boolean;
     buttonType: 'plan_subscription' | 'doctor_appointment' | 'enterprise_quote';
@@ -333,7 +335,12 @@ export default function PartnersSection() {
           {!showAllSegments && medicos.length > 4 && (
             <div className="text-center mt-8">
               <button
-                onClick={() => setShowAllSegments(true)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  console.log('Clicando em Ver mais médicos - antes do setState');
+                  setShowAllSegments(true);
+                  console.log('Clicando em Ver mais médicos - depois do setState');
+                }}
                 className="bg-[#00B894] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#009d7f] transition-all transform hover:scale-105"
               >
                 Ver mais médicos ({medicos.length - 4} restantes)
@@ -401,7 +408,12 @@ export default function PartnersSection() {
           {!showAllPartners && parceiros.length > 4 && (
             <div className="text-center mt-8">
               <button
-                onClick={() => setShowAllPartners(true)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  console.log('Clicando em Ver mais parceiros - antes do setState');
+                  setShowAllPartners(true);
+                  console.log('Clicando em Ver mais parceiros - depois do setState');
+                }}
                 className="bg-[#0984E3] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#0773cc] transition-all transform hover:scale-105"
               >
                 Ver mais parceiros ({parceiros.length - 4} restantes)
