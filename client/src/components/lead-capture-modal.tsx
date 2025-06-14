@@ -37,6 +37,8 @@ export default function LeadCaptureModal({
   whatsappMessage
 }: LeadCaptureModalProps) {
   const { toast } = useToast();
+  const [showFallbackButton, setShowFallbackButton] = useState(false);
+  const [fallbackWhatsappUrl, setFallbackWhatsappUrl] = useState("");
   
   const {
     register,
@@ -98,22 +100,34 @@ export default function LeadCaptureModal({
       
       // Gera mensagem personalizada do WhatsApp incluindo email
       const personalizedMessage = `Olá! Meu nome é ${data.name}, meu email é ${data.email} e meu telefone é ${formatPhone(data.phone)}. ${whatsappMessage}`;
+      const whatsappUrl = generateWhatsAppUrl(whatsappPhone, personalizedMessage);
       
-      // Exibe mensagem de sucesso
-      toast({
-        title: "Sucesso!",
-        description: "Seus dados foram registrados. Redirecionando para o WhatsApp...",
-      });
+      // Detecta se é iOS Safari para usar método adequado
+      const isIOSSafari = /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
       
-      // Limpa o formulário e fecha o modal
-      reset();
-      onClose();
-      
-      // Redireciona automaticamente para WhatsApp após 1 segundo
-      setTimeout(() => {
-        const whatsappUrl = generateWhatsAppUrl(whatsappPhone, personalizedMessage);
-        window.open(whatsappUrl, '_blank');
-      }, 1000);
+      if (isIOSSafari) {
+        // Para iOS Safari, mostra botão de fallback pois window.location.href pode não funcionar com WhatsApp
+        setFallbackWhatsappUrl(whatsappUrl);
+        setShowFallbackButton(true);
+        
+        toast({
+          title: "Sucesso!",
+          description: "Seus dados foram registrados. Clique no botão abaixo para abrir o WhatsApp.",
+        });
+      } else {
+        // Para outros navegadores, redireciona diretamente
+        toast({
+          title: "Sucesso!",
+          description: "Seus dados foram registrados. Redirecionando para o WhatsApp...",
+        });
+        
+        // Limpa o formulário e fecha o modal
+        reset();
+        onClose();
+        
+        // Redirecionamento direto
+        window.location.href = whatsappUrl;
+      }
       
     } catch (error) {
       console.error('Erro no onSubmit:', error);
@@ -256,6 +270,27 @@ export default function LeadCaptureModal({
               </button>
             </div>
           </form>
+
+          {/* Fallback WhatsApp Button for iOS Safari */}
+          {showFallbackButton && (
+            <div className="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+              <p className="text-sm text-green-800 mb-3 text-center">
+                Clique no botão abaixo para abrir o WhatsApp:
+              </p>
+              <button
+                onClick={() => {
+                  window.location.href = fallbackWhatsappUrl;
+                  setShowFallbackButton(false);
+                  reset();
+                  onClose();
+                }}
+                className="w-full py-3 px-4 bg-green-500 hover:bg-green-600 text-white rounded-lg font-medium flex items-center justify-center gap-2 transition-colors"
+              >
+                <span>💬</span>
+                Abrir WhatsApp
+              </button>
+            </div>
+          )}
 
           {/* Privacy Note */}
           <p className="text-xs text-gray-500 text-center mt-4">
