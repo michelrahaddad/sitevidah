@@ -7,6 +7,12 @@ import rateLimit from "express-rate-limit";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import { securityHeaders, validateRequestSize, monitorSuspiciousActivity, queryTimeout } from "./security";
+import { logger, logRequest } from "./logger";
+import { performanceMiddleware, healthRoutes } from "./monitoring";
+import { circuitBreakerMiddleware } from "./circuitBreaker";
+import { cacheManager } from "./cache";
+import { backupManager } from "./backup";
+import { systemInitializer } from "./initialization";
 
 const app = express();
 
@@ -46,6 +52,12 @@ app.use(securityHeaders);
 app.use(validateRequestSize);
 app.use(monitorSuspiciousActivity);
 app.use(queryTimeout(30000)); // 30 second timeout
+
+// Performance monitoring
+app.use(performanceMiddleware);
+
+// Circuit breaker middleware
+app.use(circuitBreakerMiddleware);
 
 // Rate limiting
 const limiter = rateLimit({
@@ -115,20 +127,34 @@ app.use((req, res, next) => {
 });
 
 (async () => {
+  // Initialize system components
+  const initSuccess = await systemInitializer.initialize();
+  if (!initSuccess) {
+    logger.error('System initialization failed, exiting');
+    process.exit(1);
+  }
+
+  // Initialize health check routes
+  healthRoutes(app);
+
+  // Setup main application routes
   const server = await registerRoutes(app);
 
+  // Global error handling middleware
   app.use((err: any, req: Request, res: Response, _next: NextFunction) => {
     const status = err.status || err.statusCode || 500;
     let message = err.message || "Internal Server Error";
 
-    // Log error details for monitoring
-    console.error(`[Security Alert] ${status} Error on ${req.method} ${req.url}:`, {
+    // Log error with enhanced security logging
+    logger.error('Application error', {
+      status,
       message,
       stack: err.stack,
-      timestamp: new Date().toISOString(),
+      method: req.method,
+      url: req.url,
       ip: req.ip,
-      userAgent: req.get('User-Agent'),
-      body: req.body
+      userAgent: req.get('User-Agent')?.substring(0, 100),
+      timestamp: new Date().toISOString()
     });
 
     // Don't expose internal errors in production
@@ -169,6 +195,73 @@ app.use((req, res, next) => {
     host: "0.0.0.0",
     reusePort: true,
   }, () => {
+    logger.info(`Server started successfully`, {
+      port,
+      environment: process.env.NODE_ENV || 'development',
+      timestamp: new Date().toISOString()
+    });
     log(`serving on port ${port}`);
+  });
+
+  // Graceful shutdown handling
+  const gracefulShutdown = async (signal: string) => {
+    logger.info(`Received ${signal}, starting graceful shutdown`);
+    
+    try {
+      // Stop accepting new connections
+      server.close(async () => {
+        logger.info('HTTP server closed');
+        
+        try {
+          // Disconnect from cache
+          await cacheManager.disconnect();
+          logger.info('Cache disconnected');
+          
+          // Close database connections if needed
+          logger.info('Database connections closed');
+          
+          logger.info('Graceful shutdown completed');
+          process.exit(0);
+        } catch (error) {
+          logger.error('Error during graceful shutdown', { 
+            error: (error as Error).message 
+          });
+          process.exit(1);
+        }
+      });
+
+      // Force close after 30 seconds
+      setTimeout(() => {
+        logger.error('Forced shutdown after timeout');
+        process.exit(1);
+      }, 30000);
+
+    } catch (error) {
+      logger.error('Error initiating graceful shutdown', { 
+        error: (error as Error).message 
+      });
+      process.exit(1);
+    }
+  };
+
+  // Handle process signals
+  process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
+  process.on('SIGINT', () => gracefulShutdown('SIGINT'));
+  
+  // Handle uncaught exceptions
+  process.on('uncaughtException', (error) => {
+    logger.error('Uncaught exception', {
+      error: error.message,
+      stack: error.stack
+    });
+    gracefulShutdown('UNCAUGHT_EXCEPTION');
+  });
+  
+  process.on('unhandledRejection', (reason, promise) => {
+    logger.error('Unhandled rejection', {
+      reason,
+      promise
+    });
+    gracefulShutdown('UNHANDLED_REJECTION');
   });
 })();

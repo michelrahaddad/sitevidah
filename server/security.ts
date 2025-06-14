@@ -87,6 +87,8 @@ export const validateRequestSize = (req: Request, res: Response, next: NextFunct
 const suspiciousIPs = new Map<string, { attempts: number; lastAttempt: number }>();
 
 export const monitorSuspiciousActivity = (req: Request, res: Response, next: NextFunction) => {
+  const clientIP = req.ip || req.connection.remoteAddress || 'unknown';
+  
   // Skip monitoring in development mode or for internal IPs
   if (process.env.NODE_ENV === 'development' || 
       clientIP.startsWith('127.') || 
@@ -95,8 +97,6 @@ export const monitorSuspiciousActivity = (req: Request, res: Response, next: Nex
       clientIP.startsWith('192.168.')) {
     return next();
   }
-  
-  const clientIP = req.ip || req.connection.remoteAddress || 'unknown';
   const now = Date.now();
   
   // Clean old entries (older than 1 hour)

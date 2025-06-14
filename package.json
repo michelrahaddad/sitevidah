@@ -51,6 +51,8 @@
     "@types/memoizee": "^0.4.12",
     "@types/morgan": "^1.9.10",
     "@types/opossum": "^8.1.8",
+    "@types/qrcode": "^1.5.5",
+    "@types/speakeasy": "^2.0.10",
     "bcrypt": "^6.0.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
