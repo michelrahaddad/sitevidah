@@ -33,170 +33,170 @@ export interface IStorage {
   getWhatsappConversionsByDateRange(startDate: Date, endDate: Date): Promise<WhatsappConversion[]>;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<number, User>;
-  private customers: Map<number, Customer>;
-  private subscriptions: Map<number, Subscription>;
-  private digitalCards: Map<number, DigitalCard>;
-  private plans: Map<number, Plan>;
-  private currentUserId: number;
-  private currentCustomerId: number;
-  private currentSubscriptionId: number;
-  private currentCardId: number;
-  private currentPlanId: number;
-
+export class DatabaseStorage implements IStorage {
   constructor() {
-    this.users = new Map();
-    this.customers = new Map();
-    this.subscriptions = new Map();
-    this.digitalCards = new Map();
-    this.plans = new Map();
-    this.currentUserId = 1;
-    this.currentCustomerId = 1;
-    this.currentSubscriptionId = 1;
-    this.currentCardId = 1;
-    this.currentPlanId = 1;
-    
     this.initializePlans();
   }
 
-  private initializePlans() {
-    const defaultPlans: Plan[] = [
-      {
-        id: 1,
-        name: "Individual",
-        type: "individual",
-        annualPrice: "298.80",
-        monthlyPrice: "24.90",
-        adhesionFee: "30.00",
-        maxDependents: 0,
-        isActive: true,
-      },
-      {
-        id: 2,
-        name: "Familiar",
-        type: "familiar", 
-        annualPrice: "418.80",
-        monthlyPrice: "34.90",
-        adhesionFee: "30.00",
-        maxDependents: 4,
-        isActive: true,
-      },
-      {
-        id: 3,
-        name: "Empresarial",
-        type: "empresarial",
-        annualPrice: "358.80",
-        monthlyPrice: "29.90",
-        adhesionFee: "30.00",
-        maxDependents: 0,
-        isActive: true,
+  private async initializePlans() {
+    try {
+      const existingPlans = await db.select().from(plans);
+      if (existingPlans.length === 0) {
+        await db.insert(plans).values([
+          {
+            id: 1,
+            name: "Cartão Familiar",
+            type: "familiar",
+            annualPrice: "418.80",
+            monthlyPrice: "34.90",
+            adhesionFee: "0",
+            maxDependents: 4,
+            isActive: true,
+          },
+          {
+            id: 2,
+            name: "Cartão Corporativo",
+            type: "empresarial",
+            annualPrice: "0",
+            monthlyPrice: "0",
+            adhesionFee: "0",
+            maxDependents: 0,
+            isActive: true,
+          }
+        ]);
       }
-    ];
-
-    defaultPlans.forEach(plan => {
-      this.plans.set(plan.id, plan);
-      if (plan.id >= this.currentPlanId) {
-        this.currentPlanId = plan.id + 1;
-      }
-    });
+    } catch (error) {
+      console.error("Error initializing plans:", error);
+    }
   }
 
   async getUser(id: number): Promise<User | undefined> {
-    return this.users.get(id);
+    const [user] = await db.select().from(users).where(eq(users.id, id));
+    return user;
   }
 
   async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
+    const [user] = await db.select().from(users).where(eq(users.username, username));
+    return user;
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
-    const id = this.currentUserId++;
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
+    const hashedPassword = await bcrypt.hash(insertUser.password, 10);
+    const [user] = await db
+      .insert(users)
+      .values({ ...insertUser, password: hashedPassword })
+      .returning();
     return user;
   }
 
   async createCustomer(insertCustomer: InsertCustomer): Promise<Customer> {
-    const id = this.currentCustomerId++;
-    const customer: Customer = { 
-      ...insertCustomer, 
-      id, 
-      createdAt: new Date() 
-    };
-    this.customers.set(id, customer);
+    const [customer] = await db
+      .insert(customers)
+      .values(insertCustomer)
+      .returning();
     return customer;
   }
 
   async getCustomerByEmail(email: string): Promise<Customer | undefined> {
-    return Array.from(this.customers.values()).find(
-      (customer) => customer.email === email,
-    );
+    const [customer] = await db.select().from(customers).where(eq(customers.email, email));
+    return customer;
   }
 
   async getCustomerByCpf(cpf: string): Promise<Customer | undefined> {
-    return Array.from(this.customers.values()).find(
-      (customer) => customer.cpf === cpf,
-    );
+    const [customer] = await db.select().from(customers).where(eq(customers.cpf, cpf));
+    return customer;
   }
 
   async getAllPlans(): Promise<Plan[]> {
-    return Array.from(this.plans.values()).filter(plan => plan.isActive);
+    return await db.select().from(plans).where(eq(plans.isActive, true));
   }
 
   async getPlanById(id: number): Promise<Plan | undefined> {
-    return this.plans.get(id);
+    const [plan] = await db.select().from(plans).where(eq(plans.id, id));
+    return plan;
   }
 
   async createSubscription(insertSubscription: InsertSubscription): Promise<Subscription> {
-    const id = this.currentSubscriptionId++;
-    const subscription: Subscription = {
-      id,
-      customerId: insertSubscription.customerId,
-      planId: insertSubscription.planId,
-      paymentMethod: insertSubscription.paymentMethod,
-      paymentStatus: 'pending',
-      totalAmount: insertSubscription.totalAmount,
-      installments: insertSubscription.installments || 1,
-      createdAt: new Date(),
-      expiresAt: insertSubscription.expiresAt,
-    };
-    this.subscriptions.set(id, subscription);
+    const [subscription] = await db
+      .insert(subscriptions)
+      .values(insertSubscription)
+      .returning();
     return subscription;
   }
 
   async getSubscriptionById(id: number): Promise<Subscription | undefined> {
-    return this.subscriptions.get(id);
+    const [subscription] = await db.select().from(subscriptions).where(eq(subscriptions.id, id));
+    return subscription;
   }
 
   async updateSubscriptionStatus(id: number, status: string): Promise<Subscription | undefined> {
-    const subscription = this.subscriptions.get(id);
-    if (subscription) {
-      subscription.paymentStatus = status;
-      this.subscriptions.set(id, subscription);
-    }
+    const [subscription] = await db
+      .update(subscriptions)
+      .set({ paymentStatus: status })
+      .where(eq(subscriptions.id, id))
+      .returning();
     return subscription;
   }
 
   async createDigitalCard(insertCard: InsertDigitalCard): Promise<DigitalCard> {
-    const id = this.currentCardId++;
-    const card: DigitalCard = {
-      ...insertCard,
-      id,
-      isActive: true,
-      createdAt: new Date(),
-    };
-    this.digitalCards.set(id, card);
+    const [card] = await db
+      .insert(digitalCards)
+      .values(insertCard)
+      .returning();
     return card;
   }
 
   async getDigitalCardBySubscription(subscriptionId: number): Promise<DigitalCard | undefined> {
-    return Array.from(this.digitalCards.values()).find(
-      (card) => card.subscriptionId === subscriptionId,
-    );
+    const [card] = await db.select().from(digitalCards).where(eq(digitalCards.subscriptionId, subscriptionId));
+    return card;
+  }
+
+  // Admin management methods
+  async createAdminUser(insertAdmin: InsertAdminUser): Promise<AdminUser> {
+    const hashedPassword = await bcrypt.hash(insertAdmin.password, 10);
+    const [admin] = await db
+      .insert(adminUsers)
+      .values({ ...insertAdmin, password: hashedPassword })
+      .returning();
+    return admin;
+  }
+
+  async getAdminByUsername(username: string): Promise<AdminUser | undefined> {
+    const [admin] = await db.select().from(adminUsers).where(eq(adminUsers.username, username));
+    return admin;
+  }
+
+  async verifyAdminPassword(username: string, password: string): Promise<boolean> {
+    const admin = await this.getAdminByUsername(username);
+    if (!admin) return false;
+    return await bcrypt.compare(password, admin.password);
+  }
+
+  // WhatsApp conversion tracking methods
+  async createWhatsappConversion(insertConversion: InsertWhatsappConversion): Promise<WhatsappConversion> {
+    const [conversion] = await db
+      .insert(whatsappConversions)
+      .values(insertConversion)
+      .returning();
+    return conversion;
+  }
+
+  async getAllWhatsappConversions(): Promise<WhatsappConversion[]> {
+    return await db.select().from(whatsappConversions).orderBy(whatsappConversions.createdAt);
+  }
+
+  async getWhatsappConversionsByDateRange(startDate: Date, endDate: Date): Promise<WhatsappConversion[]> {
+    return await db
+      .select()
+      .from(whatsappConversions)
+      .where(
+        and(
+          gte(whatsappConversions.createdAt, startDate),
+          lte(whatsappConversions.createdAt, endDate)
+        )
+      )
+      .orderBy(whatsappConversions.createdAt);
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();
