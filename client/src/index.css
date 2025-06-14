@@ -85,24 +85,28 @@
   
   .animate-float {
     animation: float 6s ease-in-out infinite;
+    will-change: transform;
   }
   
   .animate-glow {
     animation: glow 2s ease-in-out infinite alternate;
+    will-change: box-shadow;
   }
   
   .animate-slide-up {
     animation: slideUp 0.5s ease-out;
+    will-change: transform, opacity;
   }
   
   .animate-fade-in {
     animation: fadeIn 0.6s ease-out;
+    will-change: opacity;
   }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -20px, 0); }
 }
 
 @keyframes glow {
@@ -111,8 +115,8 @@
 }
 
 @keyframes slideUp {
-  from { transform: translateY(30px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from { transform: translate3d(0, 30px, 0); opacity: 0; }
+  to { transform: translate3d(0, 0, 0); opacity: 1; }
 }
 
 @keyframes fadeIn {

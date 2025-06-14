@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useMemo, lazy, Suspense } from "react";
 import { Stethoscope, ShoppingBag, Star, Users, MapPin, Percent, User, Building, Phone, Globe, MessageCircle } from "lucide-react";
 import { trackWhatsAppConversion } from "@/lib/whatsapp-tracking";
 import LeadCaptureModal from "./lead-capture-modal";
@@ -126,22 +126,16 @@ export default function PartnersSection() {
     }
   };
 
-  // Get top 4 business partners for initial display
-  const topPartners = parceiros.slice(0, 4);
-  const displayedPartners = showAllPartners ? parceiros : topPartners;
-
-  // Get top 4 medical professionals for initial display  
-  const topMedicos = medicos.slice(0, 4);
-  const displayedMedicos = showAllSegments ? medicos : topMedicos;
-
-  console.log('Dados calculados:', {
-    totalMedicos: medicos.length,
-    totalParceiros: parceiros.length,
-    displayedMedicos: displayedMedicos.length,
-    displayedPartners: displayedPartners.length,
-    showAllSegments,
-    showAllPartners
-  });
+  // Memoize calculated data for better performance
+  const { displayedPartners, displayedMedicos } = useMemo(() => {
+    const topPartners = parceiros.slice(0, 4);
+    const topMedicos = medicos.slice(0, 4);
+    
+    return {
+      displayedPartners: showAllPartners ? parceiros : topPartners,
+      displayedMedicos: showAllSegments ? medicos : topMedicos
+    };
+  }, [showAllPartners, showAllSegments]);
 
   const handleDoctorAppointment = (medico: any) => {
     setModalData({
@@ -318,6 +312,8 @@ export default function PartnersSection() {
                         src={medico.foto} 
                         alt={medico.nome}
                         className="w-full h-full rounded-full object-cover"
+                        loading="lazy"
+                        decoding="async"
                       />
                     ) : (
                       <User className="w-8 h-8 text-[#00B894]" />
@@ -384,6 +380,8 @@ export default function PartnersSection() {
                       src={parceiro.logo} 
                       alt={`Logo ${parceiro.nome}`}
                       className="w-full h-full rounded-lg object-contain p-1"
+                      loading="lazy"
+                      decoding="async"
                     />
                   ) : (
                     <Building className="w-6 h-6 text-[#0984E3]" />
