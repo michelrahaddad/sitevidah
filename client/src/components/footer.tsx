@@ -1,4 +1,5 @@
-import { Facebook, Instagram, Linkedin } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Settings } from "lucide-react";
+import { Link } from "wouter";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -160,6 +161,24 @@ export default function Footer() {
             >
               <Linkedin size={20} />
             </button>
+          </div>
+        </div>
+
+        {/* Admin Access Banner */}
+        <div className="mt-8 pt-6 border-t border-gray-600">
+          <div className="bg-gradient-to-r from-[#00B894]/10 to-[#0984E3]/10 rounded-lg p-4 text-center border border-gray-600">
+            <div className="flex items-center justify-center gap-3 mb-2">
+              <Settings size={20} className="text-[#00B894]" />
+              <h6 className="font-medium text-white">Sistema de Gestão</h6>
+            </div>
+            <p className="text-gray-300 text-sm mb-3">
+              Acesse o painel administrativo para visualizar estatísticas e relatórios
+            </p>
+            <Link href="/admin/login">
+              <button className="bg-[#00B894] text-white px-6 py-2 rounded-full hover:bg-[#009d7f] transition-colors text-sm font-medium">
+                Acessar Sistema
+              </button>
+            </Link>
           </div>
         </div>
 

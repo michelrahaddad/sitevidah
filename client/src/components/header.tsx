@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Settings } from "lucide-react";
 import { scrollToElement } from "@/lib/utils";
+import { Link } from "wouter";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -52,6 +53,12 @@ export default function Header() {
           >
             FAQ
           </button>
+          <Link href="/admin/login">
+            <button className="text-[#636E72] hover:text-[#00B894] transition-colors flex items-center gap-2">
+              <Settings size={16} />
+              Gestão
+            </button>
+          </Link>
           <button 
             onClick={() => handleNavClick('planos')}
             className="bg-[#00B894] text-white px-6 py-2 rounded-full hover:bg-[#009d7f] transition-colors font-medium"
@@ -96,6 +103,12 @@ export default function Header() {
             >
               FAQ
             </button>
+            <Link href="/admin/login">
+              <button className="block w-full text-left text-[#636E72] hover:text-[#00B894] transition-colors py-2 flex items-center gap-2">
+                <Settings size={16} />
+                Sistema de Gestão
+              </button>
+            </Link>
             <button 
               onClick={() => handleNavClick('planos')}
               className="w-full bg-[#00B894] text-white px-6 py-3 rounded-full hover:bg-[#009d7f] transition-colors font-medium"
