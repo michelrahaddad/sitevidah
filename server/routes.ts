@@ -306,9 +306,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Generate CSV content
-      const csvHeader = "ID,Nome,Telefone,Tipo,Plano,Médico,IP,Data\n";
+      const csvHeader = "ID,Nome,Email,Telefone,Tipo,Plano,Médico,IP,Data\n";
       const csvRows = conversions.map(conv => 
-        `${conv.id},"${conv.name || ''}","${conv.phone || ''}","${conv.buttonType}","${conv.planName || ''}","${conv.doctorName || ''}","${conv.ipAddress || ''}","${conv.createdAt}"`
+        `${conv.id},"${conv.name || ''}","${conv.email || ''}","${conv.phone || ''}","${conv.buttonType}","${conv.planName || ''}","${conv.doctorName || ''}","${conv.ipAddress || ''}","${conv.createdAt}"`
       ).join('\n');
       
       const csv = csvHeader + csvRows;

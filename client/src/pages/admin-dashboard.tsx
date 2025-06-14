@@ -14,6 +14,7 @@ interface WhatsappConversion {
   id: number;
   phone: string | null;
   name: string | null;
+  email: string | null;
   buttonType: string;
   planName: string | null;
   doctorName: string | null;
@@ -301,6 +302,7 @@ export default function AdminDashboard() {
                     <TableRow>
                       <TableHead>ID</TableHead>
                       <TableHead>Nome</TableHead>
+                      <TableHead>Email</TableHead>
                       <TableHead>Telefone</TableHead>
                       <TableHead>Tipo</TableHead>
                       <TableHead>Plano/Médico</TableHead>
@@ -313,6 +315,7 @@ export default function AdminDashboard() {
                       <TableRow key={conversion.id}>
                         <TableCell className="font-medium">#{conversion.id}</TableCell>
                         <TableCell>{conversion.name || "-"}</TableCell>
+                        <TableCell>{conversion.email || "-"}</TableCell>
                         <TableCell>{conversion.phone || "-"}</TableCell>
                         <TableCell>
                           <Badge className={getButtonTypeColor(conversion.buttonType)}>

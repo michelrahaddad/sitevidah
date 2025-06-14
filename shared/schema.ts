@@ -102,6 +102,7 @@ export const insertAdminUserSchema = createInsertSchema(adminUsers).pick({
 export const insertWhatsappConversionSchema = createInsertSchema(whatsappConversions).pick({
   phone: true,
   name: true,
+  email: true,
   buttonType: true,
   planName: true,
   doctorName: true,
