@@ -81,6 +81,13 @@ export default function LeadCaptureModal({
     },
   });
 
+  // Função para gerar URL do WhatsApp
+  const generateWhatsAppUrl = (phone: string, message: string) => {
+    const cleanPhone = phone.replace(/\D/g, '');
+    const encodedMessage = encodeURIComponent(message);
+    return `https://wa.me/55${cleanPhone}?text=${encodedMessage}`;
+  };
+
   const onSubmit = async (data: LeadCaptureData) => {
     try {
       console.log('Enviando dados:', data);
@@ -95,7 +102,7 @@ export default function LeadCaptureModal({
       // Exibe mensagem de sucesso
       toast({
         title: "Sucesso!",
-        description: "Seus dados foram registrados e você será redirecionado para o WhatsApp.",
+        description: "Seus dados foram registrados. Redirecionando para o WhatsApp...",
       });
       
       // Limpa o formulário e fecha o modal
