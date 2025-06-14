@@ -121,6 +121,12 @@ Changelog:
   * Timeouts de query e limitação de tamanho de requests
   * Middleware de segurança frontend com validação de formulários
   * Logs de segurança detalhados para monitoramento de produção
+- June 14, 2025. Problema técnico crítico resolvido:
+  * Erro do plugin React (@vitejs/plugin-react preamble) que causava página em branco
+  * Site completamente restaurado mantendo design e funcionalidades originais
+  * Solução implementada via configuração HTML sem alterações no código
+  * Todas as funcionalidades preservadas: captura de leads, admin, WhatsApp, segurança
+  * Sistema de produção totalmente operacional
 ```
 
 ## User Preferences
