@@ -1,5 +1,6 @@
 import { Check, MessageCircle, Users, Building } from "lucide-react";
 import type { SelectedPlan } from "@/pages/home";
+import { trackWhatsAppConversion } from "@/lib/whatsapp-tracking";
 
 interface PlansSectionProps {
   onSelectPlan: (plan: SelectedPlan) => void;
@@ -37,13 +38,24 @@ export default function PlansSection({ onSelectPlan }: PlansSectionProps) {
 
   const handleSelectPlan = (plan: any) => {
     if (plan.type === 'empresarial') {
+      // Track enterprise quote conversion
+      trackWhatsAppConversion({
+        buttonType: 'enterprise_quote',
+        planName: plan.name
+      });
+      
       const message = `Olá! Gostaria de saber mais sobre o plano empresarial do Cartão + Vidah`;
       const whatsappUrl = `https://wa.me/5516993247676?text=${encodeURIComponent(message)}`;
       window.open(whatsappUrl, '_blank');
       return;
     }
 
-    // Para plano familiar, também direcionar para WhatsApp
+    // Track plan subscription conversion for family plan
+    trackWhatsAppConversion({
+      buttonType: 'plan_subscription',
+      planName: plan.name
+    });
+
     const message = `Olá! Gostaria de assinar o ${plan.name} por R$ ${plan.monthlyPrice}/mês. Pode me ajudar com o processo?`;
     const whatsappUrl = `https://wa.me/5516993247676?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Stethoscope, ShoppingBag, Star, Users, MapPin, Percent, User, Building, Phone, Globe } from "lucide-react";
+import { Stethoscope, ShoppingBag, Star, Users, MapPin, Percent, User, Building, Phone, Globe, MessageCircle } from "lucide-react";
+import { trackWhatsAppConversion } from "@/lib/whatsapp-tracking";
 import vidahLogo from "@assets/vidah_1749439341688.png";
 import prontoVetLogo from "@assets/PRONTO VET_1749498084808.png";
 import domPedroLogo from "@assets/VAREJAO DOM PEDRO_1749498084809.jpg";
