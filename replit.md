@@ -101,6 +101,12 @@ Changelog:
   * Testado e funcionando corretamente
 - June 14, 2025. Atualização de conteúdo:
   * Desconto máximo alterado de 20% para 50%
+- June 14, 2025. Sistema de exportação aprimorado para campanhas publicitárias:
+  * Campo email adicionado ao modal de captura de leads
+  * Exportação CSV compatível com Google Ads e Facebook Ads
+  * Duas opções de exportação: Marketing Digital e Gestão Interna
+  * Formatação automática de dados para campanhas (nome separado, telefone limpo, categorias de interesse)
+  * Campos padronizados: Email, Phone, First_Name, Last_Name, Interest_Category, Campaign_Type
 ```
 
 ## User Preferences
