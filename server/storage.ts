@@ -1,4 +1,7 @@
-import { customers, subscriptions, digitalCards, plans, type Customer, type InsertCustomer, type Subscription, type InsertSubscription, type DigitalCard, type InsertDigitalCard, type Plan, users, type User, type InsertUser } from "@shared/schema";
+import { customers, subscriptions, digitalCards, plans, adminUsers, whatsappConversions, type Customer, type InsertCustomer, type Subscription, type InsertSubscription, type DigitalCard, type InsertDigitalCard, type Plan, users, type User, type InsertUser, type AdminUser, type InsertAdminUser, type WhatsappConversion, type InsertWhatsappConversion } from "@shared/schema";
+import { db } from "./db";
+import { eq, and, gte, lte } from "drizzle-orm";
+import bcrypt from "bcrypt";
 
 export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
@@ -18,6 +21,16 @@ export interface IStorage {
   
   createDigitalCard(card: InsertDigitalCard): Promise<DigitalCard>;
   getDigitalCardBySubscription(subscriptionId: number): Promise<DigitalCard | undefined>;
+
+  // Admin management
+  createAdminUser(admin: InsertAdminUser): Promise<AdminUser>;
+  getAdminByUsername(username: string): Promise<AdminUser | undefined>;
+  verifyAdminPassword(username: string, password: string): Promise<boolean>;
+
+  // WhatsApp conversion tracking
+  createWhatsappConversion(conversion: InsertWhatsappConversion): Promise<WhatsappConversion>;
+  getAllWhatsappConversions(): Promise<WhatsappConversion[]>;
+  getWhatsappConversionsByDateRange(startDate: Date, endDate: Date): Promise<WhatsappConversion[]>;
 }
 
 export class MemStorage implements IStorage {

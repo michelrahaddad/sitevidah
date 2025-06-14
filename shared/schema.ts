@@ -49,6 +49,27 @@ export const digitalCards = pgTable("digital_cards", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+export const adminUsers = pgTable("admin_users", {
+  id: serial("id").primaryKey(),
+  username: text("username").notNull().unique(),
+  password: text("password").notNull(),
+  email: text("email").notNull().unique(),
+  isActive: boolean("is_active").default(true),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const whatsappConversions = pgTable("whatsapp_conversions", {
+  id: serial("id").primaryKey(),
+  phone: text("phone"),
+  name: text("name"),
+  buttonType: text("button_type").notNull(), // 'plan_subscription', 'doctor_appointment', 'enterprise_quote'
+  planName: text("plan_name"),
+  doctorName: text("doctor_name"),
+  ipAddress: text("ip_address"),
+  userAgent: text("user_agent"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 export const insertCustomerSchema = createInsertSchema(customers).pick({
   name: true,
   email: true,
@@ -71,6 +92,22 @@ export const insertDigitalCardSchema = createInsertSchema(digitalCards).pick({
   qrCode: true,
 });
 
+export const insertAdminUserSchema = createInsertSchema(adminUsers).pick({
+  username: true,
+  password: true,
+  email: true,
+});
+
+export const insertWhatsappConversionSchema = createInsertSchema(whatsappConversions).pick({
+  phone: true,
+  name: true,
+  buttonType: true,
+  planName: true,
+  doctorName: true,
+  ipAddress: true,
+  userAgent: true,
+});
+
 export type InsertCustomer = z.infer<typeof insertCustomerSchema>;
 export type Customer = typeof customers.$inferSelect;
 export type InsertSubscription = z.infer<typeof insertSubscriptionSchema>;
@@ -80,6 +117,10 @@ export type DigitalCard = typeof digitalCards.$inferSelect;
 export type Plan = typeof plans.$inferSelect;
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
+export type InsertAdminUser = z.infer<typeof insertAdminUserSchema>;
+export type AdminUser = typeof adminUsers.$inferSelect;
+export type InsertWhatsappConversion = z.infer<typeof insertWhatsappConversionSchema>;
+export type WhatsappConversion = typeof whatsappConversions.$inferSelect;
 
 export const insertUserSchema = createInsertSchema(users).pick({
   username: true,
