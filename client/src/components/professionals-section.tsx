@@ -1,4 +1,4 @@
-import { Stethoscope, Award, Users, Heart } from "lucide-react";
+import { Stethoscope, Award, Users, Heart, Clock, Activity } from "lucide-react";
 
 export default function ProfessionalsSection() {
   const professionals = [
@@ -32,6 +32,8 @@ export default function ProfessionalsSection() {
       photo: "/doctors/michel-haddad.jpg",
       featured: true,
       crm: "CRM-SP 67.890",
+      schedule: "Segunda a Sábado: 7h às 17h",
+      procedures: ["Check-up Executivo", "Consultas Gerais", "Medicina Preventiva", "Acompanhamento Crônicos"],
       achievements: [
         "Título de Especialista em Clínica Médica",
         "Residência em Medicina Interna",
@@ -50,6 +52,8 @@ export default function ProfessionalsSection() {
       photo: "/doctors/william-haddad-jr.jpg", 
       featured: true,
       crm: "CRM-SP 89.012",
+      schedule: "Segunda a Sexta: 8h às 18h | Urgências 24h",
+      procedures: ["Artroscopia", "Cirurgia do Joelho", "Lesões Esportivas", "Traumatologia"],
       achievements: [
         "Título de Especialista em Ortopedia e Traumatologia",
         "Fellowship em Cirurgia do Joelho",
@@ -122,13 +126,37 @@ export default function ProfessionalsSection() {
                   {professional.description}
                 </p>
 
+                {/* Schedule */}
+                <div className="mb-4 p-3 bg-gray-50 rounded-lg">
+                  <h4 className="font-semibold text-[#636E72] text-sm mb-2 flex items-center gap-2">
+                    <Clock size={16} className="text-[#00B894]" />
+                    Horários de Atendimento
+                  </h4>
+                  <p className="text-xs text-[#636E72]">{professional.schedule}</p>
+                </div>
+
+                {/* Procedures */}
+                <div className="mb-4">
+                  <h4 className="font-semibold text-[#636E72] text-sm mb-2 flex items-center gap-2">
+                    <Activity size={16} className="text-[#00B894]" />
+                    Principais Procedimentos
+                  </h4>
+                  <div className="flex flex-wrap gap-1 mb-3">
+                    {professional.procedures.map((procedure, index) => (
+                      <span key={index} className="text-xs bg-[#00B894]/10 text-[#00B894] px-2 py-1 rounded-full">
+                        {procedure}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
                 <div className="space-y-2">
                   <h4 className="font-semibold text-[#636E72] text-sm mb-2 flex items-center gap-2">
                     <Heart size={16} className="text-[#00B894]" />
                     Qualificações
                   </h4>
                   <ul className="space-y-1">
-                    {professional.achievements.map((achievement, index) => (
+                    {professional.achievements.slice(0, 3).map((achievement, index) => (
                       <li key={index} className="text-xs text-[#636E72] flex items-center gap-2">
                         <div className="w-2 h-2 bg-[#00B894] rounded-full flex-shrink-0"></div>
                         {achievement}
