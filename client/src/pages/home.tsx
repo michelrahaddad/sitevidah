@@ -4,7 +4,6 @@ import BenefitsSection from "@/components/benefits-section";
 import PlansSection from "@/components/plans-section";
 import CheckoutModal from "@/components/checkout-modal";
 import HowItWorksSection from "@/components/how-it-works-section";
-import ProfessionalsSection from "@/components/professionals-section";
 import PartnersSection from "@/components/partners-section";
 import FaqSection from "@/components/faq-section";
 import Footer from "@/components/footer";
@@ -42,7 +41,6 @@ export default function Home() {
       <BenefitsSection />
       <PlansSection onSelectPlan={handleSelectPlan} />
       <HowItWorksSection />
-      <ProfessionalsSection />
       <PartnersSection />
       <FaqSection />
       <Footer />
