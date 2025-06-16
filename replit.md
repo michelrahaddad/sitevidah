@@ -147,6 +147,12 @@ Changelog:
   * Estrutura modular que facilita manutenção e expansão
   * Eliminação de bugs críticos e inconsistências de dados
   * Performance e estabilidade significativamente melhoradas
+- June 16, 2025. Bug crítico de API resolvido:
+  * Problema de conflito entre Vite e rotas API identificado e corrigido
+  * Rota /track-whatsapp movida para antes do middleware Vite
+  * Sistema de captura de leads WhatsApp totalmente funcional
+  * Erro "Unexpected token" no parsing JSON eliminado
+  * Modal de captura funcionando perfeitamente sem erros
 ```
 
 ## User Preferences
