@@ -1,6 +1,7 @@
 import { pgTable, text, serial, integer, boolean, timestamp, decimal } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
+import { relations } from "drizzle-orm";
 
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
@@ -25,7 +26,11 @@ export const plans = pgTable("plans", {
   monthlyPrice: decimal("monthly_price", { precision: 10, scale: 2 }),
   adhesionFee: decimal("adhesion_fee", { precision: 10, scale: 2 }).notNull(),
   maxDependents: integer("max_dependents").default(0),
+  description: text("description"),
+  features: text("features").array(),
   isActive: boolean("is_active").default(true),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
 export const subscriptions = pgTable("subscriptions", {
