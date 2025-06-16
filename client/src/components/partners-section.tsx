@@ -2,24 +2,23 @@ import { motion } from "framer-motion";
 import { useState, useMemo, useCallback } from "react";
 import { Stethoscope, ShoppingBag, Star, Users, MapPin, Percent, User, Building, Phone, Globe, MessageCircle } from "lucide-react";
 import LeadCaptureModal from "./lead-capture-modal";
-// Placeholder for partners without logos
-const placeholderLogo = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='60' viewBox='0 0 120 60'%3E%3Crect width='120' height='60' fill='%23f3f4f6'/%3E%3Ctext x='60' y='35' text-anchor='middle' fill='%23374151' font-family='Arial' font-size='10'%3ELogo%3C/text%3E%3C/svg%3E";
+// Placeholder melhorado para logos das empresas
+const placeholderLogo = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='80' viewBox='0 0 120 80'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2300B894;stop-opacity:0.1' /%3E%3Cstop offset='100%25' style='stop-color:%2300B894;stop-opacity:0.05' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='120' height='80' fill='url(%23grad)' rx='8'/%3E%3Ccircle cx='60' cy='30' r='12' fill='%2300B894' opacity='0.2'/%3E%3Ctext x='60' y='55' text-anchor='middle' fill='%2300B894' font-family='Arial, sans-serif' font-size='11' font-weight='600'%3ELogo Empresa%3C/text%3E%3C/svg%3E";
 
-// Import real logos for existing partners
-import vidahLogo from "@assets/vidah_1749439341688.png";
-import prontoVetLogo from "@assets/PRONTO VET_1749498084808.png";
-import domPedroLogo from "@assets/VAREJAO DOM PEDRO_1749498084809.jpg";
-import santaTerezaLogo from "@assets/RACOES SANTA TEREZA_1749498084809.png";
-import hospitalMalzoniLogo from "@assets/HOSPITAL MALZONI_1749498084810.png";
-import sosEnfermagemLogo from "@assets/SOS ENFERMAGEM_1749498084810.jpg";
-import funerariaCanaaLogo from "@assets/FUNERARIA CANAA_1749498084810.png";
-import fiduciaEletroLogo from "@assets/FIDUCIA ELETRO_1749498084811.png";
-import drogavenLogo from "@assets/DROGAVEN_1749498084811.png";
-
+// Logos das empresas parceiras - aguardando upload
+const vidahLogo = placeholderLogo;
+const prontoVetLogo = placeholderLogo;
+const domPedroLogo = placeholderLogo;
+const santaTerezaLogo = placeholderLogo;
+const hospitalMalzoniLogo = placeholderLogo;
+const sosEnfermagemLogo = placeholderLogo;
+const funerariaCanaaLogo = placeholderLogo;
+const fiduciaEletroLogo = placeholderLogo;
+const drogavenLogo = placeholderLogo;
 const oticasCarolLogo = placeholderLogo;
 const silagasLogo = placeholderLogo;
 
-// Create optimized logo variables
+// Logos adicionais das empresas parceiras - aguardando upload
 const evolucaoLogo = placeholderLogo;
 const reabilitarNeuropedLogo = placeholderLogo;
 const corpoHarmoniaLogo = placeholderLogo;
