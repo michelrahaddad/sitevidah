@@ -13,9 +13,9 @@ export const validateRequest = (req: Request, res: Response, next: NextFunction)
       success: false,
       error: 'Dados de entrada inválidos',
       details: errors.array().map(error => ({
-        field: error.type === 'field' ? error.path : 'unknown',
+        field: 'location' in error ? error.path : 'unknown',
         message: error.msg,
-        value: error.type === 'field' ? error.value : undefined
+        value: 'value' in error ? error.value : undefined
       }))
     });
   }

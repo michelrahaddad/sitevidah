@@ -8,6 +8,7 @@ import { body, param } from "express-validator";
 import { validateRequest, sanitizeRequest } from "./middleware/validation";
 import { loginLimiter, adminLimiter, whatsappLimiter } from "./middleware/rateLimiting";
 import { authenticateAdmin } from "./middleware/auth";
+import { sanitizeInput } from "./security";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   
@@ -21,7 +22,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Apply global middleware for API routes
-  app.use("/api", sanitizeInput);
+  app.use("/api", sanitizeRequest);
   
   // Plan routes
   app.get("/api/plans", PlanController.getAllPlans);
