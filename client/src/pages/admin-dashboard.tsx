@@ -138,56 +138,7 @@ export default function AdminDashboard() {
     }
   };
 
-  const handleExportInternal = async () => {
-    try {
-      const token = localStorage.getItem("admin_token");
-      if (!token) {
-        toast({
-          title: "Erro",
-          description: "Token de acesso não encontrado",
-          variant: "destructive",
-        });
-        return;
-      }
 
-      let url = "/api/admin/conversions/export-internal";
-      if (startDate && endDate) {
-        url += `?startDate=${startDate}&endDate=${endDate}`;
-      }
-
-      const response = await fetch(url, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error("Erro ao exportar dados");
-      }
-
-      const blob = await response.blob();
-      const downloadUrl = window.URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = downloadUrl;
-      link.download = "gestao-interna-leads.csv";
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      window.URL.revokeObjectURL(downloadUrl);
-
-      toast({
-        title: "Sucesso",
-        description: "Dados de gestão interna exportados com sucesso!",
-      });
-    } catch (error) {
-      console.error("Export error:", error);
-      toast({
-        title: "Erro",
-        description: "Erro ao exportar dados",
-        variant: "destructive",
-      });
-    }
-  };
 
   const getButtonTypeLabel = (type: string) => {
     switch (type) {
@@ -343,15 +294,6 @@ export default function AdminDashboard() {
                   <Download size={16} />
                   <span className="hidden sm:inline">Exportar para Anúncios</span>
                   <span className="sm:hidden">Anúncios</span>
-                </Button>
-                <Button 
-                  onClick={handleExportInternal} 
-                  variant="outline" 
-                  className="flex items-center justify-center gap-2 w-full sm:w-auto"
-                >
-                  <Download size={16} />
-                  <span className="hidden sm:inline">Gestão Interna</span>
-                  <span className="sm:hidden">Interna</span>
                 </Button>
               </div>
             </div>
