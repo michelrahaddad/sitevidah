@@ -24,13 +24,15 @@ export default function PlansSection({ onSelectPlan }: PlansSectionProps) {
   });
 
   // Static plans as specified in the document
-  const plans = [
+  const plans: SelectedPlan[] = [
     {
       id: 1,
       name: "Cartão Familiar",
       type: "familiar",
-      monthlyPrice: "34.90",
-      icon: "👨‍👩‍👧‍👦",
+      annualPrice: 298.80,
+      monthlyPrice: 34.90,
+      adhesionFee: 0,
+      maxDependents: 4,
       features: [
         "Cobertura para você e até 4 dependentes",
         "Descontos em clínicas médicas e odontológicas", 
@@ -41,7 +43,10 @@ export default function PlansSection({ onSelectPlan }: PlansSectionProps) {
       id: 2,
       name: "Cartão Corporativo", 
       type: "empresarial",
-      icon: "🏢",
+      annualPrice: 0,
+      monthlyPrice: 0,
+      adhesionFee: 0,
+      maxDependents: 0,
       features: [
         "Benefícios para sua equipe com custo acessível",
         "Incentive saúde e bem-estar no ambiente de trabalho",

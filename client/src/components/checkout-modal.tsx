@@ -156,6 +156,7 @@ export default function CheckoutModal({ plan, onClose }: CheckoutModalProps) {
           planPrice: annualPrice,
           total: annualPrice + adhesionFee,
           installments: 1,
+          adhesionFee: adhesionFee,
           description: "Pagamento único"
         };
     }

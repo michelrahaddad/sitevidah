@@ -1,6 +1,6 @@
 import { CreditCard } from "lucide-react";
 import { scrollToElement } from "@/lib/utils";
-import type { SelectedPlan } from "@/pages/home";
+import type { SelectedPlan } from "@shared/types";
 
 interface HeroSectionProps {
   onSelectPlan: (plan: SelectedPlan) => void;
