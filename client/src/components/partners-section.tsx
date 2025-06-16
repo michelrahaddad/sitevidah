@@ -41,8 +41,8 @@ const lab7LogoUrl = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg
 // Logo da Magia do Sorriso (SVG sorriso)
 const magiaSorrisoLogoUrl = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='60' fill='%23667eea'/%3E%3Cpath d='M35 55 Q60 70 85 55' stroke='white' stroke-width='3' fill='none'/%3E%3Ccircle cx='45' cy='45' r='3' fill='white'/%3E%3Ccircle cx='75' cy='45' r='3' fill='white'/%3E%3Ctext x='60' y='85' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-size='10' font-weight='bold'%3ESORRISO%3C/text%3E%3C/svg%3E";
 
-// Logo da Reabilitar Neuroped (SVG colorido)
-const reabilitarNeuropedLogoUrl = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='60' fill='%234A90E2'/%3E%3Ctext x='60' y='40' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-size='12' font-weight='bold'%3EREABILITAR%3C/text%3E%3Ctext x='60' y='60' text-anchor='middle' fill='%23FFE066' font-family='Arial, sans-serif' font-size='16' font-weight='bold'%3ENEURO%3C/text%3E%3Ctext x='60' y='80' text-anchor='middle' fill='%23FF6B9D' font-family='Arial, sans-serif' font-size='14' font-weight='bold'%3EPED%3C/text%3E%3C/svg%3E";
+// Logo da Reabilitar Neuroped (logo real)
+const reabilitarNeuropedLogoUrl = "/logos/reabilitar-neuroped-logo.png";
 
 // Logo do Corpo em Harmonia (SVG bem-estar)
 const corpoHarmoniaLogoUrl = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='60' fill='%2368B984'/%3E%3Ccircle cx='60' cy='35' r='8' fill='%234A90E2'/%3E%3Cpath d='M45 45 Q60 35 75 45 L75 75 Q60 85 45 75 Z' fill='%234A90E2' opacity='0.8'/%3E%3Cpath d='M35 40 Q50 35 65 45' stroke='%2368B984' stroke-width='3' fill='none'/%3E%3Ctext x='60' y='95' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-size='9' font-weight='bold'%3EHARMONIA%3C/text%3E%3C/svg%3E";
