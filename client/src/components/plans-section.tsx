@@ -37,7 +37,8 @@ export default function PlansSection({ onSelectPlan }: PlansSectionProps) {
         "Cobertura para você e até 4 dependentes",
         "Descontos em clínicas médicas e odontológicas", 
         "Atendimento humanizado sempre que precisar"
-      ]
+      ],
+      icon: "👨‍👩‍👧‍👦"
     },
     {
       id: 2,
@@ -52,7 +53,8 @@ export default function PlansSection({ onSelectPlan }: PlansSectionProps) {
         "Incentive saúde e bem-estar no ambiente de trabalho",
         "Personalizado para empresas de Ibitinga/SP",
         "Fale com nosso time e receba uma proposta"
-      ]
+      ],
+      icon: "🏢"
     }
   ];
 
@@ -118,7 +120,7 @@ export default function PlansSection({ onSelectPlan }: PlansSectionProps) {
                 </div>
                 
                 <ul className="space-y-3 mb-8 text-left">
-                  {plan.features.map((feature, index) => (
+                  {plan.features?.map((feature, index) => (
                     <li key={index} className="flex items-start">
                       <div className="text-[#00B894] mr-3 mt-1">
                         {isEnterprise ? "🏢" : "🦷"}

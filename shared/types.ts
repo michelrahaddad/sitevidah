@@ -9,6 +9,7 @@ export interface SelectedPlan {
   maxDependents?: number;
   description?: string;
   features?: string[];
+  icon?: string; // Para compatibilidade com componentes existentes
 }
 
 export interface CustomerData {
