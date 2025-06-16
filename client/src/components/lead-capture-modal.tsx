@@ -124,31 +124,15 @@ export default function LeadCaptureModal({
         description: "Dados registrados! Abrindo WhatsApp...",
       });
       
-      console.log('🌐 Tentando abrir WhatsApp Web...');
+      console.log('🌐 Abrindo WhatsApp Web diretamente...');
       
-      // Tenta diferentes métodos para garantir que funcione
-      try {
-        // Primeiro tenta window.open
-        const newWindow = window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-        
-        if (!newWindow) {
-          console.log('⚠️ window.open bloqueado, tentando window.location...');
-          // Se bloqueado por popup blocker, usa location
-          window.location.href = whatsappUrl;
-        } else {
-          console.log('✅ WhatsApp Web aberto em nova aba');
-        }
-      } catch (openError) {
-        console.error('❌ Erro ao abrir WhatsApp:', openError);
-        // Fallback para location.href
-        window.location.href = whatsappUrl;
-      }
+      // Usa window.location.href diretamente para evitar bloqueio de popup
+      window.location.href = whatsappUrl;
+      console.log('✅ Redirecionando para WhatsApp Web');
       
-      // Limpa o formulário e fecha o modal após um delay
-      setTimeout(() => {
-        reset();
-        onClose();
-      }, 500);
+      // Limpa o formulário e fecha o modal imediatamente
+      reset();
+      onClose();
       
     } catch (error) {
       console.error('❌ Erro completo no onSubmit:', error);

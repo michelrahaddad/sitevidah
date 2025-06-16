@@ -173,6 +173,8 @@ Changelog:
   * Validação de telefone ajustada para aceitar números brasileiros formatados
   * Redirecionamento em nova aba configurado corretamente
   * Todas as URLs do sistema atualizadas (modal, botão flutuante, backend)
+  * Problema de popup blocker resolvido: usa window.location.href diretamente
+  * Funcionamento em primeira tentativa garantido - não precisa mais clicar duas vezes
 ```
 
 ## User Preferences
