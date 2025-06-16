@@ -11,13 +11,7 @@ import { formatPhone } from "@/lib/utils";
 const leadCaptureSchema = z.object({
   name: z.string().min(2, "Nome deve ter pelo menos 2 caracteres"),
   email: z.string().email("Email deve ter um formato válido"),
-  phone: z.string()
-    .min(1, "Telefone é obrigatório")
-    .refine((phone) => {
-      const cleanPhone = phone.replace(/\D/g, '');
-      // Aceita números de 10 ou 11 dígitos
-      return cleanPhone.length >= 10 && cleanPhone.length <= 11;
-    }, "Telefone deve ter 10 ou 11 dígitos"),
+  phone: z.string().optional().or(z.literal("")),
 });
 
 type LeadCaptureData = z.infer<typeof leadCaptureSchema>;
@@ -53,6 +47,12 @@ export default function LeadCaptureModal({
     watch
   } = useForm<LeadCaptureData>({
     resolver: zodResolver(leadCaptureSchema),
+    mode: "onChange",
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: ""
+    }
   });
 
   const phoneValue = watch("phone");
@@ -276,9 +276,7 @@ export default function LeadCaptureModal({
                   className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00B894] focus:border-transparent outline-none transition-all"
                 />
               </div>
-              {errors.phone && (
-                <p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>
-              )}
+
             </div>
 
             {/* Buttons */}
