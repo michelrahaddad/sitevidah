@@ -8,7 +8,7 @@ const placeholderLogo = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000
 // Logo do Grupo Vidah
 const vidahLogoUrl = "/logos/vidah-logo.png";
 
-// Logo do Silasgás Ultragaz
+// Logo do Silasgás
 const silasgasLogoUrl = "/logos/silagas-logo.jpeg";
 
 // Logo do Dom Pedro
@@ -47,8 +47,7 @@ const reabilitarNeuropedLogoUrl = "data:image/svg+xml,%3Csvg xmlns='http://www.w
 // Logo do Corpo em Harmonia (SVG temporário)
 const corpoHarmoniaLogoUrl = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='60' fill='%2368B984'/%3E%3Ccircle cx='60' cy='35' r='8' fill='%234A90E2'/%3E%3Cpath d='M45 45 Q60 35 75 45 L75 75 Q60 85 45 75 Z' fill='%234A90E2' opacity='0.8'/%3E%3Cpath d='M35 40 Q50 35 65 45' stroke='%2368B984' stroke-width='3' fill='none'/%3E%3Ctext x='60' y='95' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-size='9' font-weight='bold'%3EHARMONIA%3C/text%3E%3C/svg%3E";
 
-// Logo do Silas Ultragas (SVG temporário)
-const silasUltragasLogoUrl = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='60' fill='%23FF5722'/%3E%3Ccircle cx='60' cy='50' r='20' fill='none' stroke='white' stroke-width='3'/%3E%3Cpath d='M45 50 L75 50 M60 35 L60 65' stroke='white' stroke-width='2'/%3E%3Ctext x='60' y='85' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-size='10' font-weight='bold'%3ESILAS%3C/text%3E%3Ctext x='60' y='98' text-anchor='middle' fill='%23FFE0B2' font-family='Arial, sans-serif' font-size='8' font-weight='bold'%3EULTRAGAS%3C/text%3E%3C/svg%3E";
+// Silasgás já declarado acima
 
 const prontoVetLogo = placeholderLogo;
 const domPedroLogo = placeholderLogo;
@@ -117,7 +116,7 @@ const parceiroDestaque = {
 // Nova estrutura moderna para empresas parceiras
 const parceiros = [
   { nome: "Grupo Vidah", desconto: "Exclusivo", categoria: "Parceiro Principal", icon: "🏥" },
-  { nome: "Silasgás Ultragaz", desconto: "10%", categoria: "Energia & Gás", icon: "🔥" },
+  { nome: "Silasgás", desconto: "10%", categoria: "Energia & Gás", icon: "🔥" },
   { nome: "Óticas Carol", desconto: "20%", categoria: "Saúde Visual", icon: "👁️" },
   { nome: "Fiducia Eletro", desconto: "10%", categoria: "Tecnologia", icon: "⚡" },
   { nome: "Evolução Centro Multidisciplinar", desconto: "Especial", categoria: "Bem-estar", icon: "🏥" },
@@ -517,9 +516,9 @@ export default function PartnersSection() {
                           alt={parceiro.nome}
                           className="w-full h-full object-cover rounded-full"
                         />
-                      ) : parceiro.nome === "Silas Ultragas" ? (
+                      ) : parceiro.nome === "Silasgás" ? (
                         <img 
-                          src={silasUltragasLogoUrl} 
+                          src={silasgasLogoUrl} 
                           alt={parceiro.nome}
                           className="w-full h-full object-cover rounded-full"
                         />
