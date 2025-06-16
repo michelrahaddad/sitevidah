@@ -35,6 +35,9 @@ const fiduciaEletroLogoUrl = "/logos/fiducia-eletro-logo.png";
 // Logo da Funerária Canaã
 const funerariaCanaLogoUrl = "/logos/funeraria-canaa-logo.png";
 
+// Logo do Lab 7 (SVG temporário com design circular)
+const lab7LogoUrl = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='60' fill='%2398D8C8'/%3E%3Ctext x='60' y='50' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-size='20' font-weight='bold'%3ELab%3C/text%3E%3Ctext x='60' y='75' text-anchor='middle' fill='%23FF4757' font-family='Arial, sans-serif' font-size='24' font-weight='bold'%3E7%3C/text%3E%3C/svg%3E";
+
 const prontoVetLogo = placeholderLogo;
 const domPedroLogo = placeholderLogo;
 const santaTerezaLogo = placeholderLogo;
@@ -475,6 +478,12 @@ export default function PartnersSection() {
                       ) : parceiro.nome === "Funerária Canaã" ? (
                         <img 
                           src={funerariaCanaLogoUrl} 
+                          alt={parceiro.nome}
+                          className="w-full h-full object-cover rounded-full"
+                        />
+                      ) : parceiro.nome === "Lab 7" ? (
+                        <img 
+                          src={lab7LogoUrl} 
                           alt={parceiro.nome}
                           className="w-full h-full object-cover rounded-full"
                         />
