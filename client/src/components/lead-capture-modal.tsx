@@ -97,36 +97,26 @@ export default function LeadCaptureModal({
       const result = await trackConversionMutation.mutateAsync(data);
       console.log('Conversão registrada:', result);
       
-      // Gera mensagem personalizada do WhatsApp incluindo email
-      const personalizedMessage = `Olá! Meu nome é ${data.name}, meu email é ${data.email} e meu telefone é ${formatPhone(data.phone)}. ${whatsappMessage}`;
-      const whatsappUrl = generateWhatsAppUrl(whatsappPhone, personalizedMessage);
+      // Usa a URL do WhatsApp retornada pelo servidor
+      const whatsappUrl = result.data?.whatsappUrl;
       
-      // Detecta se é iOS Safari para usar método adequado
-      const isIOSSafari = /iPad|iPhone|iPod/.test(navigator.userAgent);
-      
-      if (isIOSSafari) {
-        // Para iOS Safari, mostra botão de fallback pois window.location.href pode não funcionar com WhatsApp
-        setFallbackWhatsappUrl(whatsappUrl);
-        setShowFallbackButton(true);
-        
-        toast({
-          title: "Sucesso!",
-          description: "Seus dados foram registrados. Clique no botão abaixo para abrir o WhatsApp.",
-        });
-      } else {
-        // Para outros navegadores, redireciona diretamente
-        toast({
-          title: "Sucesso!",
-          description: "Seus dados foram registrados. Redirecionando para o WhatsApp...",
-        });
-        
-        // Limpa o formulário e fecha o modal
-        reset();
-        onClose();
-        
-        // Redirecionamento direto
-        window.location.href = whatsappUrl;
+      if (!whatsappUrl) {
+        throw new Error('URL do WhatsApp não foi gerada');
       }
+      
+      // Limpa o formulário e fecha o modal
+      reset();
+      onClose();
+      
+      toast({
+        title: "Sucesso!",
+        description: "Seus dados foram registrados. Redirecionando para o WhatsApp...",
+      });
+      
+      // Pequeno delay para mostrar o toast antes do redirecionamento
+      setTimeout(() => {
+        window.open(whatsappUrl, '_blank');
+      }, 500);
       
     } catch (error) {
       console.error('Erro no onSubmit:', error);
