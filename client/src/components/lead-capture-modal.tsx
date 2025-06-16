@@ -115,8 +115,9 @@ export default function LeadCaptureModal({
       
       // Pequeno delay para mostrar o toast antes do redirecionamento
       setTimeout(() => {
-        window.open(whatsappUrl, '_blank');
-      }, 500);
+        // Abre o WhatsApp Web em nova aba
+        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+      }, 1000);
       
     } catch (error) {
       console.error('Erro no onSubmit:', error);

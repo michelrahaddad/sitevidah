@@ -122,44 +122,7 @@ export class WhatsAppController {
     }
   }
 
-  private static generateWhatsAppUrl(conversion: WhatsAppConversion): string {
-    const basePhone = "5516993247676";
-    let message = "";
-    
-    switch (conversion.buttonType) {
-      case 'plan_subscription':
-        message = `Olá! Tenho interesse no plano ${conversion.planName || 'Vidah'}.%0A%0A`;
-        if (conversion.name) message += `Nome: ${conversion.name}%0A`;
-        if (conversion.phone) message += `Telefone: ${conversion.phone}%0A`;
-        if (conversion.email) message += `Email: ${conversion.email}%0A`;
-        message += `%0AGostaria de mais informações sobre como contratar.`;
-        break;
-        
-      case 'doctor_appointment':
-        message = `Olá! Gostaria de agendar uma consulta com ${conversion.doctorName || 'um médico'}.%0A%0A`;
-        if (conversion.name) message += `Nome: ${conversion.name}%0A`;
-        if (conversion.phone) message += `Telefone: ${conversion.phone}%0A`;
-        if (conversion.email) message += `Email: ${conversion.email}%0A`;
-        message += `%0AQuando posso agendar?`;
-        break;
-        
-      case 'enterprise_quote':
-        message = `Olá! Gostaria de um orçamento para plano empresarial.%0A%0A`;
-        if (conversion.name) message += `Nome: ${conversion.name}%0A`;
-        if (conversion.phone) message += `Telefone: ${conversion.phone}%0A`;
-        if (conversion.email) message += `Email: ${conversion.email}%0A`;
-        message += `%0APreciso de mais informações sobre valores e condições.`;
-        break;
-        
-      default:
-        message = `Olá! Tenho interesse nos serviços da Vidah.%0A%0A`;
-        if (conversion.name) message += `Nome: ${conversion.name}%0A`;
-        if (conversion.phone) message += `Telefone: ${conversion.phone}%0A`;
-        message += `%0AGostaria de mais informações.`;
-    }
-    
-    return `https://wa.me/${basePhone}?text=${message}`;
-  }
+  // Método removido - agora usa WhatsAppService.generateWhatsAppUrl
 
   private static generateCSV(conversions: WhatsAppConversion[], type: string): string {
     if (type === 'marketing') {

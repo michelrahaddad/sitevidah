@@ -1,6 +1,8 @@
 // Application constants
 export const WHATSAPP_CONFIG = {
   DEFAULT_PHONE: '5516993247676',
+  WEB_URL: 'https://web.whatsapp.com/send',
+  MOBILE_URL: 'https://wa.me',
   MESSAGE_TEMPLATES: {
     PLAN_SUBSCRIPTION: (name: string, phone: string, email: string, planName: string) =>
       `Olá! Tenho interesse no plano ${planName}.\n\nNome: ${name}\nTelefone: ${phone}\nEmail: ${email}\n\nGostaria de mais informações sobre como contratar.`,

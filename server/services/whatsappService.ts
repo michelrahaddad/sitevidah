@@ -38,7 +38,8 @@ export class WhatsAppService {
     }
     
     const encodedMessage = encodeURIComponent(message);
-    return `https://wa.me/${WHATSAPP_CONFIG.DEFAULT_PHONE}?text=${encodedMessage}`;
+    // Usa WhatsApp Web que funciona para todos, mesmo sem app instalado
+    return `${WHATSAPP_CONFIG.WEB_URL}?phone=${WHATSAPP_CONFIG.DEFAULT_PHONE}&text=${encodedMessage}`;
   }
 
   /**

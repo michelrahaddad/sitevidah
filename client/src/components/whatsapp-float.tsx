@@ -10,7 +10,7 @@ export default function WhatsAppFloat() {
     });
 
     const message = "Olá! Gostaria de saber mais sobre o Cartão + Vidah";
-    const whatsappUrl = `https://wa.me/5516993247676?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://web.whatsapp.com/send?phone=5516993247676&text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 
