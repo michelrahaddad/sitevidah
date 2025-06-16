@@ -419,7 +419,7 @@ export default function AdminDashboard() {
 
                 {/* Mobile Cards */}
                 <div className="lg:hidden space-y-4">
-                  {conversions.map((conversion: WhatsappConversion) => (
+                  {conversions.map((conversion: any) => (
                     <div key={conversion.id} className="bg-gray-50 rounded-lg p-4 space-y-3">
                       <div className="flex items-center justify-between">
                         <span className="font-medium text-gray-900">#{conversion.id}</span>
