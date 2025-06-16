@@ -10,9 +10,36 @@ import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { apiRequest } from "@/lib/queryClient";
-import { formatCurrency, formatCPF, formatPhone, validateCPF, validateEmail, calculateDiscount } from "@/lib/utils";
-import type { SelectedPlan } from "@/pages/home";
+import { subscriptionApi } from "@/lib/api";
+import { formatCurrency, formatCPF, formatPhone } from "@/lib/utils";
+import type { SelectedPlan, SubscriptionRequest } from "@shared/types";
+
+// CPF validation function
+function validateCPF(cpf: string): boolean {
+  const cleaned = cpf.replace(/[^\d]/g, '');
+  
+  if (cleaned.length !== 11 || /^(\d)\1{10}$/.test(cleaned)) {
+    return false;
+  }
+  
+  let sum = 0;
+  for (let i = 0; i < 9; i++) {
+    sum += parseInt(cleaned.charAt(i)) * (10 - i);
+  }
+  let remainder = 11 - (sum % 11);
+  if (remainder === 10 || remainder === 11) remainder = 0;
+  if (remainder !== parseInt(cleaned.charAt(9))) return false;
+  
+  sum = 0;
+  for (let i = 0; i < 10; i++) {
+    sum += parseInt(cleaned.charAt(i)) * (11 - i);
+  }
+  remainder = 11 - (sum % 11);
+  if (remainder === 10 || remainder === 11) remainder = 0;
+  if (remainder !== parseInt(cleaned.charAt(10))) return false;
+  
+  return true;
+}
 
 interface CheckoutModalProps {
   plan: SelectedPlan;

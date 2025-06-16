@@ -4,10 +4,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { X, Phone, User, Mail } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
-import { apiRequest } from "@/lib/queryClient";
+import { whatsappApi } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 import { formatPhone } from "@/lib/utils";
-import { generateWhatsAppUrl } from "@/lib/utils";
 
 const leadCaptureSchema = z.object({
   name: z.string().min(2, "Nome deve ter pelo menos 2 caracteres"),

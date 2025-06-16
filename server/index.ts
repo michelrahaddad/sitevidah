@@ -4,7 +4,7 @@ import cors from "cors";
 import compression from "compression";
 import morgan from "morgan";
 import rateLimit from "express-rate-limit";
-import { registerRoutes } from "./routes/index";
+import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import { securityHeaders, validateRequestSize, monitorSuspiciousActivity, queryTimeout } from "./security";
 import { generalLimiter } from "./middleware/rateLimiting";
