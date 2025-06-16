@@ -5,8 +5,8 @@ import LeadCaptureModal from "./lead-capture-modal";
 // Placeholder melhorado para logos das empresas
 const placeholderLogo = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='80' viewBox='0 0 120 80'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2300B894;stop-opacity:0.1' /%3E%3Cstop offset='100%25' style='stop-color:%2300B894;stop-opacity:0.05' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='120' height='80' fill='url(%23grad)' rx='8'/%3E%3Ccircle cx='60' cy='30' r='12' fill='%2300B894' opacity='0.2'/%3E%3Ctext x='60' y='55' text-anchor='middle' fill='%2300B894' font-family='Arial, sans-serif' font-size='11' font-weight='600'%3ELogo Empresa%3C/text%3E%3C/svg%3E";
 
-// Logo do Grupo Vidah
-const vidahLogoUrl = "/attached_assets/Captura de Tela 2025-06-16 às 16.31.41_1750102334245.png";
+// Logo do Grupo Vidah (SVG temporário até o upload da imagem real)
+const vidahLogoUrl = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='100' viewBox='0 0 200 100'%3E%3Crect width='200' height='100' fill='%23394B5C' rx='8'/%3E%3Ctext x='100' y='60' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-size='28' font-weight='bold'%3EVIDAH%3C/text%3E%3C/svg%3E";
 
 const prontoVetLogo = placeholderLogo;
 const domPedroLogo = placeholderLogo;
@@ -74,6 +74,7 @@ const parceiroDestaque = {
 
 // Nova estrutura moderna para empresas parceiras
 const parceiros = [
+  { nome: "Grupo Vidah", desconto: "Exclusivo", categoria: "Parceiro Principal", icon: "🏥" },
   { nome: "Silasgás Ultragaz", desconto: "10%", categoria: "Energia & Gás", icon: "🔥" },
   { nome: "Óticas Carol", desconto: "20%", categoria: "Saúde Visual", icon: "👁️" },
   { nome: "Fiducia Eletro", desconto: "10%", categoria: "Tecnologia", icon: "⚡" },
