@@ -178,6 +178,12 @@ Changelog:
   * Content Security Policy contornado com link temporário
   * Validação de telefone simplificada e formatação automática
   * Sistema completamente funcional para números como 16-997782211
+- June 16, 2025. Bug crítico de validação de telefone resolvido definitivamente:
+  * Validação express-validator corrigida para aceitar telefones vazios
+  * Campo telefone agora funciona com qualquer valor ou vazio
+  * Backend testado e confirmado funcionando com {"success":true}
+  * Modal de captura 100% funcional sem erros de validação
+  * Sistema pronto para produção com telefone opcional
 ```
 
 ## User Preferences
