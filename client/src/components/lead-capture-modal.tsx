@@ -93,6 +93,11 @@ export default function LeadCaptureModal({
         throw error;
       }
     },
+    onSuccess: () => {
+      // Limpa formulário e fecha modal imediatamente após sucesso
+      reset();
+      onClose();
+    }
   });
 
   // Função para gerar URL do WhatsApp
@@ -126,13 +131,20 @@ export default function LeadCaptureModal({
       
       console.log('🌐 Abrindo WhatsApp Web diretamente...');
       
-      // Usa window.location.href diretamente para evitar bloqueio de popup
-      window.location.href = whatsappUrl;
-      console.log('✅ Redirecionando para WhatsApp Web');
-      
-      // Limpa o formulário e fecha o modal imediatamente
-      reset();
+      // Fecha modal e limpa formulário
       onClose();
+      reset();
+      
+      // Cria um link temporário e clica nele para evitar CSP
+      const link = document.createElement('a');
+      link.href = whatsappUrl;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      console.log('✅ WhatsApp Web aberto');
       
     } catch (error) {
       console.error('❌ Erro completo no onSubmit:', error);
