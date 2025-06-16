@@ -1,4 +1,5 @@
-import { WhatsAppConversion, InsertWhatsappConversion } from "@shared/types";
+import { WhatsAppConversion } from "@shared/types";
+import { InsertWhatsappConversion } from "@shared/schema";
 import { WHATSAPP_CONFIG } from "@shared/constants";
 import { storage } from "../storage";
 
@@ -10,14 +11,14 @@ export class WhatsAppService {
   /**
    * Creates a new WhatsApp conversion record
    */
-  static async createConversion(data: InsertWhatsappConversion): Promise<WhatsAppConversion> {
+  static async createConversion(data: InsertWhatsappConversion) {
     return await storage.createWhatsappConversion(data);
   }
 
   /**
    * Generates WhatsApp URL with appropriate message template
    */
-  static generateWhatsAppUrl(conversion: WhatsAppConversion): string {
+  static generateWhatsAppUrl(conversion: any): string {
     const { name = '', phone = '', email = '', planName = '', doctorName = '' } = conversion;
     
     let message = '';
@@ -43,14 +44,14 @@ export class WhatsAppService {
   /**
    * Gets conversions by date range
    */
-  static async getConversionsByDateRange(startDate: Date, endDate: Date): Promise<WhatsAppConversion[]> {
+  static async getConversionsByDateRange(startDate: Date, endDate: Date) {
     return await storage.getWhatsappConversionsByDateRange(startDate, endDate);
   }
 
   /**
    * Gets all conversions
    */
-  static async getAllConversions(): Promise<WhatsAppConversion[]> {
+  static async getAllConversions() {
     return await storage.getAllWhatsappConversions();
   }
 }

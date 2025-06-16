@@ -1,6 +1,7 @@
 import type { Request, Response } from "express";
+import { storage } from "../storage";
 import { whatsappConversionSchema } from "@shared/validation";
-import { ApiResponse } from "@shared/types";
+import { ApiResponse, WhatsAppConversion } from "@shared/types";
 import { HTTP_STATUS } from "@shared/constants";
 import { WhatsAppService } from "../services/whatsappService";
 import { z } from "zod";

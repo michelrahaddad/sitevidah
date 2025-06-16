@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { insertCustomerSchema, insertSubscriptionSchema, insertDigitalCardSchema, insertAdminUserSchema, insertWhatsappConversionSchema } from "./schema";
 
 // CPF validation function
 export function isValidCPF(cpf: string): boolean {
@@ -74,8 +75,8 @@ export const phoneSchema = z.string()
   .refine(isValidPhone, 'Formato de telefone inválido');
 
 export const nameSchema = z.string()
-  .min(VALIDATION_LIMITS.NAME.MIN, `Nome deve ter pelo menos ${VALIDATION_LIMITS.NAME.MIN} caracteres`)
-  .max(VALIDATION_LIMITS.NAME.MAX, 'Nome muito longo')
+  .min(2, 'Nome deve ter pelo menos 2 caracteres')
+  .max(100, 'Nome muito longo')
   .regex(/^[a-zA-ZÀ-ÿ\s]+$/, 'Nome deve conter apenas letras e espaços');
 
 // Customer data validation schema
