@@ -20,6 +20,18 @@ const prontoVetLogoUrl = "/logos/pronto-vet-logo.png";
 // Logo das Rações Santa Tereza
 const santaTerezaLogoUrl = "/logos/santa-tereza-logo.png";
 
+// Logo do Hospital Malzoni
+const hospitalMalzoniLogoUrl = "/logos/hospital-malzoni-logo.png";
+
+// Logo da Drogaven
+const drogavenLogoUrl = "/logos/drogaven-logo.png";
+
+// Logo das Óticas Carol
+const oticasCarolLogoUrl = "/logos/oticas-carol-logo.png";
+
+// Logo da Fiducia Eletro
+const fiduciaEletroLogoUrl = "/logos/fiducia-eletro-logo.png";
+
 const prontoVetLogo = placeholderLogo;
 const domPedroLogo = placeholderLogo;
 const santaTerezaLogo = placeholderLogo;
@@ -92,6 +104,7 @@ const parceiros = [
   { nome: "Fiducia Eletro", desconto: "10%", categoria: "Tecnologia", icon: "⚡" },
   { nome: "Evolução Centro Multidisciplinar", desconto: "Especial", categoria: "Bem-estar", icon: "🏥" },
   { nome: "Pronto Vet", desconto: "15%", categoria: "Pet Care", icon: "🐾" },
+  { nome: "Rações Santa Tereza", desconto: "12%", categoria: "Pet Shop", icon: "🐕" },
   { nome: "Reabilitar Neuroped", desconto: "Especial", categoria: "Fisioterapia", icon: "🏃‍♂️" },
   { nome: "Corpo em Harmonia", desconto: "Especial", categoria: "Fitness", icon: "🧘‍♀️" },
   { nome: "Drogaven", desconto: "Especial", categoria: "Farmácia", icon: "💊" },
@@ -422,6 +435,36 @@ export default function PartnersSection() {
                       ) : parceiro.nome === "Pronto Vet" ? (
                         <img 
                           src={prontoVetLogoUrl} 
+                          alt={parceiro.nome}
+                          className="w-full h-full object-cover rounded-full"
+                        />
+                      ) : parceiro.nome === "Rações Santa Tereza" ? (
+                        <img 
+                          src={santaTerezaLogoUrl} 
+                          alt={parceiro.nome}
+                          className="w-full h-full object-cover rounded-full"
+                        />
+                      ) : parceiro.nome === "Hospital Malzoni" ? (
+                        <img 
+                          src={hospitalMalzoniLogoUrl} 
+                          alt={parceiro.nome}
+                          className="w-full h-full object-cover rounded-full"
+                        />
+                      ) : parceiro.nome === "Drogaven" ? (
+                        <img 
+                          src={drogavenLogoUrl} 
+                          alt={parceiro.nome}
+                          className="w-full h-full object-cover rounded-full"
+                        />
+                      ) : parceiro.nome === "Óticas Carol" ? (
+                        <img 
+                          src={oticasCarolLogoUrl} 
+                          alt={parceiro.nome}
+                          className="w-full h-full object-cover rounded-full"
+                        />
+                      ) : parceiro.nome === "Fiducia Eletro" ? (
+                        <img 
+                          src={fiduciaEletroLogoUrl} 
                           alt={parceiro.nome}
                           className="w-full h-full object-cover rounded-full"
                         />
