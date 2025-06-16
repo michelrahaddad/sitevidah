@@ -50,20 +50,15 @@ export class AdminController {
 
       console.log(`[Security] Successful login for username: ${validatedData.username} from IP: ${req.ip}`);
 
-      const response: ApiResponse = {
-        success: true,
-        data: {
-          token,
-          admin: {
-            id: admin.id,
-            username: admin.username,
-            email: admin.email,
-            isActive: admin.isActive
-          }
+      // Frontend expects token and user in root level
+      res.json({
+        token,
+        user: {
+          id: admin.id,
+          username: admin.username,
+          email: admin.email
         }
-      };
-
-      res.json(response);
+      });
     } catch (error) {
       console.error("[AdminController] Login error:", error);
       
