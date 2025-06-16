@@ -60,6 +60,16 @@ export default function LeadCaptureModal({
   const trackConversionMutation = useMutation({
     mutationFn: async (data: LeadCaptureData) => {
       try {
+        const formData = {
+          buttonType,
+          planName,
+          doctorName,
+          name: data.name,
+          email: data.email,
+          phone: data.phone || '',
+        };
+        
+        console.log('🚀 Enviando dados:', formData);
         const response = await fetch('/track-whatsapp', {
           method: 'POST',
           headers: {

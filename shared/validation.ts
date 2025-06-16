@@ -99,7 +99,7 @@ export const subscriptionRequestSchema = z.object({
 
 // WhatsApp conversion validation schema
 export const whatsappConversionSchema = z.object({
-  phone: phoneSchema.optional(),
+  phone: z.string().optional().or(z.literal("")),
   name: nameSchema.optional(),
   email: emailSchema.optional(),
   buttonType: z.enum(['plan_subscription', 'doctor_appointment', 'enterprise_quote']),
