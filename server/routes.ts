@@ -53,7 +53,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     SubscriptionController.getSubscription
   );
 
-  // WhatsApp conversion routes
+  // WhatsApp conversion routes - validação simplificada
   app.post("/track-whatsapp",
     whatsappLimiter,
     [
@@ -63,13 +63,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       body('name')
         .optional()
         .isLength({ min: 2, max: 100 })
-        .trim()
-        .matches(/^[a-zA-ZÀ-ÿ\s]+$/)
-        .withMessage('Nome deve conter apenas letras e espaços'),
+        .trim(),
       body('phone')
-        .optional()
-        .isLength({ min: 10, max: 15 })
-        .withMessage('Telefone inválido'),
+        .optional({ nullable: true, checkFalsy: true }),
       body('email')
         .optional()
         .isEmail()
