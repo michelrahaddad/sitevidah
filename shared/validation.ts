@@ -27,13 +27,33 @@ export function isValidCPF(cpf: string): boolean {
   return true;
 }
 
-// Phone number validation for Brazilian phones
+/**
+ * Validates Brazilian phone numbers (landline and mobile)
+ */
 export function isValidPhone(phone: string): boolean {
-  const phoneRegex = /^\(?([1-9]{2})\)?\s?([9])?\s?([0-9]{4})-?([0-9]{4})$/;
-  return phoneRegex.test(phone.replace(/\s/g, ''));
+  const cleanPhone = phone.replace(/\D/g, '');
+  
+  // Must have 10 or 11 digits (landline or mobile)
+  if (cleanPhone.length < 10 || cleanPhone.length > 11) return false;
+  
+  // First two digits are area code (11-99)
+  const areaCode = parseInt(cleanPhone.substring(0, 2));
+  if (areaCode < 11 || areaCode > 99) return false;
+  
+  // Mobile numbers (11 digits) must start with 9 after area code
+  if (cleanPhone.length === 11) {
+    return cleanPhone.charAt(2) === '9';
+  }
+  
+  // Landline numbers (10 digits) must NOT start with 9 after area code
+  if (cleanPhone.length === 10) {
+    return cleanPhone.charAt(2) !== '9';
+  }
+  
+  return true;
 }
 
-// Email validation schema
+// Validation schemas using constants
 export const emailSchema = z.string()
   .email('Email inválido')
   .min(1, 'Email é obrigatório');
@@ -46,14 +66,16 @@ export const cpfSchema = z.string()
 
 // Phone validation schema
 export const phoneSchema = z.string()
-  .min(10, 'Telefone deve ter pelo menos 10 dígitos')
-  .max(15, 'Telefone inválido')
-  .refine((val) => isValidPhone(val), 'Telefone inválido');
+  .min(1, 'Telefone é obrigatório')
+  .refine((phone) => {
+    const cleanPhone = phone.replace(/\D/g, '');
+    return cleanPhone.length >= 10 && cleanPhone.length <= 11;
+  }, 'Telefone deve ter entre 10 e 11 dígitos')
+  .refine(isValidPhone, 'Formato de telefone inválido');
 
-// Name validation schema
 export const nameSchema = z.string()
-  .min(2, 'Nome deve ter pelo menos 2 caracteres')
-  .max(100, 'Nome muito longo')
+  .min(VALIDATION_LIMITS.NAME.MIN, `Nome deve ter pelo menos ${VALIDATION_LIMITS.NAME.MIN} caracteres`)
+  .max(VALIDATION_LIMITS.NAME.MAX, 'Nome muito longo')
   .regex(/^[a-zA-ZÀ-ÿ\s]+$/, 'Nome deve conter apenas letras e espaços');
 
 // Customer data validation schema

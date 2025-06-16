@@ -1,7 +1,8 @@
 import type { Request, Response } from "express";
-import { storage } from "../storage";
 import { whatsappConversionSchema } from "@shared/validation";
-import { ApiResponse, WhatsAppConversion } from "@shared/types";
+import { ApiResponse } from "@shared/types";
+import { HTTP_STATUS } from "@shared/constants";
+import { WhatsAppService } from "../services/whatsappService";
 import { z } from "zod";
 
 export class WhatsAppController {
@@ -16,10 +17,10 @@ export class WhatsAppController {
         userAgent: req.get('User-Agent') || 'Unknown',
       };
 
-      const conversion = await storage.createWhatsappConversion(conversionData);
+      const conversion = await WhatsAppService.createConversion(conversionData);
       
       // Generate WhatsApp URL based on button type
-      const whatsappUrl = WhatsAppController.generateWhatsAppUrl(conversionData);
+      const whatsappUrl = WhatsAppService.generateWhatsAppUrl(conversion);
       
       const response: ApiResponse = {
         success: true,
@@ -39,7 +40,7 @@ export class WhatsAppController {
           error: "Dados inválidos fornecidos",
           message: error.errors.map(e => `${e.path.join('.')}: ${e.message}`).join(', ')
         };
-        return res.status(400).json(response);
+        return res.status(HTTP_STATUS.BAD_REQUEST).json(response);
       }
 
       const response: ApiResponse = {
