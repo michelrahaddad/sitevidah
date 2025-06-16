@@ -14,6 +14,9 @@ const silasgasLogoUrl = "/logos/silagas-logo.jpeg";
 // Logo do Dom Pedro
 const domPedroLogoUrl = "/logos/dom-pedro-logo.jpg";
 
+// Logo do Pronto Vet
+const prontoVetLogoUrl = "/logos/pronto-vet-logo.png";
+
 const prontoVetLogo = placeholderLogo;
 const domPedroLogo = placeholderLogo;
 const santaTerezaLogo = placeholderLogo;
@@ -410,6 +413,12 @@ export default function PartnersSection() {
                       ) : parceiro.nome === "Dom Pedro" ? (
                         <img 
                           src={domPedroLogoUrl} 
+                          alt={parceiro.nome}
+                          className="w-full h-full object-cover rounded-full"
+                        />
+                      ) : parceiro.nome === "Pronto Vet" ? (
+                        <img 
+                          src={prontoVetLogoUrl} 
                           alt={parceiro.nome}
                           className="w-full h-full object-cover rounded-full"
                         />
