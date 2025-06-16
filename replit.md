@@ -186,7 +186,7 @@ Changelog:
   * Sistema pronto para produção com telefone opcional
 - June 16, 2025. Seção de parceiros redesenhada com design circular moderno:
   * Removido design retangular, implementado círculos elegantes
-  * 10 logos reais integrados: Grupo Vidah, Dom Pedro, Pronto Vet, Santa Tereza, Hospital Malzoni, Drogaven, Óticas Carol, Fiducia Eletro, Funerária Canaã, Lab 7
+  * 12 logos integrados: Grupo Vidah, Dom Pedro, Pronto Vet, Santa Tereza, Hospital Malzoni, Drogaven, Óticas Carol, Fiducia Eletro, Funerária Canaã, Lab 7, Magia do Sorriso, Reabilitar Neuroped
   * Sistema de badges de desconto flutuantes e animações suaves
   * Layout responsivo de 2-6 colunas com gradientes e efeitos visuais
   * Preenchimento completo dos círculos com object-cover para logos perfeitos
