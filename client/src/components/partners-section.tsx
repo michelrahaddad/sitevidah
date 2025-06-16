@@ -35,17 +35,23 @@ const fiduciaEletroLogoUrl = "/logos/fiducia-eletro-logo.png";
 // Logo da Funerária Canaã
 const funerariaCanaLogoUrl = "/logos/funeraria-canaa-logo.png";
 
-// Logo do Lab 7 (SVG temporário com design circular)
+// Logo do Lab 7 (SVG circular)
 const lab7LogoUrl = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='60' fill='%2398D8C8'/%3E%3Ctext x='60' y='50' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-size='20' font-weight='bold'%3ELab%3C/text%3E%3Ctext x='60' y='75' text-anchor='middle' fill='%23FF4757' font-family='Arial, sans-serif' font-size='24' font-weight='bold'%3E7%3C/text%3E%3C/svg%3E";
 
-// Logo da Magia do Sorriso (SVG temporário)
+// Logo da Magia do Sorriso (SVG sorriso)
 const magiaSorrisoLogoUrl = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='60' fill='%23667eea'/%3E%3Cpath d='M35 55 Q60 70 85 55' stroke='white' stroke-width='3' fill='none'/%3E%3Ccircle cx='45' cy='45' r='3' fill='white'/%3E%3Ccircle cx='75' cy='45' r='3' fill='white'/%3E%3Ctext x='60' y='85' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-size='10' font-weight='bold'%3ESORRISO%3C/text%3E%3C/svg%3E";
 
-// Logo da Reabilitar Neuroped (SVG temporário)
+// Logo da Reabilitar Neuroped (SVG colorido)
 const reabilitarNeuropedLogoUrl = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='60' fill='%234A90E2'/%3E%3Ctext x='60' y='40' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-size='12' font-weight='bold'%3EREABILITAR%3C/text%3E%3Ctext x='60' y='60' text-anchor='middle' fill='%23FFE066' font-family='Arial, sans-serif' font-size='16' font-weight='bold'%3ENEURO%3C/text%3E%3Ctext x='60' y='80' text-anchor='middle' fill='%23FF6B9D' font-family='Arial, sans-serif' font-size='14' font-weight='bold'%3EPED%3C/text%3E%3C/svg%3E";
 
-// Logo do Corpo em Harmonia (SVG temporário)
+// Logo do Corpo em Harmonia (SVG bem-estar)
 const corpoHarmoniaLogoUrl = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='60' fill='%2368B984'/%3E%3Ccircle cx='60' cy='35' r='8' fill='%234A90E2'/%3E%3Cpath d='M45 45 Q60 35 75 45 L75 75 Q60 85 45 75 Z' fill='%234A90E2' opacity='0.8'/%3E%3Cpath d='M35 40 Q50 35 65 45' stroke='%2368B984' stroke-width='3' fill='none'/%3E%3Ctext x='60' y='95' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-size='9' font-weight='bold'%3EHARMONIA%3C/text%3E%3C/svg%3E";
+
+// Logo do Silasgás (SVG energia)
+const silasgasLogoSvg = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='60' fill='%23FF5722'/%3E%3Ccircle cx='60' cy='50' r='20' fill='none' stroke='white' stroke-width='3'/%3E%3Cpath d='M45 50 L75 50 M60 35 L60 65' stroke='white' stroke-width='2'/%3E%3Ctext x='60' y='85' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-size='10' font-weight='bold'%3ESILASGÁS%3C/text%3E%3C/svg%3E";
+
+// Logo da Evolução Centro Multidisciplinar (SVG)
+const evolucaoLogoUrl = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='60' fill='%23007ACC'/%3E%3Cpath d='M40 70 Q50 40 60 60 Q70 40 80 70' stroke='white' stroke-width='3' fill='none'/%3E%3Ccircle cx='50' cy='50' r='3' fill='white'/%3E%3Ccircle cx='70' cy='50' r='3' fill='white'/%3E%3Ctext x='60' y='85' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-size='8' font-weight='bold'%3EEVOLUÇÃO%3C/text%3E%3C/svg%3E";
 
 // Silasgás já declarado acima
 
@@ -518,7 +524,13 @@ export default function PartnersSection() {
                         />
                       ) : parceiro.nome === "Silasgás" ? (
                         <img 
-                          src={silasgasLogoUrl} 
+                          src={silasgasLogoSvg} 
+                          alt={parceiro.nome}
+                          className="w-full h-full object-cover rounded-full"
+                        />
+                      ) : parceiro.nome === "Evolução Centro Multidisciplinar" ? (
+                        <img 
+                          src={evolucaoLogoUrl} 
                           alt={parceiro.nome}
                           className="w-full h-full object-cover rounded-full"
                         />
