@@ -9,16 +9,7 @@ import FaqSection from "@/components/faq-section";
 import Footer from "@/components/footer";
 import WhatsAppFloat from "@/components/whatsapp-float";
 import { useState } from "react";
-
-export interface SelectedPlan {
-  id: number;
-  name: string;
-  type: string;
-  annualPrice: string;
-  monthlyPrice?: string;
-  adhesionFee: string;
-  maxDependents?: number;
-}
+import type { SelectedPlan } from "@shared/types";
 
 export default function Home() {
   const [selectedPlan, setSelectedPlan] = useState<SelectedPlan | null>(null);
