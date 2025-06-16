@@ -32,6 +32,9 @@ const oticasCarolLogoUrl = "/logos/oticas-carol-logo.png";
 // Logo da Fiducia Eletro
 const fiduciaEletroLogoUrl = "/logos/fiducia-eletro-logo.png";
 
+// Logo da Funerária Canaã
+const funerariaCanaLogoUrl = "/logos/funeraria-canaa-logo.png";
+
 const prontoVetLogo = placeholderLogo;
 const domPedroLogo = placeholderLogo;
 const santaTerezaLogo = placeholderLogo;
@@ -110,6 +113,7 @@ const parceiros = [
   { nome: "Drogaven", desconto: "Especial", categoria: "Farmácia", icon: "💊" },
   { nome: "Hospital Malzoni", desconto: "Especial", categoria: "Saúde", icon: "🏥" },
   { nome: "Dom Pedro", desconto: "15%", categoria: "Alimentação", icon: "🥬" },
+  { nome: "Funerária Canaã", desconto: "Especial", categoria: "Serviços", icon: "🕊️" },
   { nome: "Magia do Sorriso", desconto: "20%", categoria: "Odontologia", icon: "😁" },
   { nome: "Lab 7", desconto: "30%", categoria: "Diagnósticos", icon: "🔬" }
 ];
@@ -465,6 +469,12 @@ export default function PartnersSection() {
                       ) : parceiro.nome === "Fiducia Eletro" ? (
                         <img 
                           src={fiduciaEletroLogoUrl} 
+                          alt={parceiro.nome}
+                          className="w-full h-full object-cover rounded-full"
+                        />
+                      ) : parceiro.nome === "Funerária Canaã" ? (
+                        <img 
+                          src={funerariaCanaLogoUrl} 
                           alt={parceiro.nome}
                           className="w-full h-full object-cover rounded-full"
                         />
