@@ -368,64 +368,79 @@ export default function PartnersSection() {
             </span>
           </motion.h3>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          {/* Design Circular Moderno */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6 md:gap-8">
             {displayedPartners.map((parceiro, index) => (
               <motion.div
                 key={`parceiro-${parceiro.nome}-${index}`}
                 variants={itemVariants}
-                className="glass-card p-6 rounded-xl hover:shadow-lg transition-all duration-300 group hover:scale-105"
+                className="group relative flex flex-col items-center"
               >
-                {/* Logo das empresas parceiras */}
-                <div className="w-full h-20 bg-white rounded-lg flex items-center justify-center mb-4 group-hover:scale-105 transition-transform shadow-sm border border-gray-100">
-                  {parceiro.logo ? (
-                    <img 
-                      src={parceiro.logo} 
-                      alt={`Logo ${parceiro.nome}`}
-                      className="w-full h-full rounded-lg object-contain p-2"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  ) : (
-                    <Building className="w-8 h-8 text-[#0984E3]" />
-                  )}
+                {/* Container Principal Circular */}
+                <div className="relative">
+                  
+                  {/* Círculo Principal com Logo */}
+                  <div className="w-32 h-32 bg-gradient-to-br from-white via-gray-50 to-gray-100 rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-110 border-4 border-white/80 relative overflow-hidden group-hover:border-[#00B894]/30">
+                    
+                    {/* Efeito de brilho circular */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full"></div>
+                    
+                    {/* Espaço para Logo da Empresa */}
+                    <div className="relative z-10 w-20 h-20 bg-gradient-to-br from-[#00B894]/10 to-[#0984E3]/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <span className="text-4xl filter drop-shadow-sm">{parceiro.icon}</span>
+                    </div>
+                    
+                    {/* Badge de Desconto Flutuante */}
+                    <div className="absolute -top-2 -right-2 w-10 h-10 bg-gradient-to-r from-[#00B894] to-[#00d2a0] rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg z-20 animate-pulse">
+                      {parceiro.desconto}
+                    </div>
+                  </div>
+                  
+                  {/* Anel de Progresso Animado */}
+                  <div className="absolute inset-0 w-32 h-32">
+                    <svg className="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                      <path
+                        className="stroke-gray-200"
+                        fill="none"
+                        strokeWidth="2"
+                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                      />
+                      <path
+                        className="stroke-[#00B894] opacity-0 group-hover:opacity-100 transition-all duration-1000 ease-out"
+                        fill="none"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeDasharray="75, 100"
+                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                      />
+                    </svg>
+                  </div>
                 </div>
                 
-                <div className="flex justify-between items-start mb-4">
-                  <h4 className="font-bold text-[#636E72] group-hover:text-[#0984E3] transition-colors">
+                {/* Informações da Empresa */}
+                <div className="mt-6 text-center">
+                  <h4 className="font-bold text-gray-800 mb-2 text-sm leading-tight group-hover:text-[#00B894] transition-colors duration-300">
                     {parceiro.nome}
                   </h4>
-                  <span className="bg-[#00B894]/10 text-[#00B894] px-3 py-1 rounded-full text-xs font-bold">
-                    {parceiro.desconto}
-                  </span>
-                </div>
-                <div className="space-y-2">
-                  <div className="flex items-center text-sm text-[#636E72]/80">
-                    <MapPin className="w-4 h-4 mr-1" />
+                  
+                  <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm text-gray-700 rounded-full text-xs font-medium shadow-sm border border-gray-200/50 group-hover:bg-[#00B894]/10 group-hover:text-[#00B894] group-hover:border-[#00B894]/20 transition-all duration-300">
                     {parceiro.categoria}
                   </div>
-                  {parceiro.endereco && (
-                    <div className="flex items-start text-xs text-[#636E72]/60">
-                      <MapPin className="w-3 h-3 mr-1 mt-0.5 flex-shrink-0" />
-                      <span className="leading-tight">{parceiro.endereco}</span>
-                    </div>
-                  )}
                 </div>
               </motion.div>
             ))}
           </div>
           
-          {!showAllPartners && parceiros.length > 4 && (
-            <div className="text-center mt-8">
+          {!showAllPartners && parceiros.length > 8 && (
+            <div className="text-center mt-16">
               <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  console.log('Clicando em Ver mais parceiros - antes do setState');
-                  setShowAllPartners(true);
-                  console.log('Clicando em Ver mais parceiros - depois do setState');
-                }}
-                className="bg-[#0984E3] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#0773cc] transition-all transform hover:scale-105"
+                onClick={() => setShowAllPartners(true)}
+                className="group relative bg-gradient-to-r from-[#00B894] to-[#00d2a0] text-white px-12 py-5 rounded-full font-semibold hover:from-[#009d7f] hover:to-[#00B894] transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105 flex items-center gap-4 mx-auto"
               >
-                Ver mais parceiros ({parceiros.length - 4} restantes)
+                <span className="text-lg">Ver Todos os Parceiros</span>
+                <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center group-hover:rotate-180 transition-transform duration-300">
+                  <Plus size={20} />
+                </div>
               </button>
             </div>
           )}
