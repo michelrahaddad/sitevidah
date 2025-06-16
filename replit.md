@@ -186,8 +186,8 @@ Changelog:
   * Sistema pronto para produção com telefone opcional
 - June 16, 2025. Seção de parceiros implementada com logos reais:
   * Sistema circular moderno com 14 empresas parceiras
-  * Logos reais implementados: Grupo Vidah, Dom Pedro, Pronto Vet, Santa Tereza, Hospital Malzoni, Drogaven, Óticas Carol, Fiducia Eletro, Funerária Canaã, Reabilitar Neuroped
-  * Logos SVG otimizados: Lab 7, Magia do Sorriso, Corpo em Harmonia, Silasgás, Evolução Centro Multidisciplinar
+  * Logos reais implementados: Grupo Vidah, Dom Pedro, Pronto Vet, Santa Tereza, Hospital Malzoni, Drogaven, Óticas Carol, Fiducia Eletro, Funerária Canaã
+  * Logos SVG otimizados baseados em imagens reais: Lab 7, Magia do Sorriso, Reabilitar Neuroped, Corpo em Harmonia, Evolução Centro Multidisciplinar, Silasgás
   * Sistema de badges de desconto flutuantes e animações suaves
   * Layout responsivo de 2-6 colunas com gradientes e efeitos visuais
   * Preenchimento completo dos círculos com object-cover para logos perfeitos
