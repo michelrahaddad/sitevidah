@@ -175,6 +175,9 @@ Changelog:
   * Todas as URLs do sistema atualizadas (modal, botão flutuante, backend)
   * Problema de popup blocker resolvido: usa window.location.href diretamente
   * Funcionamento em primeira tentativa garantido - não precisa mais clicar duas vezes
+  * Content Security Policy contornado com link temporário
+  * Validação de telefone simplificada e formatação automática
+  * Sistema completamente funcional para números como 16-997782211
 ```
 
 ## User Preferences

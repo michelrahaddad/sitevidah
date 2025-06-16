@@ -15,16 +15,9 @@ const leadCaptureSchema = z.object({
     .min(1, "Telefone é obrigatório")
     .refine((phone) => {
       const cleanPhone = phone.replace(/\D/g, '');
+      // Aceita números de 10 ou 11 dígitos
       return cleanPhone.length >= 10 && cleanPhone.length <= 11;
-    }, "Telefone deve ter entre 10 e 11 dígitos")
-    .refine((phone) => {
-      const cleanPhone = phone.replace(/\D/g, '');
-      if (cleanPhone.length < 10) return false;
-      
-      // Verifica código de área válido (11-99)
-      const areaCode = parseInt(cleanPhone.substring(0, 2));
-      return areaCode >= 11 && areaCode <= 99;
-    }, "Código de área inválido"),
+    }, "Telefone deve ter 10 ou 11 dígitos"),
 });
 
 type LeadCaptureData = z.infer<typeof leadCaptureSchema>;
@@ -165,8 +158,19 @@ export default function LeadCaptureModal({
   };
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const formatted = formatPhone(e.target.value);
-    e.target.value = formatted;
+    // Remove caracteres não numéricos para validação
+    let value = e.target.value.replace(/\D/g, '');
+    
+    // Formata automaticamente o telefone
+    if (value.length <= 2) {
+      e.target.value = value;
+    } else if (value.length <= 6) {
+      e.target.value = `(${value.slice(0, 2)}) ${value.slice(2)}`;
+    } else if (value.length <= 10) {
+      e.target.value = `(${value.slice(0, 2)}) ${value.slice(2, 6)}-${value.slice(6)}`;
+    } else {
+      e.target.value = `(${value.slice(0, 2)}) ${value.slice(2, 7)}-${value.slice(7, 11)}`;
+    }
   };
 
   if (!isOpen) return null;
