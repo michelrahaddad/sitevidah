@@ -65,14 +65,7 @@ export default function LeadCaptureModal({
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({
-            buttonType,
-            planName,
-            doctorName,
-            name: data.name,
-            email: data.email,
-            phone: data.phone,
-          }),
+          body: JSON.stringify(formData),
         });
 
         if (!response.ok) {
@@ -157,21 +150,7 @@ export default function LeadCaptureModal({
     }
   };
 
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // Remove caracteres não numéricos para validação
-    let value = e.target.value.replace(/\D/g, '');
-    
-    // Formata automaticamente o telefone
-    if (value.length <= 2) {
-      e.target.value = value;
-    } else if (value.length <= 6) {
-      e.target.value = `(${value.slice(0, 2)}) ${value.slice(2)}`;
-    } else if (value.length <= 10) {
-      e.target.value = `(${value.slice(0, 2)}) ${value.slice(2, 6)}-${value.slice(6)}`;
-    } else {
-      e.target.value = `(${value.slice(0, 2)}) ${value.slice(2, 7)}-${value.slice(7, 11)}`;
-    }
-  };
+
 
   if (!isOpen) return null;
 
@@ -272,7 +251,6 @@ export default function LeadCaptureModal({
                   {...register("phone")}
                   type="tel"
                   placeholder="(11) 99999-9999"
-                  onChange={handlePhoneChange}
                   className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00B894] focus:border-transparent outline-none transition-all"
                 />
               </div>
