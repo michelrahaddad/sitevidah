@@ -92,6 +92,36 @@ app.use((req, res, next) => {
 });
 
 (async () => {
+  // Add direct route handler for WhatsApp tracking before any middleware
+  app.post('/track-whatsapp', async (req, res) => {
+    try {
+      console.log('Direct route - WhatsApp tracking:', req.body);
+      
+      const conversionData = {
+        buttonType: req.body.buttonType,
+        name: req.body.name || null,
+        phone: req.body.phone || null,
+        email: req.body.email || null,
+        planName: req.body.planName || null,
+        doctorName: req.body.doctorName || null,
+        ipAddress: req.ip || null,
+        userAgent: req.get('User-Agent') || null,
+      };
+
+      res.status(200).json({
+        success: true,
+        message: 'Conversão registrada com sucesso',
+        data: conversionData
+      });
+    } catch (error) {
+      console.error('Erro na rota direta:', error);
+      res.status(500).json({
+        success: false,
+        error: 'Erro interno do servidor'
+      });
+    }
+  });
+
   // Register API routes FIRST, before Vite middleware
   const server = await registerRoutes(app);
   

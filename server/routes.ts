@@ -53,6 +53,40 @@ export async function registerRoutes(app: Express): Promise<Server> {
   );
 
   // WhatsApp conversion routes
+  app.post("/track-whatsapp",
+    whatsappLimiter,
+    [
+      body('buttonType')
+        .isIn(['plan_subscription', 'doctor_appointment', 'enterprise_quote'])
+        .withMessage('Tipo de botão inválido'),
+      body('name')
+        .optional()
+        .isLength({ min: 2, max: 100 })
+        .trim()
+        .matches(/^[a-zA-ZÀ-ÿ\s]+$/)
+        .withMessage('Nome deve conter apenas letras e espaços'),
+      body('phone')
+        .optional()
+        .isLength({ min: 10, max: 15 })
+        .withMessage('Telefone inválido'),
+      body('email')
+        .optional()
+        .isEmail()
+        .normalizeEmail()
+        .withMessage('Email inválido'),
+      body('planName')
+        .optional()
+        .isLength({ max: 100 })
+        .trim(),
+      body('doctorName')
+        .optional()
+        .isLength({ max: 100 })
+        .trim()
+    ],
+    validateRequest,
+    WhatsAppController.createConversion
+  );
+
   app.post("/api/whatsapp/conversions",
     whatsappLimiter,
     [

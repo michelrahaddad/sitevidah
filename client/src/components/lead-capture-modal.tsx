@@ -54,7 +54,7 @@ export default function LeadCaptureModal({
   const trackConversionMutation = useMutation({
     mutationFn: async (data: LeadCaptureData) => {
       try {
-        const response = await fetch('/api/whatsapp/track', {
+        const response = await fetch('/track-whatsapp', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

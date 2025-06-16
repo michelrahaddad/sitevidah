@@ -8,7 +8,7 @@ export interface TrackingData {
 
 export const trackWhatsAppConversion = async (data: TrackingData) => {
   try {
-    await fetch('/api/whatsapp/track', {
+    await fetch('/track-whatsapp', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
