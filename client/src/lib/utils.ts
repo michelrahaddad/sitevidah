@@ -5,25 +5,9 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function formatCurrency(value: number): string {
-  return new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL'
-  }).format(value);
-}
+import { formatCurrency, formatCPF, formatPhone, generateWhatsAppUrl, calculateDiscount } from "@shared/utils";
 
-export function formatCPF(cpf: string): string {
-  const cleanCPF = cpf.replace(/\D/g, '');
-  return cleanCPF.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
-}
-
-export function formatPhone(phone: string): string {
-  const cleanPhone = phone.replace(/\D/g, '');
-  if (cleanPhone.length === 11) {
-    return cleanPhone.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
-  }
-  return cleanPhone.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
-}
+export { formatCurrency, formatCPF, formatPhone, generateWhatsAppUrl, calculateDiscount };
 
 export function validateCPF(cpf: string): boolean {
   const cleanCPF = cpf.replace(/\D/g, '');
@@ -53,16 +37,6 @@ export function validateCPF(cpf: string): boolean {
 export function validateEmail(email: string): boolean {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
-}
-
-export function generateWhatsAppUrl(phone: string, message: string): string {
-  const cleanPhone = phone.replace(/\D/g, '');
-  const encodedMessage = encodeURIComponent(message);
-  return `https://wa.me/55${cleanPhone}?text=${encodedMessage}`;
-}
-
-export function calculateDiscount(originalPrice: number, discountPercent: number): number {
-  return originalPrice * (1 - discountPercent / 100);
 }
 
 export function scrollToElement(elementId: string): void {

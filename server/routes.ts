@@ -5,7 +5,7 @@ import { SubscriptionController } from "./controllers/subscriptionController";
 import { WhatsAppController } from "./controllers/whatsappController";
 import { AdminController } from "./controllers/adminController";
 import { body, param } from "express-validator";
-import { validateRequest, sanitizeInput } from "./middleware/validation";
+import { validateRequest, sanitizeRequest } from "./middleware/validation";
 import { loginLimiter, adminLimiter, whatsappLimiter } from "./middleware/rateLimiting";
 import { authenticateAdmin } from "./middleware/auth";
 
