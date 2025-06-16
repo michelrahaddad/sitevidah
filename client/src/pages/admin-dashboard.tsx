@@ -42,7 +42,7 @@ export default function AdminDashboard() {
     setAdminUser(JSON.parse(user));
   }, [setLocation]);
 
-  const { data: conversions = [], isLoading, refetch } = useQuery({
+  const { data: rawConversions, isLoading, refetch } = useQuery({
     queryKey: ["/api/admin/conversions", startDate, endDate],
     queryFn: async () => {
       const token = localStorage.getItem("admin_token");
@@ -71,10 +71,15 @@ export default function AdminDashboard() {
         throw new Error("Erro ao buscar conversões");
       }
 
-      return response.json();
+      const result = await response.json();
+      // Extrair dados da estrutura ApiResponse
+      return result.data || result;
     },
     enabled: !!localStorage.getItem("admin_token"),
   });
+
+  // Garantir que conversions seja sempre um array
+  const conversions = Array.isArray(rawConversions) ? rawConversions : [];
 
   const handleLogout = () => {
     localStorage.removeItem("admin_token");
@@ -212,9 +217,9 @@ export default function AdminDashboard() {
 
   const stats = {
     total: conversions.length,
-    planSubscriptions: conversions.filter((c: WhatsappConversion) => c.buttonType === "plan_subscription").length,
-    doctorAppointments: conversions.filter((c: WhatsappConversion) => c.buttonType === "doctor_appointment").length,
-    enterpriseQuotes: conversions.filter((c: WhatsappConversion) => c.buttonType === "enterprise_quote").length,
+    planSubscriptions: conversions.filter((c: any) => c.buttonType === "plan_subscription").length,
+    doctorAppointments: conversions.filter((c: any) => c.buttonType === "doctor_appointment").length,
+    enterpriseQuotes: conversions.filter((c: any) => c.buttonType === "enterprise_quote").length,
   };
 
   if (!adminUser) {
@@ -386,7 +391,7 @@ export default function AdminDashboard() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {conversions.map((conversion: WhatsappConversion) => (
+                      {conversions.map((conversion: any) => (
                         <TableRow key={conversion.id}>
                           <TableCell className="font-medium">#{conversion.id}</TableCell>
                           <TableCell>{conversion.name || "-"}</TableCell>
