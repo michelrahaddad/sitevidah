@@ -130,6 +130,7 @@ export default function CheckoutModal({ plan, onClose }: CheckoutModalProps) {
           planPrice: discountedPrice,
           total: discountedPrice + adhesionFee,
           installments: 1,
+          adhesionFee: adhesionFee,
           description: "À vista com 10% de desconto"
         };
       case 'credit':
@@ -138,6 +139,7 @@ export default function CheckoutModal({ plan, onClose }: CheckoutModalProps) {
           planPrice: creditMonthly * 12,
           total: (creditMonthly * 12) + adhesionFee,
           installments: 12,
+          adhesionFee: adhesionFee,
           description: `12x de R$ ${creditMonthly.toFixed(2)}`
         };
       case 'boleto':
@@ -146,6 +148,7 @@ export default function CheckoutModal({ plan, onClose }: CheckoutModalProps) {
           planPrice: boletoMonthly * 12,
           total: (boletoMonthly * 12) + adhesionFee,
           installments: 12,
+          adhesionFee: adhesionFee,
           description: `12x de R$ ${boletoMonthly.toFixed(2)}`
         };
       default:
@@ -188,7 +191,7 @@ export default function CheckoutModal({ plan, onClose }: CheckoutModalProps) {
                 {formatCurrency(pricingInfo.planPrice)}
               </div>
               <div className="text-sm text-[#636E72]">
-                + {formatCurrency(adhesionFee)} adesão
+                + {formatCurrency(pricingInfo.adhesionFee || 0)} adesão
               </div>
               <div className="text-lg font-bold text-[#636E72] mt-1 border-t pt-1">
                 Total: {formatCurrency(pricingInfo.total)}
@@ -220,7 +223,7 @@ export default function CheckoutModal({ plan, onClose }: CheckoutModalProps) {
                             <div>
                               <div className="font-medium">PIX (10% desconto)</div>
                               <div className="text-sm text-[#636E72]">
-                                {formatCurrency(annualPrice * 0.9)} + {formatCurrency(adhesionFee)}
+                                {formatCurrency(pricingInfo.planPrice)} + {formatCurrency(pricingInfo.adhesionFee || 0)}
                               </div>
                             </div>
                           </div>
@@ -235,7 +238,7 @@ export default function CheckoutModal({ plan, onClose }: CheckoutModalProps) {
                             <div>
                               <div className="font-medium">Cartão de Crédito</div>
                               <div className="text-sm text-[#636E72]">
-                                12x R$ {plan.type === 'individual' ? '24,90' : '34,90'} + {formatCurrency(adhesionFee)}
+                                12x R$ {plan.type === 'individual' ? '24,90' : '34,90'} + {formatCurrency(pricingInfo.adhesionFee || 0)}
                               </div>
                             </div>
                           </div>
@@ -250,7 +253,7 @@ export default function CheckoutModal({ plan, onClose }: CheckoutModalProps) {
                             <div>
                               <div className="font-medium">Boleto Bancário</div>
                               <div className="text-sm text-[#636E72]">
-                                12x R$ {plan.type === 'individual' ? '27,90' : '37,90'} + {formatCurrency(adhesionFee)}
+                                12x R$ {plan.type === 'individual' ? '27,90' : '37,90'} + {formatCurrency(pricingInfo.adhesionFee || 0)}
                               </div>
                             </div>
                           </div>

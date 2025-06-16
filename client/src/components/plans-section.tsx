@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Check, MessageCircle, Users, Building } from "lucide-react";
-import type { SelectedPlan } from "@/pages/home";
+import type { SelectedPlan } from "@shared/types";
 import { trackWhatsAppConversion } from "@/lib/whatsapp-tracking";
 import LeadCaptureModal from "./lead-capture-modal";
 
