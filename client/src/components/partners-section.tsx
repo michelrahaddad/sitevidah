@@ -5,8 +5,9 @@ import LeadCaptureModal from "./lead-capture-modal";
 // Placeholder melhorado para logos das empresas
 const placeholderLogo = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='80' viewBox='0 0 120 80'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2300B894;stop-opacity:0.1' /%3E%3Cstop offset='100%25' style='stop-color:%2300B894;stop-opacity:0.05' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='120' height='80' fill='url(%23grad)' rx='8'/%3E%3Ccircle cx='60' cy='30' r='12' fill='%2300B894' opacity='0.2'/%3E%3Ctext x='60' y='55' text-anchor='middle' fill='%2300B894' font-family='Arial, sans-serif' font-size='11' font-weight='600'%3ELogo Empresa%3C/text%3E%3C/svg%3E";
 
-// TODOS OS LOGOS REMOVIDOS - AGUARDANDO UPLOAD DAS NOVAS IMAGENS
-const vidahLogo = placeholderLogo;
+// Logo do Grupo Vidah
+const vidahLogoUrl = "/attached_assets/Captura de Tela 2025-06-16 às 16.31.41_1750102334245.png";
+
 const prontoVetLogo = placeholderLogo;
 const domPedroLogo = placeholderLogo;
 const santaTerezaLogo = placeholderLogo;
@@ -64,7 +65,7 @@ const parceiroDestaque = {
   nome: "Grupo Vidah",
   desconto: "Benefícios Exclusivos",
   categoria: "Parceiro Principal",
-  logo: vidahLogo,
+  logo: vidahLogoUrl,
   endereco: "R. XV de Novembro, 594 - Centro, Ibitinga - SP, 14940-000",
   telefone: "(16) 3342-4768",
   site: "https://www.grupovidah.com.br/",
@@ -244,7 +245,7 @@ export default function PartnersSection() {
               <div className="relative z-10">
                 <div className="w-24 h-24 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg p-3">
                   <img 
-                    src={vidahLogo} 
+                    src={vidahLogoUrl} 
                     alt="Grupo Vidah Logo"
                     className="w-full h-full object-contain rounded-xl"
                   />
@@ -386,8 +387,16 @@ export default function PartnersSection() {
                     <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full"></div>
                     
                     {/* Espaço para Logo da Empresa */}
-                    <div className="relative z-10 w-20 h-20 bg-gradient-to-br from-[#00B894]/10 to-[#0984E3]/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <span className="text-4xl filter drop-shadow-sm">{parceiro.icon}</span>
+                    <div className="relative z-10 w-20 h-20 bg-gradient-to-br from-[#00B894]/10 to-[#0984E3]/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 p-3">
+                      {parceiro.nome === "Grupo Vidah" ? (
+                        <img 
+                          src={vidahLogoUrl} 
+                          alt={parceiro.nome}
+                          className="w-full h-full object-contain"
+                        />
+                      ) : (
+                        <span className="text-4xl filter drop-shadow-sm">{parceiro.icon}</span>
+                      )}
                     </div>
                     
                     {/* Badge de Desconto Flutuante */}
