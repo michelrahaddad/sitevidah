@@ -11,7 +11,20 @@ import { formatPhone } from "@/lib/utils";
 const leadCaptureSchema = z.object({
   name: z.string().min(2, "Nome deve ter pelo menos 2 caracteres"),
   email: z.string().email("Email deve ter um formato válido"),
-  phone: z.string().min(10, "Telefone deve ter pelo menos 10 dígitos"),
+  phone: z.string()
+    .min(1, "Telefone é obrigatório")
+    .refine((phone) => {
+      const cleanPhone = phone.replace(/\D/g, '');
+      return cleanPhone.length >= 10 && cleanPhone.length <= 11;
+    }, "Telefone deve ter entre 10 e 11 dígitos")
+    .refine((phone) => {
+      const cleanPhone = phone.replace(/\D/g, '');
+      if (cleanPhone.length < 10) return false;
+      
+      // Verifica código de área válido (11-99)
+      const areaCode = parseInt(cleanPhone.substring(0, 2));
+      return areaCode >= 11 && areaCode <= 99;
+    }, "Código de área inválido"),
 });
 
 type LeadCaptureData = z.infer<typeof leadCaptureSchema>;

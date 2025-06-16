@@ -167,6 +167,12 @@ Changelog:
   * Testes básicos de validação implementados
   * Complexidade ciclomática reduzida significativamente
   * Código mais legível, modular e fácil de manter
+- June 16, 2025. Sistema de redirecionamento WhatsApp corrigido:
+  * Mudança de wa.me para web.whatsapp.com para funcionar universalmente
+  * Sistema agora funciona para qualquer pessoa, mesmo sem WhatsApp instalado
+  * Validação de telefone ajustada para aceitar números brasileiros formatados
+  * Redirecionamento em nova aba configurado corretamente
+  * Todas as URLs do sistema atualizadas (modal, botão flutuante, backend)
 ```
 
 ## User Preferences
