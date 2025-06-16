@@ -50,14 +50,14 @@ export interface SubscriptionResponse {
 
 export interface WhatsAppConversion {
   id?: number;
-  phone?: string;
-  name?: string;
-  email?: string;
+  phone?: string | null;
+  name?: string | null;
+  email?: string | null;
   buttonType: 'plan_subscription' | 'doctor_appointment' | 'enterprise_quote';
-  planName?: string;
-  doctorName?: string;
-  ipAddress?: string;
-  userAgent?: string;
+  planName?: string | null;
+  doctorName?: string | null;
+  ipAddress?: string | null;
+  userAgent?: string | null;
   createdAt?: Date;
 }
 

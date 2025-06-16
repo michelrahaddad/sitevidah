@@ -96,7 +96,7 @@ export class WhatsAppController {
       const conversions = await storage.getAllWhatsappConversions();
       
       if (format === 'csv') {
-        const csv = WhatsAppController.generateCSV(conversions, type as string);
+        const csv = WhatsAppController.generateCSV(conversions as any[], type as string);
         
         res.setHeader('Content-Type', 'text/csv');
         res.setHeader('Content-Disposition', `attachment; filename="conversions-${Date.now()}.csv"`);

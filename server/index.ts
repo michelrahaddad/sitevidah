@@ -4,9 +4,10 @@ import cors from "cors";
 import compression from "compression";
 import morgan from "morgan";
 import rateLimit from "express-rate-limit";
-import { registerRoutes } from "./routes";
+import { registerRoutes } from "./routes/index";
 import { setupVite, serveStatic, log } from "./vite";
 import { securityHeaders, validateRequestSize, monitorSuspiciousActivity, queryTimeout } from "./security";
+import { generalLimiter } from "./middleware/rateLimiting";
 
 const app = express();
 
@@ -47,31 +48,7 @@ app.use(validateRequestSize);
 app.use(monitorSuspiciousActivity);
 app.use(queryTimeout(30000)); // 30 second timeout
 
-// Rate limiting
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100,
-  message: { error: "Too many requests from this IP, please try again later." },
-  standardHeaders: true,
-  legacyHeaders: false,
-});
-app.use(limiter);
-
-// Stricter rate limiting for API routes
-const apiLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 50,
-  message: { error: "Too many API requests, please try again later." }
-});
-app.use("/api/", apiLimiter);
-
-// Very strict rate limiting for admin routes
-const adminLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 20,
-  message: { error: "Too many admin requests, please try again later." }
-});
-app.use("/api/admin/", adminLimiter);
+// Rate limiting is now handled in route modules
 
 // Body parsing with security limits
 app.use(express.json({ 

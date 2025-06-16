@@ -69,7 +69,12 @@ export class SubscriptionController {
         const response: SubscriptionResponse = {
           success: true,
           subscription,
-          digitalCard,
+          digitalCard: digitalCard ? {
+            id: digitalCard.id,
+            cardNumber: digitalCard.cardNumber,
+            qrCode: digitalCard.qrCode,
+            isActive: digitalCard.isActive ?? true,
+          } : undefined,
           customer,
           plan: {
             id: plan.id,
