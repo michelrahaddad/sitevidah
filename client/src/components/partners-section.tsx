@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
 import { useState, useMemo, useCallback } from "react";
-import { Stethoscope, ShoppingBag, Star, Users, MapPin, Percent, User, Building, Phone, Globe, MessageCircle } from "lucide-react";
+import { Stethoscope, ShoppingBag, Star, Users, MapPin, Percent, User, Building, Phone, Globe, MessageCircle, Plus } from "lucide-react";
 import LeadCaptureModal from "./lead-capture-modal";
 // Placeholder melhorado para logos das empresas
 const placeholderLogo = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='80' viewBox='0 0 120 80'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2300B894;stop-opacity:0.1' /%3E%3Cstop offset='100%25' style='stop-color:%2300B894;stop-opacity:0.05' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='120' height='80' fill='url(%23grad)' rx='8'/%3E%3Ccircle cx='60' cy='30' r='12' fill='%2300B894' opacity='0.2'/%3E%3Ctext x='60' y='55' text-anchor='middle' fill='%2300B894' font-family='Arial, sans-serif' font-size='11' font-weight='600'%3ELogo Empresa%3C/text%3E%3C/svg%3E";
 
-// Logos das empresas parceiras - aguardando upload
+// TODOS OS LOGOS REMOVIDOS - AGUARDANDO UPLOAD DAS NOVAS IMAGENS
 const vidahLogo = placeholderLogo;
 const prontoVetLogo = placeholderLogo;
 const domPedroLogo = placeholderLogo;
@@ -71,24 +71,20 @@ const parceiroDestaque = {
   destaque: true
 };
 
+// Nova estrutura moderna para empresas parceiras
 const parceiros = [
-  { nome: "Silasgás Ultragaz", desconto: "10%", categoria: "Gás de Cozinha", logo: silagasLogo, endereco: null },
-  { nome: "Óticas Carol", desconto: "20%", categoria: "Ótica", logo: oticasCarolLogo, endereco: "Rua Prudente de Moraes, 897 - Centro, Ibitinga - SP" },
-  { nome: "Fiducia Eletro", desconto: "10%", categoria: "Materiais Elétricos", logo: fiduciaEletroLogo, endereco: "Rua Domingos Robert, 640 - Centro, Ibitinga - SP" },
-  { nome: "Evolução Centro de Integração Multidisciplinar", desconto: "Tabela", categoria: "Centro Multidisciplinar", logo: evolucaoLogo, endereco: "R. Dr. Adail de Oliveira, 864 - Centro, Ibitinga - SP, 14940-151" },
-  { nome: "Pronto Vet Clínica Veterinária", desconto: "5-10%", categoria: "Pet Shop", logo: prontoVetLogo, endereco: "Av. Eng. Ivanil Francischini, 5363 - São José, Ibitinga - SP, 14940-000" },
-  { nome: "Reabilitar Neuroped", desconto: "Tabela", categoria: "Fisioterapia Pediátrica", logo: reabilitarNeuropedLogo, endereco: null },
-  { nome: "Corpo em Harmonia - Studio de Pilates", desconto: "Tabela", categoria: "Pilates", logo: corpoHarmoniaLogo, endereco: "Rua Treze de Maio, 541 - Centro, Ibitinga - SP" },
-  { nome: "Drogaven", desconto: "Tabela", categoria: "Farmácia", logo: drogavenLogo, endereco: "Rua Prudente de Moraes, 934 - Centro, Ibitinga - SP" },
-  { nome: "Funerária Canaã Ibitinga", desconto: "Tabela", categoria: "Funerária", logo: funerariaCanaaLogo, endereco: "Rua Domingos Robert, 985 - Centro, Ibitinga - SP" },
-  { nome: "INERP - Instituto de Neurologia", desconto: "Tabela", categoria: "Neurologia", logo: inerpLogo, endereco: null },
-  { nome: "Hospital Malzoni", desconto: "Tabela", categoria: "Hospital", logo: hospitalMalzoniLogo, endereco: null },
-  { nome: "IPC - Análises Patológicas", desconto: "Tabela", categoria: "Laboratório", logo: ipcLogo, endereco: null },
-  { nome: "S.O.S", desconto: "5-10%", categoria: "Emergência", logo: sosEnfermagemLogo, endereco: null },
-  { nome: "Dom Pedro", desconto: "15%", categoria: "Hortifruti", logo: domPedroLogo, endereco: null },
-  { nome: "Rações Santa Tereza", desconto: "Tabela", categoria: "Pet Shop", logo: santaTerezaLogo, endereco: null },
-  { nome: "Magia do Sorriso", desconto: "5-20%", categoria: "Odontologia", logo: magiaDoSorrisoLogo, endereco: null },
-  { nome: "Lab 7", desconto: "20-40%", categoria: "Laboratório", logo: lab7Logo, endereco: null }
+  { nome: "Silasgás Ultragaz", desconto: "10%", categoria: "Energia & Gás", icon: "🔥" },
+  { nome: "Óticas Carol", desconto: "20%", categoria: "Saúde Visual", icon: "👁️" },
+  { nome: "Fiducia Eletro", desconto: "10%", categoria: "Tecnologia", icon: "⚡" },
+  { nome: "Evolução Centro Multidisciplinar", desconto: "Especial", categoria: "Bem-estar", icon: "🏥" },
+  { nome: "Pronto Vet", desconto: "15%", categoria: "Pet Care", icon: "🐾" },
+  { nome: "Reabilitar Neuroped", desconto: "Especial", categoria: "Fisioterapia", icon: "🏃‍♂️" },
+  { nome: "Corpo em Harmonia", desconto: "Especial", categoria: "Fitness", icon: "🧘‍♀️" },
+  { nome: "Drogaven", desconto: "Especial", categoria: "Farmácia", icon: "💊" },
+  { nome: "Hospital Malzoni", desconto: "Especial", categoria: "Saúde", icon: "🏥" },
+  { nome: "Dom Pedro", desconto: "15%", categoria: "Alimentação", icon: "🥬" },
+  { nome: "Magia do Sorriso", desconto: "20%", categoria: "Odontologia", icon: "😁" },
+  { nome: "Lab 7", desconto: "30%", categoria: "Diagnósticos", icon: "🔬" }
 ];
 
 export default function PartnersSection() {
@@ -133,7 +129,7 @@ export default function PartnersSection() {
 
   // Memoize calculated data for better performance
   const { displayedPartners, displayedMedicos } = useMemo(() => {
-    const topPartners = parceiros.slice(0, 4);
+    const topPartners = parceiros.slice(0, 8);
     const topMedicos = medicos.slice(0, 4);
     
     return {
@@ -366,9 +362,10 @@ export default function PartnersSection() {
           animate="visible"
           variants={containerVariants}
         >
-          <motion.h3 variants={itemVariants} className="text-2xl md:text-3xl font-bold text-[#636E72] mb-6 md:mb-8 flex items-center justify-center md:justify-start">
-            <ShoppingBag className="w-6 h-6 md:w-8 md:h-8 text-[#0984E3] mr-2 md:mr-3" />
-            Empresas Parceiras
+          <motion.h3 variants={itemVariants} className="text-3xl md:text-4xl font-bold text-center mb-12">
+            <span className="bg-gradient-to-r from-[#00B894] via-[#00d2a0] to-[#0984E3] bg-clip-text text-transparent">
+              Rede de Parceiros
+            </span>
           </motion.h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
