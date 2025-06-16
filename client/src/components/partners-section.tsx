@@ -17,6 +17,9 @@ const domPedroLogoUrl = "/logos/dom-pedro-logo.jpg";
 // Logo do Pronto Vet
 const prontoVetLogoUrl = "/logos/pronto-vet-logo.png";
 
+// Logo das Rações Santa Tereza
+const santaTerezaLogoUrl = "/logos/santa-tereza-logo.png";
+
 const prontoVetLogo = placeholderLogo;
 const domPedroLogo = placeholderLogo;
 const santaTerezaLogo = placeholderLogo;
