@@ -104,36 +104,62 @@ export default function LeadCaptureModal({
 
   const onSubmit = async (data: LeadCaptureData) => {
     try {
-      console.log('Enviando dados:', data);
+      console.log('🚀 Iniciando envio dos dados:', data);
       
       // Registra a conversão no sistema
       const result = await trackConversionMutation.mutateAsync(data);
-      console.log('Conversão registrada:', result);
+      console.log('✅ Conversão registrada com sucesso:', result);
       
       // Usa a URL do WhatsApp retornada pelo servidor
       const whatsappUrl = result.data?.whatsappUrl;
+      console.log('🔗 URL do WhatsApp recebida:', whatsappUrl);
       
       if (!whatsappUrl) {
+        console.error('❌ URL do WhatsApp não foi gerada');
         throw new Error('URL do WhatsApp não foi gerada');
       }
       
-      // Limpa o formulário e fecha o modal
-      reset();
-      onClose();
-      
       toast({
         title: "Sucesso!",
-        description: "Seus dados foram registrados. Redirecionando para o WhatsApp...",
+        description: "Dados registrados! Abrindo WhatsApp...",
       });
       
-      // Pequeno delay para mostrar o toast antes do redirecionamento
+      console.log('🌐 Tentando abrir WhatsApp Web...');
+      
+      // Tenta diferentes métodos para garantir que funcione
+      try {
+        // Primeiro tenta window.open
+        const newWindow = window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+        
+        if (!newWindow) {
+          console.log('⚠️ window.open bloqueado, tentando window.location...');
+          // Se bloqueado por popup blocker, usa location
+          window.location.href = whatsappUrl;
+        } else {
+          console.log('✅ WhatsApp Web aberto em nova aba');
+        }
+      } catch (openError) {
+        console.error('❌ Erro ao abrir WhatsApp:', openError);
+        // Fallback para location.href
+        window.location.href = whatsappUrl;
+      }
+      
+      // Limpa o formulário e fecha o modal após um delay
       setTimeout(() => {
-        // Abre o WhatsApp Web em nova aba
-        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-      }, 1000);
+        reset();
+        onClose();
+      }, 500);
       
     } catch (error) {
-      console.error('Erro no onSubmit:', error);
+      console.error('❌ Erro completo no onSubmit:', error);
+      
+      // Log detalhado do erro
+      if (error instanceof Error) {
+        console.error('Nome do erro:', error.name);
+        console.error('Mensagem do erro:', error.message);
+        console.error('Stack trace:', error.stack);
+      }
+      
       toast({
         title: "Erro",
         description: error instanceof Error ? error.message : "Não foi possível processar sua solicitação. Tente novamente.",
