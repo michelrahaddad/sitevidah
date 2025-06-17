@@ -77,6 +77,7 @@ const lab7Logo = placeholderLogo;
 
 // Doctor photos
 import drWilliamTeixeiraHaddadFoto from "@/assets/doctors/dr-william-teixeira-haddad.jpg";
+import drMichelRaineriHaddadFoto from "@/assets/doctors/dr-michel-raineri-haddad.jpg";
 import drDiegoFoto from "@/assets/doctors/dr-diego.jpg";
 import draIsabelaCardosoFoto from "@/assets/doctors/dra-isabela-cardoso.jpg";
 import draAnaSollerFoto from "@/assets/doctors/dra-ana-soller.jpg";
@@ -90,7 +91,7 @@ import draBrunaMargadonaFoto from "@/assets/doctors/dra-bruna-margadona.jpg";
 
 const medicos = [
   { nome: "Dr. William Teixeira Haddad", especialidade: "Cardiologia e Clínica Médica", foto: drWilliamTeixeiraHaddadFoto },
-  { nome: "Dr. Michel Raineri Haddad", especialidade: "Cardiologia e Clínica Médica", foto: null },
+  { nome: "Dr. Michel Raineri Haddad", especialidade: "Cardiologia e Clínica Médica", foto: drMichelRaineriHaddadFoto },
   { nome: "Dr. William Teixeira Haddad Jr.", especialidade: "Radiologia", foto: null },
   { nome: "Dr. Alex Teles Vasconcelos", especialidade: "Oftalmologia", foto: null },
   { nome: "Dr Diego Rodrigues Charamitara", especialidade: "Clínico Geral", foto: drDiegoFoto },
