@@ -192,6 +192,16 @@ Changelog:
   * Layout responsivo de 2-6 colunas com gradientes e efeitos visuais
   * Preenchimento completo dos círculos com object-cover para logos perfeitos
   * Logo da Reabilitar Neuroped atualizado com imagem real da clínica
+- June 17, 2025. Sistema administrativo corrigido e otimizado:
+  * Problema de login administrativo resolvido com middleware de formatação
+  * Dashboard funcionando corretamente com estatísticas e tabelas
+  * Botão "Gestão Interna" removido, mantido apenas "Exportar para Anúncios"
+  * Interface limpa focada em campanhas de marketing digital
+- June 17, 2025. Fotos dos médicos da família Haddad adicionadas:
+  * Dr. William Teixeira Haddad - Cardiologia e Clínica Médica
+  * Dr. Michel Raineri Haddad - Cardiologia e Clínica Médica  
+  * Dr. William Teixeira Haddad Jr. - Radiologia
+  * Todas as fotos profissionais implementadas na seção de médicos credenciados
 ```
 
 ## User Preferences
