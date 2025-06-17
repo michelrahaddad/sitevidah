@@ -17,7 +17,7 @@ export default function Footer() {
     ],
     company: [
       { name: "Sobre Nós", href: "#sobre" },
-      { name: "Contato", href: "mailto:contato@vidah.com.br" },
+      { name: "Contato", href: "mailto:cartaomaisvidah@gmail.com" },
       { name: "Trabalhe Conosco", href: "#carreiras" }
     ]
   };
@@ -118,7 +118,7 @@ export default function Footer() {
               </p>
               <p className="text-gray-300 text-sm mt-2">
                 📱 (16) 99324-7676<br />
-                ✉️ contato@vidah.com.br
+                ✉️ cartaomaisvidah@gmail.com
               </p>
             </div>
           </div>

@@ -109,7 +109,7 @@ export default function FaqSection() {
                 Falar no WhatsApp
               </button>
               <button 
-                onClick={() => window.location.href = 'mailto:contato@vidah.com.br?subject=Dúvidas sobre o Cartão + Vidah'}
+                onClick={() => window.location.href = 'mailto:cartaomaisvidah@gmail.com?subject=Dúvidas sobre o Cartão + Vidah'}
                 className="border-2 border-[#0984E3] text-[#0984E3] px-6 py-3 rounded-full font-semibold hover:bg-[#0984E3] hover:text-white transition-colors"
               >
                 Enviar E-mail
