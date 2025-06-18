@@ -39,8 +39,9 @@ export class WhatsAppService {
     
     const encodedMessage = encodeURIComponent(message);
     
-    // Detect mobile device from user agent
-    const isMobile = userAgent ? /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent) : false;
+    // Detect mobile device from user agent - more comprehensive detection
+    const isMobile = userAgent ? 
+      /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini|mobile|phone/i.test(userAgent) : false;
     
     if (isMobile) {
       // Mobile: use wa.me for native app
