@@ -129,12 +129,7 @@ export default function LeadCaptureModal({
     }
   });
 
-  // Função para gerar URL do WhatsApp
-  const generateWhatsAppUrl = (phone: string, message: string) => {
-    const cleanPhone = phone.replace(/\D/g, '');
-    const encodedMessage = encodeURIComponent(message);
-    return `https://wa.me/55${cleanPhone}?text=${encodedMessage}`;
-  };
+
 
   const onSubmit = async (data: LeadCaptureData) => {
     try {

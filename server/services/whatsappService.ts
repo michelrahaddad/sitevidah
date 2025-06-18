@@ -39,12 +39,8 @@ export class WhatsAppService {
     
     const encodedMessage = encodeURIComponent(message);
     
-    // Always use wa.me - it's the most universal approach
-    // Works on all devices and automatically chooses the best option:
-    // - Mobile with WhatsApp app: opens native app
-    // - Mobile without app: opens web version in browser
-    // - Desktop: opens web.whatsapp.com
-    // This eliminates the connection refused errors
+    // Return the primary wa.me URL - frontend handles fallbacks
+    // This is the most reliable approach across all devices
     return `https://wa.me/${WHATSAPP_CONFIG.DEFAULT_PHONE}?text=${encodedMessage}`;
   }
 
