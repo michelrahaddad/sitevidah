@@ -44,7 +44,7 @@ export class WhatsAppService {
     
     if (isMobile) {
       // Mobile: use wa.me for native app
-      return `${WHATSAPP_CONFIG.MOBILE_URL}/${WHATSAPP_CONFIG.DEFAULT_PHONE}?text=${encodedMessage}`;
+      return `https://wa.me/${WHATSAPP_CONFIG.DEFAULT_PHONE}?text=${encodedMessage}`;
     } else {
       // Desktop: use web.whatsapp.com
       return `${WHATSAPP_CONFIG.WEB_URL}?phone=${WHATSAPP_CONFIG.DEFAULT_PHONE}&text=${encodedMessage}`;

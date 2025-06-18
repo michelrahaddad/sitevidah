@@ -100,7 +100,25 @@ export default function LeadCaptureModal({
         window.location.href = data.data.whatsappUrl;
       } else {
         // Fallback: gera URL do lado do cliente
-        const message = generateWhatsAppMessage();
+        let message = '';
+        
+        if (buttonType === 'plan_subscription') {
+          message = `Olá! Meu nome é ${watch('name')} e tenho interesse no plano ${planName}.\n\n` +
+                   `📱 Telefone: ${watch('phone') || 'Não informado'}\n` +
+                   `📧 Email: ${watch('email')}\n\n` +
+                   `Gostaria de saber mais detalhes sobre os benefícios e como contratar.`;
+        } else if (buttonType === 'doctor_appointment') {
+          message = `Olá! Meu nome é ${watch('name')} e gostaria de agendar uma consulta com ${doctorName}.\n\n` +
+                   `📱 Telefone: ${watch('phone') || 'Não informado'}\n` +
+                   `📧 Email: ${watch('email')}\n\n` +
+                   `Qual a disponibilidade para atendimento?`;
+        } else {
+          message = `Olá! Meu nome é ${watch('name')} e represento uma empresa interessada nos planos corporativos.\n\n` +
+                   `📱 Telefone: ${watch('phone') || 'Não informado'}\n` +
+                   `📧 Email: ${watch('email')}\n\n` +
+                   `Gostaria de receber uma proposta personalizada para nossa equipe.`;
+        }
+        
         const whatsappUrl = generateWhatsAppUrl('5516993247676', message);
         window.location.href = whatsappUrl;
       }

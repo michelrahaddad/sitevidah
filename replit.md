@@ -202,6 +202,17 @@ Changelog:
   * Dr. Michel Raineri Haddad - Cardiologia e Clínica Médica  
   * Dr. William Teixeira Haddad Jr. - Radiologia
   * Todas as fotos profissionais implementadas na seção de médicos credenciados
+- June 18, 2025. Email de contato atualizado para cartaomaisvidah@gmail.com:
+  * Atualização completa em todas as referências do site
+  * Footer, FAQ e links de contato atualizados
+  * Dr. Alex Teles Vasconcelos adicionado com foto profissional
+- June 18, 2025. Sistema WhatsApp otimizado com detecção de dispositivo:
+  * Implementada detecção automática mobile vs desktop
+  * Mobile: redireciona para wa.me (app nativo)
+  * Desktop: redireciona para web.whatsapp.com
+  * User-Agent usado no backend para determinar dispositivo
+  * URLs geradas dinamicamente com base no dispositivo do usuário
+  * Sistema funciona universalmente em qualquer dispositivo
 ```
 
 ## User Preferences
