@@ -39,9 +39,17 @@ export class WhatsAppService {
     
     const encodedMessage = encodeURIComponent(message);
     
-    // Return the primary wa.me URL - frontend handles fallbacks
-    // This is the most reliable approach across all devices
-    return `https://wa.me/${WHATSAPP_CONFIG.DEFAULT_PHONE}?text=${encodedMessage}`;
+    // Detect device type from user agent for optimal URL
+    const isMobile = userAgent ? 
+      /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini|mobile|phone/i.test(userAgent) : false;
+    
+    if (isMobile) {
+      // For mobile: use wa.me (more reliable than web version)
+      return `https://wa.me/${WHATSAPP_CONFIG.DEFAULT_PHONE}?text=${encodedMessage}`;
+    } else {
+      // For desktop: use web.whatsapp.com (more reliable on desktop)
+      return `https://web.whatsapp.com/send?phone=${WHATSAPP_CONFIG.DEFAULT_PHONE}&text=${encodedMessage}`;
+    }
   }
 
   /**

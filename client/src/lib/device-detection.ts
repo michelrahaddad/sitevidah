@@ -43,41 +43,73 @@ export const openWhatsApp = (phone: string, message: string): void => {
   const cleanPhone = phone.replace(/\D/g, '');
   const encodedMessage = encodeURIComponent(message);
   
-  // Create multiple URL options for maximum compatibility
-  const urls = [
-    `https://wa.me/${cleanPhone}?text=${encodedMessage}`,
-    `https://api.whatsapp.com/send?phone=${cleanPhone}&text=${encodedMessage}`,
-    `https://web.whatsapp.com/send?phone=${cleanPhone}&text=${encodedMessage}`
-  ];
+  // Detect device type for optimal URL selection
+  const isMobile = isMobileDevice();
+  const isIOS = isIOSDevice();
+  const isAndroid = isAndroidDevice();
   
-  // Try each URL approach with different methods
-  for (let i = 0; i < urls.length; i++) {
-    try {
-      if (i === 0) {
-        // First attempt: direct location change
-        window.location.href = urls[i];
-        break;
-      } else if (i === 1) {
-        // Second attempt: new window
-        const newWindow = window.open(urls[i], '_blank', 'noopener,noreferrer');
-        if (newWindow) break;
-      } else {
-        // Final fallback: create link and click
-        const link = document.createElement('a');
-        link.href = urls[i];
-        link.target = '_blank';
-        link.rel = 'noopener noreferrer';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        break;
+  let primaryUrl = '';
+  let fallbackUrls = [];
+  
+  if (isIOS) {
+    // iOS: Try native app first, then web
+    primaryUrl = `whatsapp://send?phone=${cleanPhone}&text=${encodedMessage}`;
+    fallbackUrls = [
+      `https://wa.me/${cleanPhone}?text=${encodedMessage}`,
+      `https://web.whatsapp.com/send?phone=${cleanPhone}&text=${encodedMessage}`
+    ];
+  } else if (isAndroid) {
+    // Android: Try intent first, then wa.me, then web
+    primaryUrl = `intent://send?phone=${cleanPhone}&text=${encodedMessage}#Intent;scheme=whatsapp;package=com.whatsapp;end`;
+    fallbackUrls = [
+      `https://wa.me/${cleanPhone}?text=${encodedMessage}`,
+      `https://web.whatsapp.com/send?phone=${cleanPhone}&text=${encodedMessage}`
+    ];
+  } else {
+    // Desktop: Try web.whatsapp.com first as it's more reliable on desktop
+    primaryUrl = `https://web.whatsapp.com/send?phone=${cleanPhone}&text=${encodedMessage}`;
+    fallbackUrls = [
+      `https://wa.me/${cleanPhone}?text=${encodedMessage}`,
+      `https://api.whatsapp.com/send?phone=${cleanPhone}&text=${encodedMessage}`
+    ];
+  }
+  
+  // Try primary URL first
+  try {
+    if (isMobile && (isIOS || isAndroid)) {
+      // For mobile, open in same window to trigger app
+      window.location.href = primaryUrl;
+      
+      // If app doesn't open in 2 seconds, try fallback
+      setTimeout(() => {
+        if (document.visibilityState === 'visible') {
+          // App didn't open, try fallback
+          window.open(fallbackUrls[0], '_blank');
+        }
+      }, 2000);
+    } else {
+      // For desktop, open in new tab
+      const newWindow = window.open(primaryUrl, '_blank', 'noopener,noreferrer');
+      if (!newWindow) {
+        // Popup blocked, try location change
+        window.location.href = primaryUrl;
       }
-    } catch (error) {
-      console.warn(`WhatsApp method ${i + 1} failed:`, error);
-      if (i === urls.length - 1) {
-        console.error('All WhatsApp methods failed');
-        // Show user-friendly message
-        alert('Não foi possível abrir o WhatsApp automaticamente. Por favor, entre em contato pelo telefone (16) 99324-7676');
+    }
+  } catch (error) {
+    console.warn('Primary WhatsApp method failed, trying fallbacks:', error);
+    
+    // Try fallback URLs
+    for (const url of fallbackUrls) {
+      try {
+        const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+        if (newWindow) break;
+        
+        // If popup blocked, try location change for last fallback
+        if (url === fallbackUrls[fallbackUrls.length - 1]) {
+          window.location.href = url;
+        }
+      } catch (fallbackError) {
+        console.warn('Fallback failed:', fallbackError);
       }
     }
   }
