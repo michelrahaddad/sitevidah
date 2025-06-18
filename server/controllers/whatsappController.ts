@@ -20,8 +20,9 @@ export class WhatsAppController {
 
       const conversion = await WhatsAppService.createConversion(conversionData);
       
-      // Generate WhatsApp URL based on button type
-      const whatsappUrl = WhatsAppService.generateWhatsAppUrl(conversion);
+      // Generate WhatsApp URL based on button type and device
+      const userAgent = req.get('User-Agent') || '';
+      const whatsappUrl = WhatsAppService.generateWhatsAppUrl(conversion, userAgent);
       
       const response: ApiResponse = {
         success: true,

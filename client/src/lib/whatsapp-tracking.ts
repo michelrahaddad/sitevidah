@@ -24,8 +24,7 @@ export const generateWhatsAppLink = (phone: string, message: string, trackingDat
   // Track the conversion before redirecting
   trackWhatsAppConversion(trackingData);
   
-  // Generate WhatsApp URL
-  const whatsappURL = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-  
-  return whatsappURL;
+  // Use device detection utility for URL generation
+  const { generateWhatsAppUrl } = require('@/lib/device-detection');
+  return generateWhatsAppUrl(phone, message);
 };

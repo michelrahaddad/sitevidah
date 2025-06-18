@@ -16,9 +16,9 @@ export class WhatsAppService {
   }
 
   /**
-   * Generates WhatsApp URL with appropriate message template
+   * Generates WhatsApp URL with appropriate message template and device detection
    */
-  static generateWhatsAppUrl(conversion: any): string {
+  static generateWhatsAppUrl(conversion: any, userAgent?: string): string {
     const { name = '', phone = '', email = '', planName = '', doctorName = '' } = conversion;
     
     let message = '';
@@ -38,8 +38,17 @@ export class WhatsAppService {
     }
     
     const encodedMessage = encodeURIComponent(message);
-    // Usa WhatsApp Web que funciona para todos, mesmo sem app instalado
-    return `${WHATSAPP_CONFIG.WEB_URL}?phone=${WHATSAPP_CONFIG.DEFAULT_PHONE}&text=${encodedMessage}`;
+    
+    // Detect mobile device from user agent
+    const isMobile = userAgent ? /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent) : false;
+    
+    if (isMobile) {
+      // Mobile: use wa.me for native app
+      return `${WHATSAPP_CONFIG.MOBILE_URL}/${WHATSAPP_CONFIG.DEFAULT_PHONE}?text=${encodedMessage}`;
+    } else {
+      // Desktop: use web.whatsapp.com
+      return `${WHATSAPP_CONFIG.WEB_URL}?phone=${WHATSAPP_CONFIG.DEFAULT_PHONE}&text=${encodedMessage}`;
+    }
   }
 
   /**

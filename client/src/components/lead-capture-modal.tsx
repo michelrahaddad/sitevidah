@@ -7,6 +7,7 @@ import { useMutation } from "@tanstack/react-query";
 import { whatsappApi } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 import { formatPhone } from "@/lib/utils";
+import { generateWhatsAppUrl } from "@/lib/device-detection";
 
 const leadCaptureSchema = z.object({
   name: z.string().min(2, "Nome deve ter pelo menos 2 caracteres"),
@@ -89,10 +90,20 @@ export default function LeadCaptureModal({
         throw error;
       }
     },
-    onSuccess: () => {
-      // Limpa formulário e fecha modal imediatamente após sucesso
+    onSuccess: (data) => {
+      // Limpa formulário e fecha modal
       reset();
       onClose();
+      
+      // Redireciona para WhatsApp usando URL retornada do backend (com detecção de dispositivo)
+      if (data?.data?.whatsappUrl) {
+        window.location.href = data.data.whatsappUrl;
+      } else {
+        // Fallback: gera URL do lado do cliente
+        const message = generateWhatsAppMessage();
+        const whatsappUrl = generateWhatsAppUrl('5516993247676', message);
+        window.location.href = whatsappUrl;
+      }
     }
   });
 
