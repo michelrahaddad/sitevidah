@@ -1,6 +1,6 @@
 import { MessageCircle } from "lucide-react";
 import { trackWhatsAppConversion } from "@/lib/whatsapp-tracking";
-import { generateWhatsAppUrl } from "@/lib/device-detection";
+import { openWhatsApp } from "@/lib/device-detection";
 
 export default function WhatsAppFloat() {
   const handleWhatsAppClick = () => {
@@ -11,8 +11,7 @@ export default function WhatsAppFloat() {
     });
 
     const message = "Olá! Gostaria de saber mais sobre o Cartão + Vidah";
-    const whatsappUrl = generateWhatsAppUrl('5516993247676', message);
-    window.location.href = whatsappUrl;
+    openWhatsApp('5516993247676', message);
   };
 
   return (

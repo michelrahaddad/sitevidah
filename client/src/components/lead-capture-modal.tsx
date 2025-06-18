@@ -7,7 +7,7 @@ import { useMutation } from "@tanstack/react-query";
 import { whatsappApi } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 import { formatPhone } from "@/lib/utils";
-import { generateWhatsAppUrl } from "@/lib/device-detection";
+import { generateWhatsAppUrl, openWhatsApp } from "@/lib/device-detection";
 
 const leadCaptureSchema = z.object({
   name: z.string().min(2, "Nome deve ter pelo menos 2 caracteres"),
@@ -95,11 +95,16 @@ export default function LeadCaptureModal({
       reset();
       onClose();
       
-      // Redireciona para WhatsApp usando URL retornada do backend (com detecção de dispositivo)
+      // Redireciona para WhatsApp com máxima compatibilidade
       if (data?.data?.whatsappUrl) {
-        window.location.href = data.data.whatsappUrl;
+        // Usa URL do backend se disponível
+        try {
+          window.location.href = data.data.whatsappUrl;
+        } catch (error) {
+          window.open(data.data.whatsappUrl, '_blank');
+        }
       } else {
-        // Fallback: gera URL do lado do cliente
+        // Fallback: gera e abre WhatsApp do lado do cliente
         let message = '';
         
         if (buttonType === 'plan_subscription') {
@@ -119,8 +124,7 @@ export default function LeadCaptureModal({
                    `Gostaria de receber uma proposta personalizada para nossa equipe.`;
         }
         
-        const whatsappUrl = generateWhatsAppUrl('5516993247676', message);
-        window.location.href = whatsappUrl;
+        openWhatsApp('5516993247676', message);
       }
     }
   });

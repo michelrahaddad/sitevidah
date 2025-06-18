@@ -31,11 +31,34 @@ export const generateWhatsAppUrl = (phone: string, message: string): string => {
   const cleanPhone = phone.replace(/\D/g, '');
   const encodedMessage = encodeURIComponent(message);
   
-  if (isMobileDevice()) {
-    // Mobile devices - use wa.me for native app
-    return `https://wa.me/${cleanPhone}?text=${encodedMessage}`;
-  } else {
-    // Desktop - use web.whatsapp.com
-    return `https://web.whatsapp.com/send?phone=${cleanPhone}&text=${encodedMessage}`;
+  // wa.me is the most universal option - works on all devices
+  // It automatically chooses the best available option:
+  // - Mobile with app: opens native WhatsApp
+  // - Mobile without app: opens web version
+  // - Desktop: opens web.whatsapp.com
+  return `https://wa.me/${cleanPhone}?text=${encodedMessage}`;
+};
+
+export const openWhatsApp = (phone: string, message: string): void => {
+  const url = generateWhatsAppUrl(phone, message);
+  
+  // Try multiple approaches for maximum compatibility
+  try {
+    // Method 1: Direct location change (most reliable)
+    window.location.href = url;
+  } catch (error) {
+    try {
+      // Method 2: Open in new window if location change fails
+      window.open(url, '_blank');
+    } catch (fallbackError) {
+      // Method 3: Create temporary link and click it
+      const link = document.createElement('a');
+      link.href = url;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
   }
 };

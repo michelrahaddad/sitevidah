@@ -39,17 +39,13 @@ export class WhatsAppService {
     
     const encodedMessage = encodeURIComponent(message);
     
-    // Detect mobile device from user agent - more comprehensive detection
-    const isMobile = userAgent ? 
-      /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini|mobile|phone/i.test(userAgent) : false;
-    
-    if (isMobile) {
-      // Mobile: use wa.me for native app
-      return `https://wa.me/${WHATSAPP_CONFIG.DEFAULT_PHONE}?text=${encodedMessage}`;
-    } else {
-      // Desktop: use web.whatsapp.com
-      return `${WHATSAPP_CONFIG.WEB_URL}?phone=${WHATSAPP_CONFIG.DEFAULT_PHONE}&text=${encodedMessage}`;
-    }
+    // Always use wa.me - it's the most universal approach
+    // Works on all devices and automatically chooses the best option:
+    // - Mobile with WhatsApp app: opens native app
+    // - Mobile without app: opens web version in browser
+    // - Desktop: opens web.whatsapp.com
+    // This eliminates the connection refused errors
+    return `https://wa.me/${WHATSAPP_CONFIG.DEFAULT_PHONE}?text=${encodedMessage}`;
   }
 
   /**

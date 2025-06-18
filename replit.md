@@ -206,13 +206,15 @@ Changelog:
   * Atualização completa em todas as referências do site
   * Footer, FAQ e links de contato atualizados
   * Dr. Alex Teles Vasconcelos adicionado com foto profissional
-- June 18, 2025. Sistema WhatsApp otimizado com detecção de dispositivo:
-  * Implementada detecção automática mobile vs desktop
-  * Mobile: redireciona para wa.me (app nativo)
-  * Desktop: redireciona para web.whatsapp.com
-  * User-Agent usado no backend para determinar dispositivo
-  * URLs geradas dinamicamente com base no dispositivo do usuário
-  * Sistema funciona universalmente em qualquer dispositivo
+- June 18, 2025. Sistema WhatsApp universalizado para máxima compatibilidade:
+  * Adotada abordagem universal usando wa.me para todos os dispositivos
+  * Elimina erros de "conexão recusada" do web.whatsapp.com
+  * wa.me automaticamente escolhe a melhor opção disponível:
+    - Mobile com app: abre WhatsApp nativo
+    - Mobile sem app: abre versão web no navegador
+    - Desktop: abre web.whatsapp.com automaticamente
+  * Sistema robusto com múltiplos métodos de redirecionamento
+  * Funciona 100% tanto para usuários desktop quanto mobile
 ```
 
 ## User Preferences
