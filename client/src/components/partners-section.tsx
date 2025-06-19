@@ -114,7 +114,7 @@ const medicos = [
 
 const parceiroDestaque = {
   nome: "Grupo Vidah",
-  desconto: "Benefícios Exclusivos",
+  desconto: "10 a 50% OFF",
   categoria: "Parceiro Principal",
   logo: vidahLogoUrl,
   endereco: "R. XV de Novembro, 594 - Centro, Ibitinga - SP, 14940-000",
@@ -297,12 +297,16 @@ export default function PartnersSection() {
               </div>
               
               <div className="relative z-10">
-                <div className="w-24 h-24 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg overflow-hidden">
+                <div className="relative w-24 h-24 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg overflow-hidden">
                   <img 
                     src={vidahLogoUrl} 
                     alt="Grupo Vidah Logo"
                     className="w-full h-full object-cover rounded-xl"
                   />
+                  {/* Badge de desconto flutuante */}
+                  <div className="absolute -top-2 -right-2 bg-gradient-to-r from-red-500 to-red-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-lg animate-pulse border-2 border-white">
+                    10-50%
+                  </div>
                 </div>
                 
                 <h4 className="text-2xl font-bold text-[#636E72] mb-2 text-center">{parceiroDestaque.nome}</h4>
@@ -332,7 +336,7 @@ export default function PartnersSection() {
                   </div>
                 </div>
                 
-                <div className="bg-gradient-to-r from-[#0984E3] to-[#74B9FF] text-white px-4 py-2 rounded-full text-center font-bold">
+                <div className="bg-gradient-to-r from-[#0984E3] to-[#74B9FF] text-white px-4 py-2 rounded-full text-center font-bold shadow-lg">
                   {parceiroDestaque.desconto}
                 </div>
               </div>
