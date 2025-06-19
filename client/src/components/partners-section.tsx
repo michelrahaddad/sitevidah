@@ -114,7 +114,7 @@ const medicos = [
 
 const parceiroDestaque = {
   nome: "Grupo Vidah",
-  desconto: "10 a 50% OFF",
+  desconto: "20 a 40% OFF",
   categoria: "Parceiro Principal",
   logo: vidahLogoUrl,
   endereco: "R. XV de Novembro, 594 - Centro, Ibitinga - SP, 14940-000",
@@ -125,21 +125,21 @@ const parceiroDestaque = {
 
 // Nova estrutura moderna para empresas parceiras
 const parceiros = [
-  { nome: "Grupo Vidah", desconto: "Exclusivo", categoria: "Parceiro Principal", icon: "🏥" },
-  { nome: "Silasgás", desconto: "10%", categoria: "Energia & Gás", icon: "🔥" },
-  { nome: "Óticas Carol", desconto: "20%", categoria: "Saúde Visual", icon: "👁️" },
-  { nome: "Fiducia Eletro", desconto: "10%", categoria: "Tecnologia", icon: "⚡" },
-  { nome: "Evolução Centro Multidisciplinar", desconto: "Especial", categoria: "Bem-estar", icon: "🏥" },
-  { nome: "Pronto Vet", desconto: "15%", categoria: "Pet Care", icon: "🐾" },
-  { nome: "Rações Santa Tereza", desconto: "12%", categoria: "Pet Shop", icon: "🐕" },
-  { nome: "Reabilitar Neuroped", desconto: "Especial", categoria: "Fisioterapia", icon: "🏃‍♂️" },
-  { nome: "Corpo em Harmonia", desconto: "Especial", categoria: "Fitness", icon: "🧘‍♀️" },
-  { nome: "Drogaven", desconto: "Especial", categoria: "Farmácia", icon: "💊" },
-  { nome: "Hospital Malzoni", desconto: "Especial", categoria: "Saúde", icon: "🏥" },
-  { nome: "Dom Pedro", desconto: "15%", categoria: "Alimentação", icon: "🥬" },
-  { nome: "Funerária Canaã", desconto: "Especial", categoria: "Serviços", icon: "🕊️" },
-  { nome: "Magia do Sorriso", desconto: "20%", categoria: "Odontologia", icon: "😁" },
-  { nome: "Lab 7", desconto: "30%", categoria: "Diagnósticos", icon: "🔬" }
+  { nome: "Grupo Vidah", desconto: "20-40%", categoria: "Parceiro Principal", icon: "🏥" },
+  { nome: "Silasgás", desconto: "20-40%", categoria: "Energia & Gás", icon: "🔥" },
+  { nome: "Óticas Carol", desconto: "20-40%", categoria: "Saúde Visual", icon: "👁️" },
+  { nome: "Fiducia Eletro", desconto: "20-40%", categoria: "Tecnologia", icon: "⚡" },
+  { nome: "Evolução Centro Multidisciplinar", desconto: "20-40%", categoria: "Bem-estar", icon: "🏥" },
+  { nome: "Pronto Vet", desconto: "20-40%", categoria: "Pet Care", icon: "🐾" },
+  { nome: "Rações Santa Tereza", desconto: "20-40%", categoria: "Pet Shop", icon: "🐕" },
+  { nome: "Reabilitar Neuroped", desconto: "20-40%", categoria: "Fisioterapia", icon: "🏃‍♂️" },
+  { nome: "Corpo em Harmonia", desconto: "20-40%", categoria: "Fitness", icon: "🧘‍♀️" },
+  { nome: "Drogaven", desconto: "20-40%", categoria: "Farmácia", icon: "💊" },
+  { nome: "Hospital Malzoni", desconto: "20-40%", categoria: "Saúde", icon: "🏥" },
+  { nome: "Dom Pedro", desconto: "20-40%", categoria: "Alimentação", icon: "🥬" },
+  { nome: "Funerária Canaã", desconto: "20-40%", categoria: "Serviços", icon: "🕊️" },
+  { nome: "Magia do Sorriso", desconto: "20-40%", categoria: "Odontologia", icon: "😁" },
+  { nome: "Lab 7", desconto: "20-40%", categoria: "Diagnósticos", icon: "🔬" }
 ];
 
 export default function PartnersSection() {
@@ -305,7 +305,7 @@ export default function PartnersSection() {
                   />
                   {/* Badge de desconto flutuante */}
                   <div className="absolute -top-2 -right-2 bg-gradient-to-r from-red-500 to-red-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-lg animate-pulse border-2 border-white">
-                    10-50%
+                    20-40%
                   </div>
                 </div>
                 
@@ -441,6 +441,11 @@ export default function PartnersSection() {
                   {/* Círculo Principal com Logo */}
                   <div className="w-32 h-32 bg-gradient-to-br from-white via-gray-50 to-gray-100 rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-110 border-4 border-white/80 relative overflow-hidden group-hover:border-[#00B894]/30">
                     
+                    {/* Badge de desconto para todos os parceiros */}
+                    <div className="absolute -top-2 -right-2 bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-lg animate-pulse border-2 border-white z-20">
+                      20-40%
+                    </div>
+                    
                     {/* Efeito de brilho circular */}
                     <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full"></div>
                     
@@ -547,10 +552,7 @@ export default function PartnersSection() {
                       )}
                     </div>
                     
-                    {/* Badge de Desconto Flutuante */}
-                    <div className="absolute -top-2 -right-2 w-10 h-10 bg-gradient-to-r from-[#00B894] to-[#00d2a0] rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg z-20 animate-pulse">
-                      {parceiro.desconto}
-                    </div>
+
                   </div>
                   
                   {/* Anel de Progresso Animado */}
