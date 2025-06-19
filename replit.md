@@ -215,6 +215,12 @@ Changelog:
     - Desktop: abre web.whatsapp.com automaticamente
   * Sistema robusto com múltiplos métodos de redirecionamento
   * Funciona 100% tanto para usuários desktop quanto mobile
+- June 19, 2025. Badges de desconto visuais implementados:
+  * Grupo Vidah com badge "10-40%" no logo principal
+  * Todos os parceiros com badges "10-40%" visíveis nos círculos
+  * Design com gradiente laranja-vermelho e animação pulsante
+  * Posicionamento otimizado para evitar overflow hidden
+  * Sistema visual atrativo para destacar benefícios dos parceiros
 ```
 
 ## User Preferences
