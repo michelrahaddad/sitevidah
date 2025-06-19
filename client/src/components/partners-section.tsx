@@ -114,7 +114,7 @@ const medicos = [
 
 const parceiroDestaque = {
   nome: "Grupo Vidah",
-  desconto: "20 a 40% OFF",
+  desconto: "10 a 40% OFF",
   categoria: "Parceiro Principal",
   logo: vidahLogoUrl,
   endereco: "R. XV de Novembro, 594 - Centro, Ibitinga - SP, 14940-000",
@@ -125,21 +125,21 @@ const parceiroDestaque = {
 
 // Nova estrutura moderna para empresas parceiras
 const parceiros = [
-  { nome: "Grupo Vidah", desconto: "20-40%", categoria: "Parceiro Principal", icon: "🏥" },
-  { nome: "Silasgás", desconto: "20-40%", categoria: "Energia & Gás", icon: "🔥" },
-  { nome: "Óticas Carol", desconto: "20-40%", categoria: "Saúde Visual", icon: "👁️" },
-  { nome: "Fiducia Eletro", desconto: "20-40%", categoria: "Tecnologia", icon: "⚡" },
-  { nome: "Evolução Centro Multidisciplinar", desconto: "20-40%", categoria: "Bem-estar", icon: "🏥" },
-  { nome: "Pronto Vet", desconto: "20-40%", categoria: "Pet Care", icon: "🐾" },
-  { nome: "Rações Santa Tereza", desconto: "20-40%", categoria: "Pet Shop", icon: "🐕" },
-  { nome: "Reabilitar Neuroped", desconto: "20-40%", categoria: "Fisioterapia", icon: "🏃‍♂️" },
-  { nome: "Corpo em Harmonia", desconto: "20-40%", categoria: "Fitness", icon: "🧘‍♀️" },
-  { nome: "Drogaven", desconto: "20-40%", categoria: "Farmácia", icon: "💊" },
-  { nome: "Hospital Malzoni", desconto: "20-40%", categoria: "Saúde", icon: "🏥" },
-  { nome: "Dom Pedro", desconto: "20-40%", categoria: "Alimentação", icon: "🥬" },
-  { nome: "Funerária Canaã", desconto: "20-40%", categoria: "Serviços", icon: "🕊️" },
-  { nome: "Magia do Sorriso", desconto: "20-40%", categoria: "Odontologia", icon: "😁" },
-  { nome: "Lab 7", desconto: "20-40%", categoria: "Diagnósticos", icon: "🔬" }
+  { nome: "Grupo Vidah", desconto: "10-40%", categoria: "Parceiro Principal", icon: "🏥" },
+  { nome: "Silasgás", desconto: "10-40%", categoria: "Energia & Gás", icon: "🔥" },
+  { nome: "Óticas Carol", desconto: "10-40%", categoria: "Saúde Visual", icon: "👁️" },
+  { nome: "Fiducia Eletro", desconto: "10-40%", categoria: "Tecnologia", icon: "⚡" },
+  { nome: "Evolução Centro Multidisciplinar", desconto: "10-40%", categoria: "Bem-estar", icon: "🏥" },
+  { nome: "Pronto Vet", desconto: "10-40%", categoria: "Pet Care", icon: "🐾" },
+  { nome: "Rações Santa Tereza", desconto: "10-40%", categoria: "Pet Shop", icon: "🐕" },
+  { nome: "Reabilitar Neuroped", desconto: "10-40%", categoria: "Fisioterapia", icon: "🏃‍♂️" },
+  { nome: "Corpo em Harmonia", desconto: "10-40%", categoria: "Fitness", icon: "🧘‍♀️" },
+  { nome: "Drogaven", desconto: "10-40%", categoria: "Farmácia", icon: "💊" },
+  { nome: "Hospital Malzoni", desconto: "10-40%", categoria: "Saúde", icon: "🏥" },
+  { nome: "Dom Pedro", desconto: "10-40%", categoria: "Alimentação", icon: "🥬" },
+  { nome: "Funerária Canaã", desconto: "10-40%", categoria: "Serviços", icon: "🕊️" },
+  { nome: "Magia do Sorriso", desconto: "10-40%", categoria: "Odontologia", icon: "😁" },
+  { nome: "Lab 7", desconto: "10-40%", categoria: "Diagnósticos", icon: "🔬" }
 ];
 
 export default function PartnersSection() {
@@ -443,7 +443,7 @@ export default function PartnersSection() {
                     
                     {/* Badge de desconto para todos os parceiros */}
                     <div className="absolute -top-2 -right-2 bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-lg animate-pulse border-2 border-white z-20">
-                      20-40%
+                      10-40%
                     </div>
                     
                     {/* Efeito de brilho circular */}
