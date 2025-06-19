@@ -438,13 +438,13 @@ export default function PartnersSection() {
                 {/* Container Principal Circular */}
                 <div className="relative">
                   
+                  {/* Badge de desconto para todos os parceiros - fora do círculo */}
+                  <div className="absolute -top-2 -right-2 bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-lg animate-pulse border-2 border-white z-30">
+                    10-40%
+                  </div>
+                  
                   {/* Círculo Principal com Logo */}
                   <div className="w-32 h-32 bg-gradient-to-br from-white via-gray-50 to-gray-100 rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-110 border-4 border-white/80 relative overflow-hidden group-hover:border-[#00B894]/30">
-                    
-                    {/* Badge de desconto para todos os parceiros */}
-                    <div className="absolute -top-2 -right-2 bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-lg animate-pulse border-2 border-white z-20">
-                      10-40%
-                    </div>
                     
                     {/* Efeito de brilho circular */}
                     <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full"></div>
